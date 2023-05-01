@@ -36,6 +36,7 @@ const FoodCategoriesScreen = () => {
     setAnimatedItemStyle({});
   };
   
+  
   const renderCategoryItem = ({ item }) => {
     const iconColor = item.type === "veg" ? "#4CAF50" : "#F44336";
     return (
@@ -60,18 +61,20 @@ const FoodCategoriesScreen = () => {
     );
   };
   
+  
 
   const renderSelectedItem = () => {
     const selectedItem = data.find((item) => item.id === selectedItemId);
     return (
       <View style={styles.selectedItemContainer}>
-        <TouchableOpacity onPress={handleBackPress}>
-          <Text style={styles.backButton}>Back</Text>
-        </TouchableOpacity>
+       
         <View style={styles.selectedItemTextContainer}>
           <Text style={styles.selectedItemName}>{selectedItem.name}</Text>
           <Text style={styles.selectedItemDescription}>{selectedItem.description}</Text>
         </View>
+        <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
+          <Text style={styles.backtbuttonText}>Back</Text>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -137,9 +140,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backButton: {
-    fontSize: 16,
-    color: '#000',
-    marginBottom: 16,
+    backgroundColor: 'blue',
+    padding: 4,
+    borderRadius: 6,
+    marginTop: 6,
+  },
+  backtbuttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 9,
+    fontWeight: 'bold',
   },
   selectedItemImage: {
     width: 200,
