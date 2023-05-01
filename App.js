@@ -11,7 +11,6 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
 import FoodItems from './src/screens/FoodItemsScreen';
 import FoodList from  './src/screens/FoodListScreen';
-import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
 import ShoppingCartScreen from './src/screens/ShoppingCartScreen.js';
 import CheckoutScreen from './src/screens/CheckOut';
 import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
