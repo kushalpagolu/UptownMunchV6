@@ -210,6 +210,90 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
+  fooditemsscreencontainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  fooditemsscreentitle: {
+    fontSize: 24,
+    marginBottom: 16,
+  },
+  foodItemsContainer: {
+    paddingBottom: 16,
+  },
+  foodItemContainer: {
+    flex: 1,
+    //alignItems: 'stretch',
+    marginBottom: 16,
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginTop: 5,
+    margin: 5,
+  },
+  foodItemImage: {
+    width: '100%',
+    height: 200,
+  },
+  foodItemOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+  },
+  foodItemDetails: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  foodItemName: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 8,
+  },
+  foodItemCategory: {
+    color: 'white',
+    fontSize: 14,
+    marginBottom: 4,
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  itemQuantity: {
+    color: '#FFF',
+    fontSize: 16,
+    marginRight: 5,
+  },
+  iconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    right: 10,
+  },
+  favoriteIcon: {
+    paddingHorizontal: 5,
+  },
+  icons: {
+    paddingHorizontal: 5,
+  },
+  viewCartButton: {
+    position: 'absolute',
+    bottom: 16,
+    right: 16,
+    paddingHorizontal: 24,
+    paddingVertical: 8,
+    backgroundColor: 'dodgerblue',
+    borderRadius: 8,
+  },
+  viewCartButtonText: {
+    fontSize: 16,
+    color: 'white',
+  },
   // ... any other styles you want to share across screens
 });
 

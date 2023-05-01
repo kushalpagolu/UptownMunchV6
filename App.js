@@ -26,7 +26,24 @@ const AuthStack = createNativeStackNavigator();
 const AuthTabs = createBottomTabNavigator();
 const Tabs = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+const ShoppingCartStack = createNativeStackNavigator();
 
+function ShoppingCartStackScreen() {
+  return (
+    <ShoppingCartStack.Navigator>
+      <ShoppingCartStack.Screen
+        name="ShoppingCart"
+        component={ShoppingCartScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+      <ShoppingCartStack.Screen
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+    </ShoppingCartStack.Navigator>
+  );
+}
 
 
 function AuthTabNavigator({ setIsLoggedIn }) {
@@ -70,7 +87,20 @@ function HomeTabs({ setIsLoggedIn }) {
         },
       })}
     >
-      
+      <Tabs.Screen
+        name="ShoppingCart"
+        component={ShoppingCartScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+     <Tabs.Screen name="OrderConfirmationScreen"
+          component={OrderConfirmationScreen}
+          options={{
+        headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />,
+        headerRightContainerStyle: { paddingRight: 10 },
+        //tabBarStyle: { display: "none" }, // hide the tab bar
+        tabBarItemStyle: { display: "none" }, // hide the tab icon and label
+      }}
+      />
       <Tabs.Screen
         name="Profile"
         component={UserProfileScreen}

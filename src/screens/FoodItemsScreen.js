@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import ShoppingCartScreen from './ShoppingCartScreen';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-
+import styles from './Styles';
 
 
 const FoodItemsScreen = ({ navigation }) => {
@@ -125,20 +125,25 @@ const FoodItemsScreen = ({ navigation }) => {
       colors={['#FF8C00', '#FFA500', '#FFDAB9']}
       start={[0, 0]}
       end={[1, 1]}
-      style={styles.container}>
-      <Text style={styles.title}>UptownMunch</Text>
+      style={styles.fooditemsscreencontainer}>
+      <Text style={styles.fooditemsscreentitle}>UptownMunch</Text>
       <FlatList
         data={foodItems}
         renderItem={renderFoodItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.foodItemsContainer}
+        numColumns={2} 
       />
-      <TouchableOpacity
-        style={styles.viewCartButton}
-        onPress={() => navigation.navigate('ShoppingCartScreen', { cartItems: shoppingCart })}>
-        <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})
-        </Text>
-      </TouchableOpacity>
+     <TouchableOpacity
+  style={styles.viewCartButton}
+
+  //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. With the changes we made to the ShoppingCartScreen earlier, it will correctly receive and use the cartItems passed from this screen through the route.params object.
+  onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart })}
+>
+  <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})
+  </Text>
+</TouchableOpacity>
+
       {showDetailsModal && (
   <Modal transparent visible={showDetailsModal}>
     <FoodItemDetailsScreen
@@ -155,92 +160,6 @@ const FoodItemsScreen = ({ navigation }) => {
   );
 };
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingHorizontal: 16,
-      paddingTop: 16,
-    },
-    title: {
-      fontSize: 24,
-      marginBottom: 16,
-    },
-    foodItemsContainer: {
-      paddingBottom: 16,
-    },
-    foodItemContainer: {
-      flex: 1,
-      alignItems: 'stretch',
-      marginBottom: 16,
-      borderRadius: 10,
-      overflow: 'hidden',
-      marginTop: 5,
-    },
-    foodItemImage: {
-      width: '100%',
-      height: 200,
-    },
-    foodItemOverlay: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      padding: 16,
-    },
-    foodItemDetails: {
-      flex: 1,
-      justifyContent: 'flex-end',
-    },
-    foodItemName: {
-      color: 'white',
-      fontWeight: 'bold',
-      fontSize: 18,
-      marginBottom: 8,
-    },
-    foodItemCategory: {
-      color: 'white',
-      fontSize: 14,
-      marginBottom: 4,
-    },
-    quantityContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    itemQuantity: {
-      color: '#FFF',
-      fontSize: 16,
-      marginRight: 5,
-    },
-    iconsContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      position: 'absolute',
-      bottom: 10,
-      left: 10,
-      right: 10,
-    },
-    favoriteIcon: {
-      paddingHorizontal: 5,
-    },
-    icons: {
-      paddingHorizontal: 5,
-    },
-    viewCartButton: {
-      position: 'absolute',
-      bottom: 16,
-      right: 16,
-      paddingHorizontal: 24,
-      paddingVertical: 8,
-      backgroundColor: 'dodgerblue',
-      borderRadius: 8,
-    },
-    viewCartButtonText: {
-      fontSize: 16,
-      color: 'white',
-    },
-    
-  });
   
   export default FoodItemsScreen;
 

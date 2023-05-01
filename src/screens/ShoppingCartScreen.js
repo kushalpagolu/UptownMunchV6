@@ -9,11 +9,11 @@ import styles from './Styles';
 
 const db = getFirestore(app);
 
-const ShoppingCartScreen = ({ navigation, order }) => {
- // const [order, setOrder] = useState(null);
-  const cartItems = navigation.getParam('cartItems', []);
-  // Get setOrder from the context
-  //const { setOrder } = useContext(OrderContext);
+const ShoppingCartScreen = ({ navigation, route }) => {
+  const cartItems = route.params.cartItems || [];
+   // const [order, setOrder] = useState(null);
+//  const cartItems = navigation.getParam('cartItems', []);
+  
 
   const renderItem = ({ item }) => (
     <LinearGradient

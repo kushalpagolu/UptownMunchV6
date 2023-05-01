@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './Styles';
+import db from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 const CheckoutScreen = ({ navigation, route }) => {
   const [name, setName] = useState('');
@@ -18,16 +20,18 @@ const CheckoutScreen = ({ navigation, route }) => {
         timestamp: new Date().toISOString(),
       };
       console.log('Placing order:', { name, address, items });
-      // Here you can write code to save the order to the database
-      const orderId = await firestore().collection('orders').add(order);
-  
+
+      // Save the order to the database
+      const ordersCollection = collection(db, 'orders');
+      const orderDoc = await addDoc(ordersCollection, order);
+
       // Navigate to the order confirmation screen and pass the order ID as a parameter
-      navigation.navigate('OrderConfirmation', { orderId });
+      navigation.navigate('OrderConfirmationScreen', { order });
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   return (
     <View style={styles.checkoutcontainer}>
       <Text style={styles.checkouttitle}>Checkout</Text>
@@ -45,7 +49,5 @@ const CheckoutScreen = ({ navigation, route }) => {
     </View>
   );
 };
-
-
 
 export default CheckoutScreen;

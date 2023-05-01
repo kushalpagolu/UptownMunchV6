@@ -3,10 +3,9 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getAuth } from 'firebase/auth';
 
-const OrderConfirmationScreen = ({ navigation }) => {
+const OrderConfirmationScreen = ({ navigation, route }) => {
   const auth = getAuth();
-  console.log(navigation.state.params)
-  const order = navigation.state.params.order;
+  const order = route.params.order;
   console.log(order)
 
   console.log(order)
@@ -54,8 +53,8 @@ const OrderConfirmationScreen = ({ navigation }) => {
           ))}
         </View>
       </View>
-      <Button title="Back" onPress={() => {navigation.popToTop();
-        navigation.navigate('Main', { user: auth.currentUser });
+      <Button title="Back" onPress={() => {
+        navigation.navigate('Welcome', { user: auth.currentUser });
       }} />
     </View>
   );
