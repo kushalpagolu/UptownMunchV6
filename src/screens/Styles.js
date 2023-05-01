@@ -1,5 +1,14 @@
 import { StyleSheet } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
+export const LogoutButton = ({ onLogout }) => (
+  <TouchableOpacity
+    style={styles.logoutbutton}
+    onPress={onLogout}
+  >
+    <Text style={styles.logoutbuttonText}>Logout</Text>
+  </TouchableOpacity>
+);
 
 const CustomTabBarButton = ({ children, onPress }) => (
   <TouchableOpacity

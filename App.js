@@ -20,20 +20,14 @@ import CateringServicesScreen from './src/screens/CateringServices';
 import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import { LogoutButton } from './src/screens/Styles';
 
 const AuthStack = createNativeStackNavigator();
 const AuthTabs = createBottomTabNavigator();
 const Tabs = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 
-export const LogoutButton = ({ onLogout }) => (
-  <TouchableOpacity
-    style={styles.logoutbutton}
-    onPress={onLogout}
-  >
-    <Text style={styles.logoutbuttonText}>Logout</Text>
-  </TouchableOpacity>
-);
+
 
 function AuthTabNavigator({ setIsLoggedIn }) {
   return (
