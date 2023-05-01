@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 
 import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
@@ -21,8 +22,20 @@ import LoginScreen from './src/screens/LoginScreen';
 
 
 const AuthStack = createNativeStackNavigator();
+const AuthTabs = createBottomTabNavigator();
 const Tabs = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+
+function AuthTabNavigator({ setIsLoggedIn }) {
+  return (
+    <AuthTabs.Navigator>
+      <AuthTabs.Screen name="Login">
+        {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </AuthTabs.Screen>
+      <AuthTabs.Screen name="Signup" component={SignupScreen} />
+    </AuthTabs.Navigator>
+  );
+}
 
 function HomeTabs() {
   return (
@@ -34,8 +47,9 @@ function HomeTabs() {
     </Tabs.Navigator>
   );
 }
+// ...
 
-function HomeStackScreen({ navigation }) {
+function HomeStackScreen({ navigation, setIsLoggedIn }) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -44,7 +58,10 @@ function HomeStackScreen({ navigation }) {
         options={{
           headerRight: () => (
             <Button
-              onPress={() => navigation.replace('Auth')}
+              onPress={() => {
+                navigation.replace('Auth');
+                setIsLoggedIn(false);
+              }}
               mode="contained"
               compact
               style={{ marginRight: 10 }}
@@ -64,14 +81,34 @@ export default function App() {
   return (
     <NavigationContainer>
       {!isLoggedIn ? (
-        <AuthStack.Navigator initialRouteName="Login">
-          <AuthStack.Screen name="Login">
-            {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+        <AuthStack.Navigator initialRouteName="AuthTabs">
+          <AuthStack.Screen name="AuthTabs">
+            {(props) => <AuthTabNavigator {...props} setIsLoggedIn={setIsLoggedIn} />}
           </AuthStack.Screen>
-          <AuthStack.Screen name="Signup" component={SignupScreen} />
         </AuthStack.Navigator>
       ) : (
-        <HomeStackScreen />
+        <HomeStack.Navigator>
+          <HomeStack.Screen
+            name="Home"
+            options={({ navigation }) => ({
+              headerRight: () => (
+                <Button
+                  onPress={() => {
+                    navigation.replace('AuthTabs');
+                    setIsLoggedIn(false);
+                  }}
+                  mode="contained"
+                  compact
+                  style={{ marginRight: 10 }}
+                >
+                  Logout
+                </Button>
+              ),
+            })}
+          >
+            {(props) => <HomeTabs {...props} />}
+          </HomeStack.Screen>
+        </HomeStack.Navigator>
       )}
     </NavigationContainer>
   );
