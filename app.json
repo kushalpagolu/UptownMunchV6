@@ -1,5 +1,6 @@
 {
   "expo": {
+    "platforms": ["ios", "android", "web"],
     "name": "UptownMunch",
     "slug": "UptownMunch",
     "version": "1.0.0",
