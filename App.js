@@ -21,6 +21,7 @@ import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import { LogoutButton } from './src/screens/Styles';
+import OrderHistoryScreenAlternate from './src/screens/OrderHistoryAlternate';
 
 const AuthStack = createNativeStackNavigator();
 const AuthTabs = createBottomTabNavigator();
@@ -139,12 +140,18 @@ function HomeTabs({ setIsLoggedIn }) {
         component={OrderHistoryScreen}
         options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
       />
+       <Tabs.Screen
+        name="OrderHistoryScreenAlternate"
+        component={OrderHistoryScreenAlternate}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
       <Tabs.Screen
         name="FoodList"
         component={FoodList}
         options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 },tabBarItemStyle: { display: "none" } }}
       />
     </Tabs.Navigator>
+    
   );
 }
 
