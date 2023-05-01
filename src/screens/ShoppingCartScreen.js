@@ -5,6 +5,7 @@ import { getFirestore, collection, addDoc, doc } from 'firebase/firestore';
 import { auth } from '../firebase';
 import OrderConfirmationScreen from './OrderConfirmationScreen';
 import {firebaseConfig, app} from '../firebase';
+import styles from './Styles';
 
 const db = getFirestore(app);
 
@@ -90,9 +91,9 @@ const ShoppingCartScreen = ({ navigation, order }) => {
   // Set the order in the context
 
   return (
-    <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.gradient}>
+    <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.shoppingcartgradient}>
       <View style={styles.container}>
-        <Text style={styles.title}>Shopping Cart</Text>
+        <Text style={styles.shoppingcarttitle}>Shopping Cart</Text>
         <FlatList
           data={cartItems}
           renderItem={renderItem}
@@ -111,70 +112,5 @@ const ShoppingCartScreen = ({ navigation, order }) => {
 };
 
 
-const styles = StyleSheet.create({
-  gradient: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 16,
-    marginBottom: 16,
-  },
-  cartItemsContainer: {
-    paddingHorizontal: 16,
-  },
-  cartItem: {
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    marginVertical: 8,
-  },
-  itemName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  itemCategory: {
-    fontSize: 14,
-    color: 'white',
-  },
-  itemPrice: {
-    fontSize: 16,
-    color: 'white',
-    marginTop: 4,
-  },
-  itemQuantity: {
-    color: '#FFF',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-  totalContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
-  },
-  totalText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  checkoutButton: {
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    backgroundColor: 'dodgerblue',
-    borderRadius: 8,
-    alignSelf: 'center',
-    marginTop: 16,
-    marginBottom: 16,
-  },
-  checkoutButtonText: {
-    fontSize: 16,
-    color: 'white',
-  },
-});
 
 export default ShoppingCartScreen;

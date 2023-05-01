@@ -109,6 +109,107 @@ const styles = StyleSheet.create({
     color: 'red',
     marginTop: 16,
   },
+  shoppingcarttitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  shoppingcartgradient: {
+    flex: 1,
+  },
+  shoppingcartcontainer: {
+    flex: 1,
+  },
+  cartItemsContainer: {
+    paddingHorizontal: 16,
+  },
+  cartItem: {
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    marginVertical: 8,
+  },
+  itemName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  itemCategory: {
+    fontSize: 14,
+    color: 'white',
+  },
+  itemPrice: {
+    fontSize: 16,
+    color: 'white',
+    marginTop: 4,
+  },
+  itemQuantity: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  totalContainer: {
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+  },
+  totalText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  checkoutButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 8,
+    backgroundColor: 'dodgerblue',
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  checkoutButtonText: {
+    fontSize: 16,
+    color: 'white',
+  },
+  checkoutcontainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 16,
+  },
+  checkouttitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+  },
+  checkoutinputContainer: {
+    marginBottom: 16,
+  },
+  checkoutlabel: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  checkoutinput: {
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 4,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+  },
+  checkoutbutton: {
+    backgroundColor: '#6C3483',
+    borderRadius: 25,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginTop: 32,
+  },
+  checkoutbuttonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+  },
   // ... any other styles you want to share across screens
 });
 

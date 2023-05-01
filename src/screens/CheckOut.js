@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import styles from './Styles';
 
 const CheckoutScreen = ({ navigation, route }) => {
   const [name, setName] = useState('');
@@ -28,62 +29,23 @@ const CheckoutScreen = ({ navigation, route }) => {
   };
   
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Checkout</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Name:</Text>
-        <TextInput style={styles.input} value={name} onChangeText={setName} />
+    <View style={styles.checkoutcontainer}>
+      <Text style={styles.checkouttitle}>Checkout</Text>
+      <View style={styles.checkoutinputContainer}>
+        <Text style={styles.checkoutlabel}>Name:</Text>
+        <TextInput style={styles.checkoutinput} value={name} onChangeText={setName} />
       </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Address:</Text>
-        <TextInput style={styles.input} value={address} onChangeText={setAddress} />
+      <View style={styles.checkoutinputContainer}>
+        <Text style={styles.checkoutlabel}>Address:</Text>
+        <TextInput style={styles.checkoutinput} value={address} onChangeText={setAddress} />
       </View>
-      <TouchableOpacity style={styles.button} onPress={handlePlaceOrder}>
-        <Text style={styles.buttonText}>Place Order</Text>
+      <TouchableOpacity style={styles.checkoutbutton} onPress={handlePlaceOrder}>
+        <Text style={styles.checkoutbuttonText}>Place Order</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  inputContainer: {
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  input: {
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 4,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  button: {
-    backgroundColor: '#6C3483',
-    borderRadius: 25,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    marginTop: 32,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    textAlign: 'center',
-  },
-});
+
 
 export default CheckoutScreen;

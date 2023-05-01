@@ -1,119 +1,114 @@
-The react-navigation package is a comprehensive navigation solution for React Native apps that supports all three platforms.
+<pre>
+```
+In order to build a cross-platform application using the latest React Native programming that targets Web, iOS, and Android platforms, you can use Expo with React Native for the web. Here are the steps to set up your development environment on your MacBook with the M2 chip, running the zsh shell:
 
-The code you provided uses the react-navigation package to create a navigation stack with four screens:
+## Install Expo CLI
 
-A login screen
-A home screen
-An order history screen
-A user profile screen
-The user can navigate between the screens by tapping on the buttons in the bottom navigation bar.
+First, install Expo CLI globally using yarn:
 
-Here is a breakdown of the code:
+```bash
+yarn global add expo-cli
+```
 
-The AuthBottomTabNavigator component is used to create the login screen and Signup screen.
-The HomeStack component is used to create the home screen.
-The OrderHistoryScreen component is used to create the order history screen.
-The UserProfileScreen component is used to create the user profile screen.
-The AppNavigator component is used to create a switch navigator that switches between the AuthBottomTabNavigator and HomeStack components.
-The AppContainer component is used to wrap the AppNavigator component and provide additional features, such as hot reloading.
-The App component is the root component of the app. It returns the AppContainer component.
+## Create a new Expo project
 
-Firebase
+Create a new project using Expo CLI:
 
-To install the Firebase package using yarn, you can run the following command in your terminal:
+```bash
+expo init YourProjectName
+```
 
-yarn add firebase
+Select a template from the options provided. For your requirement, choose "tabs (TypeScript)" or "tabs (JavaScript)".
 
+Change the working directory to your new project:
 
-This will install the Firebase package to your project's node_modules directory.
+```bash
+cd YourProjectName
+```
 
-Once the package is installed, you can import it into your project by running the following command in your terminal.
+## Add React Native for the web
 
+Install React Native for the web using yarn:
 
-Yes, the react-navigation-stack package is compatible with all three platforms: web, iOS, and Android. It is a comprehensive navigation solution for React Native apps that supports all three platforms.
+```bash
+expo install react-native-web
+```
 
-The react-navigation-stack package provides a stack navigator that allows you to create a stack of screens. The stack navigator is easy to use and provides a variety of features, such as:
+## Modify the app.json file
 
-Back button support: The stack navigator supports the back button on iOS and Android.
-Animated transitions: The stack navigator supports animated transitions between screens.
-Nested navigators: The stack navigator supports nested navigators, so you can create complex navigation hierarchies.
-Automatic state management: The stack navigator automatically manages the state of your navigation stack, so you don't have to worry about it.
+Open the project in Visual Studio Code and modify the app.json file to include a web-specific configuration:
 
+```json
+{
+  "expo": {
+    ...
+    "platforms": ["ios", "android", "web"],
+    ...
+  }
+}
+```
 
+## Start the development server
+
+Start the development server for your application:
+
+```bash
+expo start
+```
+
+This command will open a new window in your default web browser, showing the Expo DevTools. You can now test your application on iOS, Android, and web platforms.
+
+## Connect to the Firebase backend
+
+To use Firebase in your application, first install the required packages:
+
+```bash
+expo install firebase
+```
+
+## Additional Commands
+
+```bash
 yarn add react-native-gesture-handler
+```
 
-
+```bash
 react-native link react-native-gesture-handler
+```
 
-Use code with caution. Learn more
-Once the module is linked, you should be able to run your project without any errors.
-
-Here are some additional information about the react-native-gesture-handler module:
-
-It is a library that provides gesture handling for React Native apps.
-It is compatible with all three platforms: web, iOS, and Android.
-It is well-maintained and updated regularly.
-It is supported by a large community of developers.
-
-
+```bash
 yarn add react-native-safe-area-context
+```
 
-Use code with caution. Learn more
-Once the module is installed, you need to link it to your project. You can do this by running the following command in your terminal:
-
-Code snippet
-
+```bash
 react-native link react-native-safe-area-context
+```
 
-Use code with caution. Learn more
-Once the module is linked, you should be able to run your project without any errors.
-
-Here are some additional information about the react-native-safe-area-context module:
-
-It is a library that provides safe area context for React Native apps.
-It is compatible with all three platforms: web, iOS, and Android.
-It is well-maintained and updated regularly.
-It is supported by a large community of developers.
-
-
+```bash
 yarn add react-navigation-tabs
+```
 
-
-adding the 'react-native-reanimated/plugin' to your Babel configuration should fix the issue and make it work on all three platforms (iOS, Android, and web).
-
-The code you provided is the configuration file for Babel, which is used to transform your code from modern JavaScript syntax to a syntax that is compatible with the target platforms. The configuration file is usually named 'babel.config.js'.
-
-The code you posted tells Babel to use the 'metro-react-native-babel-preset' preset, which includes all the necessary plugins and presets to transpile your code to a format compatible with React Native. It also includes the 'react-native-reanimated/plugin' plugin, which is needed for 'react-native-reanimated' to work correctly with Babel.
-
-The '@babel/plugin-proposal-export-namespace-from' plugin is not related to 'react-native-reanimated' or cross-platform development, but it's used to enable a new proposed syntax feature in JavaScript.
-
+```bash
 yarn add @expo/vector-icons
+```
 
+```bash
 yarn add expo-linear-gradient
+```
 
-
-Install 'react-native-reanimated' version 2.14.4 by running the following command:
-
-
+```bash
 yarn add react-native-reanimated@~2.14.4
+```
 
-Make sure to clear your cache by running the following command:
-sql
-Copy code
+```bash
 yarn start --clear-cache
+```
 
-Start your Expo app again by running the following command:
-sql
-
+```bash
 yarn start
+```
 
-These warnings suggest that some of the dependencies in your project have peer dependencies that are either unmet or incorrect. While these warnings themselves might not cause issues on mobile platforms, they might lead to issues if you try to use the functionality provided by those dependencies.
-
-To address these warnings, you might want to try installing the peer dependencies listed in the warnings. For example, you could try running npm install @babel/preset-env react-native-vector-icons @react-native-community/masked-view react-native-gesture-handler react-native-reanimated to install the missing or incorrect peer dependencies.
-
-After installing the missing peer dependencies, make sure to rebuild your project and test it to ensure that everything is working as expected. If you still encounter issues, you might want to check the documentation for each dependency to make sure that you have installed and configured them correctly.
-
-
+```bash
 yarn add @babel/core@^7.20.0
 yarn add @expo/vector-icons@^13.0.0
 yarn add expo@~48.0.15
@@ -132,8 +127,8 @@ yarn add react-native-web@~0.18.10
 yarn add react-navigation@^4.4.4
 yarn add react-navigation-stack@^2.10.4
 yarn add react-navigation-tabs@^2.11.2
-
-
+```
+```
 
 
 App.js file defines a stack navigator (HomeStack) and a bottom tab navigator (TabNavigator). It also defines a switch navigator (AppNavigator) that switches between the AuthBottomTabNavigator and TabNavigator based on the initial route name (initialRouteName: 'Auth').
@@ -142,45 +137,57 @@ Finally, the AppContainer wraps the AppNavigator component to enable navigation.
 
 Assuming that all the other dependencies and screens are correctly implemented, your navigation should work as intended.
 
-
-
 To remove the react-navigation packages using yarn, you can use the following command in your terminal:
 
-arduino
-Copy code
+```bash
 yarn remove react-navigation react-navigation-stack react-navigation-tabs
+```
+
 To install @react-navigation/native package, you can use the following command:
 
-java
-Copy code
+```bash
 yarn add @react-navigation/native
+```
+
 After that, you also need to install the required dependencies for the navigation library by running the following command:
 
-java
-Copy code
+```bash
 expo install react-native-screens react-native-safe-area-context
+```
+
 Finally, you need to link the native modules by running the following command:
 
-Copy code
+```bash
 npx pod-install ios
+```
+
 Note: make sure to remove the import statements for the react-navigation packages in your code and replace them with the appropriate imports from @react-navigation/native.
 
-
+```bash
 watchman watch-del '/Users/kushalpagolu/Desktop/XcodeApps/UptownMunch' ; watchman watch-project '/Users/kushalpagolu/Desktop/XcodeApps/UptownMunch'
+```
 
+```bash
+yarn add @react-native-community/masked-view@0.1.11 @react-navigation/native@6.1.6 @react-navigation/stack@6.3.16
+```
 
-
-yarn add @react-native-community/masked-view@0.1.11 @react-navigation/native@6.1.6 @react-navigation/stack@6.3.16      
-
-
+```bash
 npm install @react-navigation/native @react-navigation/stack react-native-gesture-handler react-native-reanimated react-native-screens
-
+```
 
 react-native-web@0.19.4 - expected version: react-native-web@0.18.10
 
-
+```bash
 npx expo-env-info
+```
 
+```bash
 depcheck
+```
 
+```bash
 watchman watch-del '/Users/kushalpagolu/Desktop/ExpoApps/UptownMunch' ; watchman watch-project '/Users/kushalpagolu/Desktop/ExpoApps/UptownMunch'
+```
+```
+</pre>
+
