@@ -2,75 +2,136 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import styles from './src/screens/Styles';
 
 
+import WelcomeScreen from './src/screens/WelcomeScreen';
 import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
 import FoodItems from './src/screens/FoodItemsScreen';
-import FoodList from './src/screens/FoodListScreen';
+import FoodList from  './src/screens/FoodListScreen'
 import ShoppingCartScreen from './src/screens/ShoppingCartScreen.js';
 import CheckoutScreen from './src/screens/CheckOut';
 import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
 import OrderConfirmationScreen from './src/screens/OrderConfirmationScreen';
 import UserProfileScreen from './src/screens/UserProfile';
 import CateringServicesScreen from './src/screens/CateringServices';
-import WelcomeScreen from './src/screens/WelcomeScreen';
 import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
-
 
 const AuthStack = createNativeStackNavigator();
 const AuthTabs = createBottomTabNavigator();
 const Tabs = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 
+export const LogoutButton = ({ onLogout }) => (
+  <TouchableOpacity
+    style={styles.logoutbutton}
+    onPress={onLogout}
+  >
+    <Text style={styles.logoutbuttonText}>Logout</Text>
+  </TouchableOpacity>
+);
+
 function AuthTabNavigator({ setIsLoggedIn }) {
   return (
-    <AuthTabs.Navigator>
-      <AuthTabs.Screen name="Login">
+    <AuthTabs.Navigator screenOptions={{ headerShown: false }}>
+      <AuthTabs.Screen
+        name="Login"
+        options={{ headerShown: false }}
+      >
         {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
       </AuthTabs.Screen>
-      <AuthTabs.Screen name="Signup" component={SignupScreen} />
+      <AuthTabs.Screen
+        name="Signup"
+        component={SignupScreen}
+        options={{ headerShown: false }}
+      />
     </AuthTabs.Navigator>
   );
 }
 
-function HomeTabs() {
+function HomeTabs({ setIsLoggedIn }) {
   return (
-    <Tabs.Navigator>
-      <Tabs.Screen name="Profile" component={UserProfileScreen} />
-      <Tabs.Screen name="FoodList" component={FoodList} />
-      <Tabs.Screen name="CateringService" component={CateringServicesScreen} />
-      <Tabs.Screen name="OrderHistory" component={OrderHistoryScreen} />
+    <Tabs.Navigator
+      initialRouteName="Welcome"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Profile') {
+            iconName = focused ? 'person-circle' : 'person-circle-outline';
+          } else if (route.name === 'FoodList') {
+            iconName = focused ? 'restaurant' : 'restaurant-outline';
+          } else if (route.name === 'Welcome') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'CateringService') {
+            iconName = focused ? 'fast-food' : 'fast-food-outline';
+          } else if (route.name === 'OrderHistory') {
+            iconName = focused ? 'list-circle' : 'list-circle-outline';
+          }
+
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+    >
+      
+      <Tabs.Screen
+        name="Profile"
+        component={UserProfileScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+      <Tabs.Screen
+        name="FoodCategoriesScreen"
+        component={FoodCategoriesScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+      <Tabs.Screen
+        name="Welcome"
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      >
+        {(props) => <WelcomeScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Tabs.Screen>
+      <Tabs.Screen
+        name="FoodItems"
+        component={FoodItems}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+     <Tabs.Screen
+      name="CateringService"
+      component={CateringServicesScreen}
+      options={{
+       headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />,
+        headerRightContainerStyle: { paddingRight: 10 },
+       tabBarStyle: { display: "none" }, // hide the tab bar
+      tabBarItemStyle: { display: "none" }, // hide the tab icon and label
+     }}
+    />
+      <Tabs.Screen
+        name="OrderHistory"
+        component={OrderHistoryScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
+      <Tabs.Screen
+        name="FoodList"
+        component={FoodList}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+      />
     </Tabs.Navigator>
   );
 }
-// ...
 
-function HomeStackScreen({ navigation, setIsLoggedIn }) {
+
+function HomeStackScreen({ setIsLoggedIn }) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Home"
-        component={HomeTabs}
-        options={{
-          headerRight: () => (
-            <Button
-              onPress={() => {
-                navigation.replace('Auth');
-                setIsLoggedIn(false);
-              }}
-              mode="contained"
-              compact
-              style={{ marginRight: 10 }}
-            >
-              Logout
-            </Button>
-          ),
-        }}
-      />
+        options={{ headerShown: false }}
+      >
+        {(props) => <HomeTabs {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </HomeStack.Screen>
     </HomeStack.Navigator>
   );
 }
@@ -87,28 +148,7 @@ export default function App() {
           </AuthStack.Screen>
         </AuthStack.Navigator>
       ) : (
-        <HomeStack.Navigator>
-          <HomeStack.Screen
-            name="Home"
-            options={({ navigation }) => ({
-              headerRight: () => (
-                <Button
-                  onPress={() => {
-                    navigation.replace('AuthTabs');
-                    setIsLoggedIn(false);
-                  }}
-                  mode="contained"
-                  compact
-                  style={{ marginRight: 10 }}
-                >
-                  Logout
-                </Button>
-              ),
-            })}
-          >
-            {(props) => <HomeTabs {...props} />}
-          </HomeStack.Screen>
-        </HomeStack.Navigator>
+        <HomeStackScreen setIsLoggedIn={setIsLoggedIn} />
       )}
     </NavigationContainer>
   );

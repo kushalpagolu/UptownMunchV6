@@ -38,5 +38,5 @@ export const getUsers = async () => {
 };
  
 export default db;
-export { auth };
+export { app, auth };
 
