@@ -93,13 +93,13 @@ const styles = StyleSheet.create({
   foodItemImage: {
     width: '100%',
     height: '60%',
-    resizeMode: 'cover', // Changed back to 'cover'
+    resizeMode: 'cover', 
     marginBottom: 8,
   },
   
   foodItemDetails: {
     paddingHorizontal: 4,
-    flex: 1, // Added this line
+    flex: 1, 
   },
   foodItemName: {
     fontSize: 18,
