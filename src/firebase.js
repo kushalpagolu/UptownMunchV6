@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, setDoc, doc,  } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { query, where } from 'firebase/firestore';
 
 
 const firebaseConfig = {
@@ -37,6 +38,15 @@ export const getUsers = async () => {
   return items;
 };
  
+//get foodItems based on categoryName
+export const getFoodItemsByCategory = async (categoryName) => {
+  const foodItemsCollection = collection(db, 'foodItems');
+  const q = query(foodItemsCollection, where('categoryName', '==', categoryName));
+  const snapshot = await getDocs(q);
+  const items = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return items;
+};
+
 export default db;
 export { app, auth };
 

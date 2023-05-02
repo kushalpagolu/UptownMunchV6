@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { TouchableOpacity, Text } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Platform, TouchableOpacity, Image, LayoutAnimation } from 'react-native';
 
 export const LogoutButton = ({ onLogout }) => (
   <TouchableOpacity
@@ -34,6 +33,8 @@ export const CircleButton = ({ onPress }) => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: Platform.OS === 'web' ? 'center' : 'stretch',
+    paddingHorizontal: Platform.OS === 'web' ? 4 : 16,
     justifyContent: 'center',
     paddingHorizontal: 16,
   },

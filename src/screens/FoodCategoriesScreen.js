@@ -6,10 +6,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-const FoodCategoriesScreen = () => {
+const FoodCategoriesScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
-  const [selectedItemId, setSelectedItemId] = useState(null);
-  const [animatedItemStyle, setAnimatedItemStyle] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,32 +18,20 @@ const FoodCategoriesScreen = () => {
         console.log('Error retrieving data: ', error);
       }
     };
-  
+
     fetchData();
   }, []);
-  
-  const handleItemPress = (itemId) => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setSelectedItemId(itemId);
-    setAnimatedItemStyle({ transform: [{ scale: 1.1 }] });
+
+  const handleItemPress = (categoryName) => {
+    navigation.navigate('FoodCategoryDetailsScreen', { categoryName });
   };
 
-  const handleBackPress = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setSelectedItemId(null);
-    setAnimatedItemStyle({});
-  };
-  
-  
   const renderCategoryItem = ({ item }) => {
-    const iconColor = item.type === "veg" ? "#4CAF50" : "#F44336";
+    const iconColor = item.type === 'veg' ? '#4CAF50' : '#F44336';
     return (
       <TouchableOpacity
-        onPress={() => handleItemPress(item.id)}
-        style={[
-          styles.itemContainer,
-          selectedItemId === item.id ? animatedItemStyle : null,
-        ]}
+        onPress={() => handleItemPress(item.categoryName)}
+        style={styles.itemContainer}
       >
         <MaterialIcons
           name="fastfood"
@@ -60,39 +46,21 @@ const FoodCategoriesScreen = () => {
       </TouchableOpacity>
     );
   };
-  
-  
-
-  const renderSelectedItem = () => {
-    const selectedItem = data.find((item) => item.id === selectedItemId);
-    return (
-      <View style={styles.selectedItemContainer}>
-       
-        <View style={styles.selectedItemTextContainer}>
-          <Text style={styles.selectedItemName}>{selectedItem.name}</Text>
-          <Text style={styles.selectedItemDescription}>{selectedItem.description}</Text>
-        </View>
-        <TouchableOpacity style={styles.backButton} onPress={handleBackPress}>
-          <Text style={styles.backtbuttonText}>Back</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
 
   return (
     <LinearGradient
       colors={['#FF8C00', '#FFA500', '#FFDAB9']}
       start={[0, 0]}
       end={[1, 1]}
-      style={styles.container}>
+      style={styles.container}
+    >
       <Text style={styles.title}>UptownMunch</Text>
-      {selectedItemId ?
-        renderSelectedItem() :
-        <FlatList
-          data={data}
-          renderItem={renderCategoryItem}
-          keyExtractor={(item) => item.id}
-          numColumns={2} />}
+      <FlatList
+        data={data}
+        renderItem={renderCategoryItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+      />
     </LinearGradient>
   );
 };
@@ -109,7 +77,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   itemContainer: {
-    backgroundColor: "#f0f0f0",
+    backgroundColor: '#f0f0f0',
     borderRadius: 8,
     padding: 16,
     marginBottom: 16,
@@ -117,7 +85,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   itemIcon: {
-    alignSelf: "center",
+    alignSelf: 'center',
     marginBottom: 8,
   },
   itemName: {
@@ -136,38 +104,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 8,
   },
-  selectedItemContainer: {
+  transparentBackground: {
     flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    backgroundColor: 'transparent',
   },
-  backButton: {
-    backgroundColor: 'blue',
-    padding: 4,
-    borderRadius: 6,
-    marginTop: 6,
-  },
-  backtbuttonText: {
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 9,
-    fontWeight: 'bold',
-  },
-  selectedItemImage: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-  },
-  selectedItemTextContainer: {
-    flex: 1,
-    paddingLeft: 8,
-  },
-  selectedItemName: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  selectedItemDescription: {
-    fontSize: 18,
-  },
-  });
-  
-  export default FoodCategoriesScreen;
-  
+});
+
+export default FoodCategoriesScreen;
