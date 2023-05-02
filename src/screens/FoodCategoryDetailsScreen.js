@@ -84,12 +84,19 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width / 2,
     height: Dimensions.get('window').height / 2,
     marginHorizontal: 0,
+    borderWidth: 1, // Added this line
+    borderColor: '#c0c0c0', // Added this line
+    margin: 8, 
+    padding: 8, 
+  },
+
+  foodItemImage: {
+    width: '100%',
+    height: '60%',
+    resizeMode: 'cover', // Changed back to 'cover'
+    marginBottom: 8,
   },
   
-  foodItemImage: {
-    width: 100,
-    height: 100,
-  },
   foodItemDetails: {
     paddingHorizontal: 4,
     flex: 1, // Added this line
