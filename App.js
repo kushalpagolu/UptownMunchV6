@@ -16,7 +16,7 @@ import CheckoutScreen from './src/screens/CheckOut';
 import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
 import OrderConfirmationScreen from './src/screens/OrderConfirmationScreen';
 import UserProfileScreen from './src/screens/UserProfile';
-import CateringServicesScreen from './src/screens/CateringServices';
+import CateringServices from './src/screens/CateringServices';
 import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import LoginScreen from './src/screens/LoginScreen';
@@ -126,16 +126,6 @@ function HomeTabs({ setIsLoggedIn }) {
         component={FoodItems}
         options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
       />
-     <Tabs.Screen
-      name="CateringService"
-      component={CateringServicesScreen}
-      options={{
-       headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />,
-        headerRightContainerStyle: { paddingRight: 10 },
-       tabBarStyle: { display: "none" }, // hide the tab bar
-      tabBarItemStyle: { display: "none" }, // hide the tab icon and label
-     }}
-    />
       <Tabs.Screen
         name="OrderHistory"
         component={OrderHistoryScreen}
@@ -156,7 +146,12 @@ function HomeTabs({ setIsLoggedIn }) {
         component={FoodCategoryDetailsScreen}
         options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 },tabBarItemStyle: { display: "none" } }}
       />
-    </Tabs.Navigator>
+      <Tabs.Screen
+        name="CateringServices"
+        component={CateringServices}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, }}
+      />
+</Tabs.Navigator>
     
   );
 }

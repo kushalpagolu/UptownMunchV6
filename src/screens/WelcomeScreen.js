@@ -28,6 +28,9 @@ const WelcomeScreen = ({ navigation, setIsLoggedIn }) => {
           <TouchableOpacity onPress={() => navigation.navigate('FoodItems')}>
             <Ionicons name="cart-outline" size={98} color="white" />
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('CateringServices')}>
+            <Ionicons name="pizza-sharp" size={98} color="white" />
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     </SafeAreaView>
