@@ -191,3 +191,4 @@ watchman watch-del '/Users/kushalpagolu/Desktop/ExpoApps/UptownMunch' ; watchman
 ```
 </pre>
 
+great, can you give me code to fetch cateringServices collection from my firebase and modify the code to display the cateringItems which have the fields categoryName, itemName, image_url, description, price and weight fields from cateringServices collection. Use three column grids to display the items and make them scrollable with Animation and add LinearGradient to the screen. Here is my firebase.js setup
