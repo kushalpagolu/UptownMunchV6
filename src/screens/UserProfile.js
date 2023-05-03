@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Platform, Modal, Animated, Easing } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Platform, Modal, Animated, Easing, KeyboardAvoidingView, ScrollView  } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { auth, app, getFirestore, collection, doc, setDoc, uploadImageToFirebase } from '../firebase';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -55,7 +55,7 @@ const UserProfileScreen = ({ navigation }) => {
         userId: auth.currentUser.uid,
         email,
         first_name: first_name,
-        last_name: 'last_name',
+        last_name: last_name,
         phone,
         profile_picture: profilePicture,
         address: {
@@ -86,27 +86,39 @@ const UserProfileScreen = ({ navigation }) => {
     outputRange: ['0deg', '360deg'],
   });
 
-  return (
-    <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.gradient}>
-      <View style={styles.container}>
-         
-      {profilePicture ? (
-    <Image source={{ uri: profilePicture }} style={styles.profileImage} /> ) : null}
-      <TouchableOpacity style={styles.button} onPress={pickImage}>
-            <Text style={styles.buttonText}>Select Profile Picture</Text>
-      </TouchableOpacity> 
-      <TextInput
-          style={styles.input}
-          placeholder="Name"
-          onChangeText={setFirstName}
-          value={first_name}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Name"
-          onChangeText={setLastName}
-          value={last_name}
-        />
+    return (
+      <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.gradient}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
+            <View style={styles.container}>
+          <View style={styles.profileImageContainer}>
+            {profilePicture ? (
+              <Image source={{ uri: profilePicture }} style={styles.profileImage} />
+            ) : (
+              <View style={styles.emptyProfileImage}>
+                <MaterialIcons name="person" size={100} color="#FFFFFF" />
+              </View>
+            )}
+            <TouchableOpacity style={styles.smallButton} onPress={pickImage}>
+              <Text style={styles.smallButtonText}>Select Profile Picture</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.inputRow}>
+            <TextInput
+              style={[styles.input, styles.inputHalf]}
+              placeholder="First Name"
+              onChangeText={setFirstName}
+              value={first_name}
+            />
+            <TextInput
+              style={[styles.input, styles.inputHalf]}
+              placeholder="Last Name"
+              onChangeText={setLastName}
+              value={last_name}
+            />
+        </View>
+
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -163,14 +175,19 @@ const UserProfileScreen = ({ navigation }) => {
         }} >     Back   </Text>
         </TouchableOpacity>
       
-      </View>
-    </LinearGradient>
+        </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
+  </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
 gradient: {
 flex: 1,
+},
+scrollContainer: {
+  flexGrow: 1,
 },
 container: {
 flex: 1,
@@ -243,7 +260,46 @@ profileImage: {
   borderRadius: 50,
   marginBottom: 16,
 },
-
+keyboardAvoidingView: {
+  flex: 1,
+},
+profileImageContainer: {
+  alignItems: 'center',
+  marginBottom: 16,
+},
+emptyProfileImage: {
+  width: 100,
+  height: 100,
+  borderRadius: 50,
+  borderWidth: 1,
+  borderColor: '#fff',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginBottom: 16,
+},
+smallButton: {
+  height: 30,
+  width: 180,
+  backgroundColor: '#fff',
+  borderRadius: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: 10,
+  marginBottom: 16,
+},
+smallButtonText: {
+  fontSize: 14,
+  fontWeight: 'bold',
+  color: '#1E90FF',
+},
+inputRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 16,
+},
+inputHalf: {
+  width: '50%',
+},
 });
 
 export default UserProfileScreen;
