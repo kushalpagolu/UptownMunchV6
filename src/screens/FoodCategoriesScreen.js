@@ -1,14 +1,15 @@
 
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Platform, TouchableOpacity, Image, LayoutAnimation } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Platform, TouchableOpacity, Button, Image, LayoutAnimation } from 'react-native';
 import { getItems } from '../firebase';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
+import { auth, app,  } from '../firebase';
 
 
 const FoodCategoriesScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
-
+  const user = auth.currentUser;
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,23 +49,29 @@ const FoodCategoriesScreen = ({ navigation }) => {
   };
 
   return (
-    <LinearGradient
-      colors={['#FF8C00', '#FFA500', '#FFDAB9']}
-      start={[0, 0]}
-      end={[1, 1]}
-      style={styles.container}
-    >
-      <Text style={styles.title}>UptownMunch</Text>
-      <FlatList
-        data={data}
-        renderItem={renderCategoryItem}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-      />
-    </LinearGradient>
+    <View style={styles.outerContainer}>
+      <LinearGradient
+        colors={['#FF8C00', '#FFA500', '#FFDAB9']}
+        start={[0, 0]}
+        end={[1, 1]}
+        style={styles.container}
+      >
+        <Text style={styles.title}>UptownMunch</Text>
+        <FlatList
+          data={data}
+          renderItem={renderCategoryItem}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+        />
+      </LinearGradient>
+      <View style={styles.buttonContainer}>
+        <Button title="Back" onPress={() => {
+          navigation.navigate('Welcome', { user: auth.currentUser });
+        }} />
+      </View>
+    </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -110,6 +117,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 16,
     backgroundColor: 'transparent',
+  },
+  outerContainer: {
+    flex: 1,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
   },
 });
 

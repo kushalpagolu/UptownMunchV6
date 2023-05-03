@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TouchableOpacity, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import styles from './src/screens/Styles';
 
 
@@ -73,16 +73,21 @@ function HomeTabs({ setIsLoggedIn }) {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+          let maticonName
           if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
-          } else if (route.name === 'FoodList') {
+          } else if (route.name === 'FoodItems') {
             iconName = focused ? 'restaurant' : 'restaurant-outline';
+          } else if (route.name === 'OrderHistoryScreenAlternate') {
+            iconName = focused ? 'reorder-four' : 'reorder-four-outline';
           } else if (route.name === 'Welcome') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'CateringService') {
+          } else if (route.name === 'CateringServices') {
             iconName = focused ? 'fast-food' : 'fast-food-outline';
           } else if (route.name === 'OrderHistory') {
             iconName = focused ? 'list-circle' : 'list-circle-outline';
+          } else if (route.name === 'FoodCategoriesScreen') {
+            iconName = focused ? 'file-tray-full' : 'file-tray-full-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
