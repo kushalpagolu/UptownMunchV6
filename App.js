@@ -139,7 +139,7 @@ function HomeTabs({ setIsLoggedIn }) {
        <Tabs.Screen
         name="OrderHistoryScreenAlternate"
         component={OrderHistoryScreenAlternate}
-        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+        options={{ headerTitle: '',headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
       />
       <Tabs.Screen
         name="FoodList"
@@ -182,7 +182,7 @@ export default function App() {
     <NavigationContainer>
       {!isLoggedIn ? (
         <AuthStack.Navigator initialRouteName="AuthTabs">
-          <AuthStack.Screen name="AuthTabs">
+          <AuthStack.Screen name="AuthTabs" options={{ headerShown: false }}>
             {(props) => <AuthTabNavigator {...props} setIsLoggedIn={setIsLoggedIn} />}
           </AuthStack.Screen>
         </AuthStack.Navigator>
