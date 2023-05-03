@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, setDoc, doc,  } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { query, where } from 'firebase/firestore';
+//import * as firebase from 'firebase';
+import * as FileSystem from 'expo-file-system';
 
 
 const firebaseConfig = {
@@ -15,6 +17,14 @@ const firebaseConfig = {
   measurementId: "G-B5WW3MBQGG"
 };
 
+export async function uploadImageToFirebase(uri, folder, filename) {
+  const response = await fetch(uri);
+  const blob = await response.blob();
+  const ref = firebase.storage().ref().child(`${folder}/${filename}`);
+  await ref.put(blob);
+  const downloadUrl = await ref.getDownloadURL();
+  return downloadUrl;
+}
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);

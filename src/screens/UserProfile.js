@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, Modal, Animated, Easing } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet, Platform, Modal, Animated, Easing } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { auth, app, getFirestore, collection, doc, setDoc } from '../firebase';
+import { auth, app, getFirestore, collection, doc, setDoc, uploadImageToFirebase } from '../firebase';
 import { MaterialIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
 const UserProfileScreen = ({ navigation }) => {
   const [first_name, setFirstName] = useState('');
@@ -14,10 +15,10 @@ const UserProfileScreen = ({ navigation }) => {
   const [state, setState] = useState('');
   const [zipcode, setZipcode] = useState('');
   const [phone, setPhone] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
   const [successModalVisible, setSuccessModalVisible] = useState(false);
   const rotation = useRef(new Animated.Value(0)).current;
   const [errorMessage, setErrorMessage] = useState('');
+  const [profilePicture, setProfilePicture] = useState(null);
 
   useEffect(() => {
     if (auth.currentUser) {
@@ -26,11 +27,26 @@ const UserProfileScreen = ({ navigation }) => {
     }
   }, []);
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 4],
+      quality: 1,
+    });
+  
+    if (!result.cancelled) {
+      setProfilePicture(result.uri);
+    }
+  };
+  
   const handleSave = async () => {
     if (first_name === '' || last_name === '' || email === '' || addressLine1 === '' || addressLine2 ==='' || city==='' || state ==='' || zipcode ==='' || phone ==='') {
       setErrorMessage('Please fill in all the details.');
       return;
     }
+    const imageUrl = await uploadImageToFirebase(profilePicture, 'users', auth.currentUser.uid);
+
     try {
       const db = getFirestore(app);
       const userRef = doc(collection(db, 'users'), auth.currentUser.uid);
@@ -73,6 +89,12 @@ const UserProfileScreen = ({ navigation }) => {
   return (
     <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.gradient}>
       <View style={styles.container}>
+         
+      {profilePicture ? (
+    <Image source={{ uri: profilePicture }} style={styles.profileImage} /> ) : null}
+      <TouchableOpacity style={styles.button} onPress={pickImage}>
+            <Text style={styles.buttonText}>Select Profile Picture</Text>
+      </TouchableOpacity> 
       <TextInput
           style={styles.input}
           placeholder="Name"
@@ -126,13 +148,9 @@ const UserProfileScreen = ({ navigation }) => {
               placeholder="Phone"
               onChangeText={setPhone}
               value={phone}
-            />
-        <TextInput
-          style={styles.input}
-          placeholder="Profile Picture URL"
-          onChangeText={setProfilePicture}
-          value={profilePicture}
         />
+       
+
         {errorMessage ? (
           <Text style={styles.errorText}>{errorMessage}</Text>
         ) : null}
@@ -177,7 +195,9 @@ button: {
   borderRadius: 10,
   alignItems: 'center',
   justifyContent: 'center',
-  padding:6,
+  paddingHorizontal: 10,
+  marginBottom: 16,
+
 },
 buttonText: {
   fontSize: 18,
@@ -217,6 +237,13 @@ fontSize: 18,
 fontWeight: 'bold',
 color: '#4CAF50',
 },
+profileImage: {
+  width: 100,
+  height: 100,
+  borderRadius: 50,
+  marginBottom: 16,
+},
+
 });
 
 export default UserProfileScreen;
