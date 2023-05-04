@@ -50,7 +50,18 @@ function ShoppingCartStackScreen() {
 
 function AuthTabNavigator({ setIsLoggedIn }) {
   return (
-    <AuthTabs.Navigator screenOptions={{ headerShown: false }}>
+    <AuthTabs.Navigator
+      screenOptions={{ headerShown: false,
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 20,
+          left: 15,
+          right: 15,
+          height: 60,
+          borderRadius: 8,
+        },
+      }}
+    >
       <AuthTabs.Screen
         name="Login"
         options={{ headerShown: false }}
@@ -66,14 +77,23 @@ function AuthTabNavigator({ setIsLoggedIn }) {
   );
 }
 
+
 function HomeTabs({ setIsLoggedIn }) {
   return (
     <Tabs.Navigator
       initialRouteName="Welcome"
       screenOptions={({ route }) => ({
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 20,
+          left: 15,
+          right: 15,
+          height: 60,
+          borderRadius: 8,
+        },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          let maticonName
+          let maticonName;
           if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
           } else if (route.name === 'FoodItems') {
