@@ -64,7 +64,7 @@ const FoodCategoriesScreen = ({ navigation }) => {
           numColumns={2}
         />
         <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser }); }}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
             <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
         </View>

@@ -169,7 +169,7 @@ const UserProfileScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={handleSave}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser }); }}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
             <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
 

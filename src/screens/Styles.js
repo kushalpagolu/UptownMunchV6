@@ -223,6 +223,8 @@ const styles = StyleSheet.create({
   },
   foodItemsContainer: {
     paddingBottom: 16,
+    marginBottom: 26,
+
   },
   foodItemContainer: {
     flex: 1,
