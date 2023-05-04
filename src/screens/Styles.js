@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
+    paddingBottom: 80,
   },
   fooditemsscreentitle: {
     fontSize: 24,
@@ -231,6 +232,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginTop: 5,
     margin: 5,
+    paddingBottom: 50
   },
   foodItemImage: {
     width: '100%',
@@ -284,12 +286,13 @@ const styles = StyleSheet.create({
   },
   viewCartButton: {
     position: 'absolute',
-    bottom: 16,
+    bottom: 66,
     right: 16,
     paddingHorizontal: 24,
     paddingVertical: 8,
     backgroundColor: 'dodgerblue',
     borderRadius: 8,
+    paddingBottom: 8,
   },
   viewCartButtonText: {
     fontSize: 16,

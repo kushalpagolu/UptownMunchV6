@@ -47,7 +47,6 @@ const FoodCategoriesScreen = ({ navigation }) => {
       </TouchableOpacity>
     );
   };
-
   return (
     <View style={styles.outerContainer}>
       <LinearGradient
@@ -63,14 +62,15 @@ const FoodCategoriesScreen = ({ navigation }) => {
           keyExtractor={(item) => item.id}
           numColumns={2}
         />
+        <View style={styles.buttonContainer}> {/* Move buttonContainer inside LinearGradient */}
+          <Button title="Back" onPress={() => {
+            navigation.navigate('Welcome', { user: auth.currentUser });
+          }} />
+        </View>
       </LinearGradient>
-      <View style={styles.buttonContainer}>
-        <Button title="Back" onPress={() => {
-          navigation.navigate('Welcome', { user: auth.currentUser });
-        }} />
-      </View>
     </View>
   );
+
 };
 const styles = StyleSheet.create({
   container: {
@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     flex: 1,
     marginHorizontal: 4,
+    paddingBottom: 20,
+
   },
   itemIcon: {
     alignSelf: 'center',
@@ -122,7 +124,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    position: 'absolute',
+    paddingTop: 20,
+    paddingBottom: 40,
     bottom: 20,
     alignSelf: 'center',
   },
