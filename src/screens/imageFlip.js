@@ -11,7 +11,7 @@ import {
   Animated,
 } from 'react-native';
 
-const imageFlip() = () => {
+const ImageFlip() = () => {
   let animatedValue = new Animated.Value(0);
   let currentValue = 0;
 
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default imageFlip;
+export default ImageFlip;
