@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TouchableOpacity, Text } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import styles from './src/screens/Styles';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
@@ -47,11 +48,11 @@ function ShoppingCartStackScreen() {
   );
 }
 
-
 function AuthTabNavigator({ setIsLoggedIn }) {
   return (
     <AuthTabs.Navigator
-      screenOptions={{ headerShown: false,
+      screenOptions={({ route }) => ({
+        headerShown: false,
         tabBarStyle: {
           position: 'absolute',
           bottom: 20,
@@ -60,7 +61,21 @@ function AuthTabNavigator({ setIsLoggedIn }) {
           height: 60,
           borderRadius: 8,
         },
-      }}
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          let iconColor;
+
+          if (route.name === 'Login') {
+            iconName = focused ? 'sign-in-alt' : 'sign-in-alt';
+            iconColor = focused ? '#4db8ff' : '#888';
+          } else if (route.name === 'Signup') {
+            iconName = focused ? 'user-plus' : 'user-plus';
+            iconColor = focused ? '#ff4d4d' : '#888';
+          }
+
+          return <FontAwesome5 name={iconName} size={size} color={iconColor} />;
+        },
+      })}
     >
       <AuthTabs.Screen
         name="Login"
@@ -76,7 +91,6 @@ function AuthTabNavigator({ setIsLoggedIn }) {
     </AuthTabs.Navigator>
   );
 }
-
 
 function HomeTabs({ setIsLoggedIn }) {
   return (
