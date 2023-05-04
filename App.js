@@ -58,7 +58,7 @@ function AuthTabNavigator({ setIsLoggedIn }) {
           bottom: 20,
           left: 15,
           right: 15,
-          height: 60,
+          height: 50,
           borderRadius: 8,
         },
         tabBarIcon: ({ focused, color, size }) => {
@@ -101,7 +101,7 @@ function HomeTabs({ setIsLoggedIn }) {
           position: 'absolute',
           left: 15,
           right: 15,
-          height: 50,
+          height: 40,
           borderRadius: 8,
         },
         tabBarIcon: ({ focused, color, size }) => {

@@ -64,10 +64,11 @@ const FoodCategoriesScreen = ({ navigation }) => {
           numColumns={2}
         />
         <View style={styles.buttonContainer}>
-          <Button title="Back" onPress={() => {
-            navigation.navigate('Welcome', { user: auth.currentUser });
-          }} />
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser }); }}>
+            <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
         </View>
+
       </LinearGradient>
     </View>
   );
@@ -79,6 +80,21 @@ const styles = StyleSheet.create({
     alignItems: Platform.OS === 'web' ? 'center' : 'stretch',
     paddingHorizontal: Platform.OS === 'web' ? 0 : 16,
     paddingTop: 16,
+  },
+  button: {
+    width: '100',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingBottom: 10,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#1E90FF',
   },
   title: {
     fontSize: 24,
@@ -129,8 +145,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    paddingTop: 20,
-    paddingBottom: 40,
+    paddingTop: 30,
+    paddingBottom: 30,
     bottom: 20,
     alignSelf: 'center',
   },
