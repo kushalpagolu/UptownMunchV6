@@ -1,17 +1,39 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug iOS",
+            "program": "${workspaceFolder}/node_modules/expo/bin/cli.js",
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
+            "args": [
+              "start",
+              "--ios",
+              "--reset-cache"
             ],
-            "program": "${workspaceFolder}/node_modules/expo/AppEntry.js"
-        }
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+          },
+          {
+            "name": "Debug Android",
+            "program": "${workspaceFolder}/node_modules/expo/bin/cli.js",
+            "type": "node",
+            "request": "launch",
+            "args": [
+              "start",
+              "--android",
+              "--reset-cache"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+          },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Program",
+        "skipFiles": ["<node_internals>/**"],
+        "program": "${workspaceFolder}\\app.js"
+      }
     ]
-}
+  }
+  

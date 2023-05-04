@@ -169,11 +169,10 @@ const UserProfileScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.button} onPress={handleSave}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.buttonText} onPress={() => {
-          navigation.navigate('Welcome', { user: auth.currentUser });
-        }} >     Back   </Text>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser }); }}>
+            <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
+
       
         </View>
       </KeyboardAvoidingView>
@@ -188,6 +187,7 @@ flex: 1,
 },
 scrollContainer: {
   flexGrow: 1,
+  paddingBottom: 30,
 },
 container: {
 flex: 1,
@@ -206,15 +206,15 @@ input: {
   color: '#fff',
 },
 button: {
-  height: 40,
   width: '100%',
   backgroundColor: '#fff',
   borderRadius: 10,
   alignItems: 'center',
   justifyContent: 'center',
   paddingHorizontal: 10,
+  paddingVertical: 10,
   marginBottom: 16,
-
+  paddingBottom: 14,
 },
 buttonText: {
   fontSize: 18,
