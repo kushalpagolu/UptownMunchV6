@@ -41,12 +41,13 @@ const FoodCategoriesScreen = ({ navigation }) => {
           style={styles.itemIcon}
         />
         <View style={styles.itemTextContainer}>
-          <Text style={styles.itemName}>{item.name}</Text>
+          <Text style={styles.itemName}>{item.categoryName}</Text>
           <Text style={styles.itemDescription}>{item.description}</Text>
         </View>
       </TouchableOpacity>
     );
-  };
+  };  
+  
   return (
     <View style={styles.outerContainer}>
       <LinearGradient
@@ -62,7 +63,7 @@ const FoodCategoriesScreen = ({ navigation }) => {
           keyExtractor={(item) => item.id}
           numColumns={2}
         />
-        <View style={styles.buttonContainer}> {/* Move buttonContainer inside LinearGradient */}
+        <View style={styles.buttonContainer}>
           <Button title="Back" onPress={() => {
             navigation.navigate('Welcome', { user: auth.currentUser });
           }} />
@@ -70,8 +71,8 @@ const FoodCategoriesScreen = ({ navigation }) => {
       </LinearGradient>
     </View>
   );
-
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -100,9 +101,13 @@ const styles = StyleSheet.create({
   itemName: {
     fontSize: 18,
     fontWeight: 'bold',
+    flexShrink: 1,
+
   },
   itemDescription: {
     fontSize: 14,
+    flexShrink: 1,
+
   },
   itemImage: {
     width: 100,
