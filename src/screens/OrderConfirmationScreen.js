@@ -54,7 +54,7 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
         </View>
       </View>
       <Button title="Back" onPress={() => {
-        navigation.navigate('Welcome', { user: auth.currentUser });
+        navigation.navigate('Welcome', { user: auth.currentUser.uid });
       }} />
     </View>
   );
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    width:'80%'
   },
   gradient: {
     width: '100%',
