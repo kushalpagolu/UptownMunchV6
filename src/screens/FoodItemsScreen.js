@@ -88,15 +88,13 @@ const FoodItemsScreen = ({ navigation }) => {
         contentContainerStyle={styles.foodItemsContainer}
         numColumns={2} 
       />
-     <TouchableOpacity
-  style={styles.viewCartButton}
-
-  //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. With the changes we made to the ShoppingCartScreen earlier, it will correctly receive and use the cartItems passed from this screen through the route.params object.
-  onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart })}
->
-  <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})
-  </Text>
-</TouchableOpacity>
+     <TouchableOpacity style={styles.viewCartButton}
+      //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. With the changes we made to the ShoppingCartScreen earlier, it will correctly receive and use the cartItems passed from this screen through the route.params object.
+      onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart })}
+      >
+    <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})
+    </Text>
+    </TouchableOpacity>
 
       {showDetailsModal && (
   <Modal transparent visible={showDetailsModal}>

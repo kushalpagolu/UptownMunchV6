@@ -167,7 +167,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignSelf: 'center',
     marginTop: 16,
-    marginBottom: 16,
+    marginBottom: 56,
+    paddingBottom: 8,
   },
   checkoutButtonText: {
     fontSize: 16,
