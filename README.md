@@ -132,14 +132,7 @@ yarn add react-navigation@^4.4.4
 yarn add react-navigation-stack@^2.10.4
 yarn add react-navigation-tabs@^2.11.2
 ```
-```
 
-
-App.js file defines a stack navigator (HomeStack) and a bottom tab navigator (TabNavigator). It also defines a switch navigator (AppNavigator) that switches between the AuthBottomTabNavigator and TabNavigator based on the initial route name (initialRouteName: 'Auth').
-
-Finally, the AppContainer wraps the AppNavigator component to enable navigation.
-
-Assuming that all the other dependencies and screens are correctly implemented, your navigation should work as intended.
 
 
 To install @react-navigation/native package, you can use the following command:
@@ -162,8 +155,10 @@ npx pod-install ios
 
 Note: make sure to remove the import statements for the react-navigation packages in your code and replace them with the appropriate imports from @react-navigation/native.
 
+Run this command for syncing up the packages.
+
 ```
-watchman watch-del '/Users/kushalpagolu/Desktop/XcodeApps/UptownMunch' ; watchman watch-project '/Users/kushalpagolu/Desktop/XcodeApps/UptownMunch'
+watchman watch-del '/Users/Name/Desktop/XcodeApps/UptownMunch' ; watchman watch-project '/Users/Name/Desktop/XcodeApps/UptownMunch'
 ```
 
 ```
@@ -174,13 +169,13 @@ yarn add @react-native-community/masked-view@0.1.11 @react-navigation/native@6.1
 npm install @react-navigation/native @react-navigation/stack react-native-gesture-handler react-native-reanimated react-native-screens
 ```
 
-react-native-web@0.19.4 - expected version: react-native-web@0.18.10
+***Note:*** react-native-web@0.19.4 - expected version: react-native-web@0.18.10 for working well with navigation v6 on web and mobile.
 
 ```
 npx expo-env-info
 ```
 
-to check the dependencies of packages
+To check the dependencies of packages
 
 ```
 depcheck
@@ -193,4 +188,21 @@ yarn remove react-navigation react-navigation-stack react-navigation-tabs
 ```
 
 
-```
+**App.js** file defines a stack navigator (HomeStack) and a bottom tab navigator (TabNavigator). It also defines a switch navigator (AppNavigator) that switches between the AuthBottomTabNavigator and TabNavigator based on the initial route name (initialRouteName: 'Auth').
+
+
+Assuming that all the other dependencies and screens are correctly implemented, your navigation should work as intended.
+
+The app has several screens/components, including a Welcome screen, Food Categories screen, Food Items screen, Food List screen, Shopping Cart screen, Checkout screen, Order History screen, Order Confirmation screen, User Profile screen, Catering Services screen, Food Item Details screen, Signup screen, and Login screen.
+
+
+The App component renders the navigation structure of the app. If the user is not logged in, it renders an **AuthStack.Navigator** with a **AuthTabNavigator** component that contains LoginScreen and SignupScreen screens. Otherwise, it renders a **HomeStackScreen** component that contains a HomeTabs component that displays the main screens of the app.
+
+
+The **HomeTabs** component uses the createBottomTabNavigator to render the bottom tab navigation bar. It has several screens with corresponding icons, such as the FoodCategoriesScreen screen with a food tray icon, and the Profile screen with a person icon. The ShoppingCart screen has a customized tab bar icon that is hidden, and its corresponding Checkout screen is accessible from the ShoppingCart screen.
+
+The ShoppingCartScreen and CheckoutScreen screens have customized headers that include a logout button, and their navigation options include the ability to pass setIsLoggedIn function to log out the user.
+
+The file also includes the ShoppingCartStackScreen component that contains ShoppingCartScreen and CheckoutScreen screens and has customized headers and navigation options.
+
+Finally, the AppContainer wraps the AppNavigator component to enable navigation.
