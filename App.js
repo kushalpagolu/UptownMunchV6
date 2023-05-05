@@ -134,6 +134,13 @@ function HomeTabs({ setIsLoggedIn }) {
       }}
 
       />
+      <Tabs.Screen
+        name="FoodItemDetailsScreen"
+        component={FoodItemDetailsScreen}
+        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" },
+      }}
+
+      />
      <Tabs.Screen name="OrderConfirmationScreen"
           component={OrderConfirmationScreen}
           options={{

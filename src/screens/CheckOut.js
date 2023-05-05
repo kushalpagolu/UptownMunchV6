@@ -34,6 +34,9 @@ const CheckoutScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.checkoutcontainer}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Text style={styles.backButtonText}>Back</Text>
+      </TouchableOpacity>
       <Text style={styles.checkouttitle}>Checkout</Text>
       <View style={styles.checkoutinputContainer}>
         <Text style={styles.checkoutlabel}>Name:</Text>

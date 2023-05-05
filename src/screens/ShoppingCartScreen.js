@@ -103,6 +103,10 @@ const ShoppingCartScreen = ({ navigation, route }) => {
         <View style={styles.totalContainer}>
           <Text style={styles.totalText}>Total: ${orderTotal.toFixed(2)}</Text>
         </View>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FoodItems')}>
+  <Text style={styles.backButtonText}>Back</Text>
+</TouchableOpacity>
+
         <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
           <Text style={styles.checkoutButtonText}>Checkout</Text>
         </TouchableOpacity>

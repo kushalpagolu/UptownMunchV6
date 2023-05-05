@@ -207,10 +207,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginTop: 32,
   },
-  checkoutbuttonText: {
-    color: '#fff',
+  backButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 8,
+    borderRadius: 8,
+    alignSelf: 'center',  
+    backgroundColor: 'dodgerblue',
+    marginBottom: 16,
+  },
+  
+  backButtonText: {
     fontSize: 16,
-    textAlign: 'center',
+    color: 'white',
   },
   fooditemsscreencontainer: {
     flex: 1,

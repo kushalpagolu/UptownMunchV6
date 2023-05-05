@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState, useEffect } from 'react';
-import ShoppingCartScreen from './ShoppingCartScreen';
-import {closeModal} from './FoodItemsScreen'
+import ShoppingCart from './ShoppingCartScreen';
+//import {closeModal} from './FoodItemsScreen'
+import { useNavigation } from '@react-navigation/native';
 
-const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, onRemoveFromCart, shoppingCart, navigation }) => {
+const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, onRemoveFromCart, shoppingCart }) => {
   if (!item) {
     return null;
   }
+  const navigation = useNavigation();
 
   const imageSource = item.image_url ? { uri: item.image_url } : null;
   const itemQuantity =
@@ -36,7 +38,7 @@ const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, onRemoveFromCart, s
           </TouchableOpacity>
         </View>
         {itemQuantity > 0 && (<TouchableOpacity
-            //onPress={() => navigation.navigate("ShoppingCartScreen", { cartItems: shoppingCart })}
+            onPress={() => { onClose(); navigation.navigate("ShoppingCart", { cartItems: shoppingCart })}}
             style={[styles.viewCartButton,]}>
             <Text style={styles.viewCartButtonText}>Cart({shoppingCart.reduce((total, item) => total + item.quantity, 0)})</Text>
           </TouchableOpacity>)}
