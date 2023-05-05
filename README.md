@@ -1,7 +1,7 @@
 # UptownMunchV6
 A food ordering app with end to end functionality on web and mobile.
 
-```
+
 In order to build a cross-platform application using the latest React Native programming that targets Web, iOS, and Android platforms, you can use Expo with React Native for the web. 
 
 Steps to set up your development environment on your MacBook with the M2 chip, running on zsh shell:
