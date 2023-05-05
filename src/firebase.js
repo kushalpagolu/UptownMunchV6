@@ -8,13 +8,13 @@ import * as FileSystem from 'expo-file-system';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBxcnfvq47F11EpUvUUmZwqsqU8YvxLtIA",
-  authDomain: "foodhaat-c1cda.firebaseapp.com",
-  projectId: "foodhaat-c1cda",
-  storageBucket: "foodhaat-c1cda.appspot.com",
-  messagingSenderId: "777978773962",
-  appId: "1:777978773962:web:55e884d9df0eab04684f33",
-  measurementId: "G-B5WW3MBQGG"
+  apiKey: "your_apikey",
+  authDomain: "c1cda.firebaseapp.com",
+  projectId: "uptown-c1cda",
+  storageBucket: "uptown-c1cda.appspot.com",
+  messagingSenderId: "9738973897",
+  appId: "1:962:web:55e8b04684f33",
+  measurementId: "G-BMWM3TSEXY"
 };
 
 export async function uploadImageToFirebase(uri, folder, filename) {
