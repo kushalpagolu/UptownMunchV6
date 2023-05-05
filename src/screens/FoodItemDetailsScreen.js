@@ -5,7 +5,7 @@ import ShoppingCart from './ShoppingCartScreen';
 //import {closeModal} from './FoodItemsScreen'
 import { useNavigation } from '@react-navigation/native';
 
-const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, onRemoveFromCart, shoppingCart }) => {
+const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, removeFromCart, shoppingCart }) => {
   if (!item) {
     return null;
   }
@@ -26,7 +26,7 @@ const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, onRemoveFromCart, s
         <Text style={styles.itemQuantity}>Quantity: {itemQuantity}</Text>
         <View style={styles.buttonsContainer}>
           <TouchableOpacity
-            onPress={() => onRemoveFromCart(item)}
+            onPress={() => removeFromCart(item)}
             style={[styles.button, { backgroundColor: "dodgerblue" }]}>
             <Text style={styles.buttonText}>-</Text>
           </TouchableOpacity>
@@ -38,7 +38,7 @@ const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, onRemoveFromCart, s
           </TouchableOpacity>
         </View>
         {itemQuantity > 0 && (<TouchableOpacity
-            onPress={() => { onClose(); navigation.navigate("ShoppingCart", { cartItems: shoppingCart })}}
+            onPress={() => { onClose(); navigation.navigate("ShoppingCart", {  cartItems: shoppingCart, removeFromCart: removeFromCart })}}
             style={[styles.viewCartButton,]}>
             <Text style={styles.viewCartButtonText}>Cart({shoppingCart.reduce((total, item) => total + item.quantity, 0)})</Text>
           </TouchableOpacity>)}

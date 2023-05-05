@@ -93,7 +93,6 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
           color: 'white',
           fontSize: 14,
           marginLeft: 6,
-          alignItems: 'left',
         },
         foodItemDetails: {
           flex: 1,

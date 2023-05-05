@@ -223,3 +223,5 @@ or
 npm install react-native-web-swiper
 
 '''
+
+yarn add react-native-gesture-handler // careful with dependenies.

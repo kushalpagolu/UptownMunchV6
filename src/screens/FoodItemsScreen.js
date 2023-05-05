@@ -73,6 +73,9 @@ const FoodItemsScreen = ({ navigation }) => {
     }
   };
   
+  const handleUpdateCart = (updatedCart) => {
+    setShoppingCart(updatedCart);
+  };
   
   return (
     <LinearGradient
@@ -90,7 +93,7 @@ const FoodItemsScreen = ({ navigation }) => {
       />
      <TouchableOpacity style={styles.viewCartButton}
       //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. With the changes we made to the ShoppingCartScreen earlier, it will correctly receive and use the cartItems passed from this screen through the route.params object.
-      onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart })}
+      onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart, removeFromCart: removeFromCart, onUpdateCart: handleUpdateCart })}
       >
     <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})
     </Text>
@@ -102,7 +105,7 @@ const FoodItemsScreen = ({ navigation }) => {
       item={selectedItem}
       onClose= {closeModal}
       onAddToCart={addToCart}
-      onRemoveFromCart={removeFromCart}
+      removeFromCart={removeFromCart}
       shoppingCart={shoppingCart}
       navigation={navigation} 
     />

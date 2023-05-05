@@ -42,6 +42,24 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 16,
   },
+  swiperContainer: {
+    flex: 1,
+    marginBottom: 10,
+  },
+  deleteBox: {
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width: 100,
+    height: '100%',
+    paddingHorizontal: 20,
+  },
+  deleteText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+    
   input: {
     height: 40,
     borderColor: 'gray',
