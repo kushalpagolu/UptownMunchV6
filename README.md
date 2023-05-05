@@ -206,3 +206,20 @@ The ShoppingCartScreen and CheckoutScreen screens have customized headers that i
 The file also includes the ShoppingCartStackScreen component that contains ShoppingCartScreen and CheckoutScreen screens and has customized headers and navigation options.
 
 Finally, the AppContainer wraps the AppNavigator component to enable navigation.
+
+
+The **react-native-gesture-handler** library is designed primarily for mobile platforms like iOS and Android, and it might not work perfectly on the web platform out of the box. To have a consistent experience across mobile and web platforms, you can use the **react-native-web-swiper** library, which is designed to work with React Native for Web.
+
+You can install the react-native-web-swiper library by running:
+
+'''
+yarn add react-native-web-swiper
+
+'''
+
+or
+
+'''
+npm install react-native-web-swiper
+
+'''
