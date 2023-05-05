@@ -9,6 +9,7 @@ import ShoppingCartScreen from './ShoppingCartScreen';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import styles from './Styles';
+import { renderFoodItem } from './FoodItem';
 
 
 const FoodItemsScreen = ({ navigation }) => {
@@ -72,54 +73,7 @@ const FoodItemsScreen = ({ navigation }) => {
     }
   };
   
-    
-  const renderFoodItem = ({ item }) => {
-    const itemCategory = item.itemCategory.categoryName || '';
-
-    const imageSource = item.image_url ? { uri: item.image_url } : null;
-    const itemQuantity = shoppingCart.find((cartItem) => cartItem.id === item.id)?.quantity || 0;
-
-    return (
-      <TouchableOpacity
-        style={styles.foodItemContainer}
-        onPress={() => showItemDetails(item)}>
-        {imageSource && (
-          <Image source={imageSource} style={styles.foodItemImage} />
-        )}
-        <LinearGradient
-          colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.6)"]}
-          style={styles.foodItemOverlay}
-        >
-          <View style={styles.foodItemDetails}>
-            <Text style={styles.foodItemName}>{item.itemName}</Text>
-            <Text style={styles.foodItemCategory}>{item.categoryName}</Text>
-          </View>
-          <View style={styles.iconsContainer}>
-            <Ionicons
-              name="heart-outline"
-              size={30}
-              color="#FFF"
-              style={styles.favoriteIcon}
-            />
-            <View style={styles.quantityContainer}>
-              {itemQuantity > 0 && (
-                <TouchableOpacity onPress={() => removeFromCart(item)}>
-                  <AntDesign name="minuscircleo" size={30} color="#FFF" style={styles.icons}/>
-                </TouchableOpacity>
-              )}
-              {itemQuantity > 0 && (
-                <Text style={styles.itemQuantity}>{itemQuantity}</Text>
-              )}
-              <TouchableOpacity onPress={() => addToCart(item)}>
-              <AntDesign name="pluscircleo" size={30} color="#FFF" style={styles.icons}/>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
-    );
-  };
-
+  
   return (
     <LinearGradient
       colors={['#FF8C00', '#FFA500', '#FFDAB9']}
@@ -129,7 +83,7 @@ const FoodItemsScreen = ({ navigation }) => {
       <Text style={styles.fooditemsscreentitle}>UptownMunch</Text>
       <FlatList
         data={foodItems}
-        renderItem={renderFoodItem}
+        renderItem={(props) => renderFoodItem({ ...props, showItemDetails, shoppingCart, addToCart, removeFromCart })}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.foodItemsContainer}
         numColumns={2} 
