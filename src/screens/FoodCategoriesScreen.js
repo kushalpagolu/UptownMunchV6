@@ -81,6 +81,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: Platform.OS === 'web' ? 0 : 16,
     paddingTop: 16,
   },
+  buttonContainer: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    bottom: 20,
+    alignSelf: 'center',
+  },
   button: {
     width: '100%',
     backgroundColor: '#fff',
@@ -143,12 +149,6 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
-  },
-  buttonContainer: {
-    paddingTop: 30,
-    paddingBottom: 30,
-    bottom: 20,
-    alignSelf: 'center',
   },
 });
 
