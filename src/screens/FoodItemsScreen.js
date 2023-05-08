@@ -10,6 +10,7 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import styles from './Styles';
 import { renderFoodItem } from './FoodItem';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 
 const FoodItemsScreen = ({ navigation }) => {
@@ -61,11 +62,13 @@ const FoodItemsScreen = ({ navigation }) => {
     setShowDetailsModal(false);
   };
 
-  const getImageDownloadUrl = async (path) => {
-    const storageRef = firebase.storage().ref("foodItems");
-    const imageRef = storageRef.child(path);
+  const storage = getStorage();
+
+ const getImageDownloadUrl = async (path) => {
+    const storageRef = ref(storage);
+    const imageRef = ref(storageRef, path);
     try {
-      const url = await imageRef.getDownloadURL();
+      const url = await getDownloadURL(imageRef);
       return url;
     } catch (error) {
       console.error('Error getting image download URL:', error);

@@ -39,18 +39,18 @@ const UserProfileScreen = ({ navigation }) => {
       setProfilePicture(result.uri);
     }
   };
-  
   const handleSave = async () => {
+    console.log('Saving user profile...', first_name, last_name, email, addressLine1, addressLine2, city, state, zipcode, phone);
     if (first_name === '' || last_name === '' || email === '' || addressLine1 === '' || addressLine2 ==='' || city==='' || state ==='' || zipcode ==='' || phone ==='') {
       setErrorMessage('Please fill in all the details.');
       return;
     }
     const imageUrl = await uploadImageToFirebase(profilePicture, 'users', auth.currentUser.uid);
-
+  
     try {
       const db = getFirestore(app);
       const userRef = doc(collection(db, 'users'), auth.currentUser.uid);
-
+  
       await setDoc(userRef, {
         userId: auth.currentUser.uid,
         email,
@@ -66,16 +66,20 @@ const UserProfileScreen = ({ navigation }) => {
           zipcode,
         },
       });
-
+  
+      // Start the animation only after saving the profile successfully
       Animated.timing(rotation, {
         toValue: 1,
-        duration: 1000,
-        easing: Easing.linear,
-        useNativeDriver: true,
+        duration: 100,
+        useNativeDriver: false,
       }).start(() => {
         setSuccessModalVisible(true);
         rotation.setValue(0);
       });
+  
+      // Clear the error message if the save is successful
+      setErrorMessage('');
+  
     } catch (error) {
       console.error('Error saving user profile:', error);
     }
@@ -89,8 +93,7 @@ const UserProfileScreen = ({ navigation }) => {
     return (
       <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.gradient}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.keyboardAvoidingView}>
-            <View style={styles.container}>
+          <View style={styles.container}>
           <View style={styles.profileImageContainer}>
             {profilePicture ? (
               <Image source={{ uri: profilePicture }} style={styles.profileImage} />
@@ -175,8 +178,27 @@ const UserProfileScreen = ({ navigation }) => {
 
       
         </View>
-      </KeyboardAvoidingView>
     </ScrollView>
+    <Modal
+  transparent={true}
+  visible={successModalVisible}
+>
+  <Animated.View
+  style={[
+    styles.successModalContent,
+    { transform: [{ rotate: spin }] },
+  ]}
+>
+  <Text style={styles.successText}>Profile saved successfully!</Text>
+<TouchableOpacity
+  style={styles.closeButton}
+  onPress={() => setSuccessModalVisible(false)}
+>
+  <Text style={styles.closeButtonText}>Close</Text>
+</TouchableOpacity>
+
+</Animated.View>
+</Modal>
   </LinearGradient>
   );
 };
@@ -300,6 +322,31 @@ inputRow: {
 inputHalf: {
   width: '50%',
 },
+successModalContent: {
+  backgroundColor: 'white',
+  borderRadius: 10,
+  padding: 20,
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignSelf: 'center',
+  marginTop: '50%',
+},
+successText: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginBottom: 20,
+},
+closeButton: {
+  backgroundColor: '#1E90FF',
+  borderRadius: 5,
+  paddingHorizontal: 10,
+  paddingVertical: 5,
+},
+closeButtonText: {
+  color: 'white',
+  fontWeight: 'bold',
+},
+
 });
 
 export default UserProfileScreen;

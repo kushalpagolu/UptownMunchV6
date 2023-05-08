@@ -6,6 +6,20 @@ import { auth, app } from '../firebase';
 
 const db = getFirestore(app);
 
+const formatDate = (timestamp) => {
+  // console.log('Timestamp:', timestamp);
+   const date = timestamp.toDate();
+   return date.toLocaleString('en-US', {
+     weekday: 'short',
+     month: 'short',
+     day: '2-digit',
+     year: 'numeric',
+     hour: '2-digit',
+     minute: '2-digit',
+     second: '2-digit',
+   });
+ };
+
 const OrderHistoryScreen = () => {
   const [orders, setOrders] = useState([]);
   const [fadeAnim] = useState(new Animated.Value(0));
@@ -38,7 +52,7 @@ const OrderHistoryScreen = () => {
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
-      duration: 1000,
+      duration: 2000,
       useNativeDriver: false
     }).start();
   }, [fadeAnim]);
@@ -51,7 +65,7 @@ const OrderHistoryScreen = () => {
         end={{ x: 1, y: 1 }}
         style={styles.gradient}>
       <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
-      <Text style={styles.orderDate}>Order Date: {item.create_datetime.toString()}</Text>
+      <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
       <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
       <Text style={styles.orderId}>Status: {item.status}</Text>
       {item.foodItems.map((foodItem, index) => (
@@ -92,7 +106,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'left',
     paddingTop: 50,
   },
   title: {
@@ -116,13 +130,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   orderDate: {
-    fontSize: 16,
+    fontSize: 14,
     marginBottom: 8,
   },
   orderTotal: {
     fontSize: 24,
     fontWeight: 'bold',
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-left',
   },
 });
 

@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Modal,} fr
 import firebase from 'firebase/app';
 import { getItems } from '../firebase';
 import FoodItemDetailsScreen from './FoodItemDetailsScreen';
+import { initializeApp, getApps } from 'firebase/app';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+
 
 const FoodListScreen = ({ navigation }) => {
   const [foodItems, setFoodItems] = useState([]);
@@ -44,6 +47,8 @@ const FoodListScreen = ({ navigation }) => {
     }
   };
 
+  const storage = getStorage();
+
   const showItemDetails = (item) => {
     setSelectedItem(item);
     setShowDetailsModal(true);
@@ -54,10 +59,10 @@ const FoodListScreen = ({ navigation }) => {
   };
 
   const getImageDownloadUrl = async (path) => {
-    const storageRef = firebase.storage().ref();
-    const imageRef = storageRef.child(path);
+    const storageRef = ref(storage);
+    const imageRef = ref(storageRef, path);
     try {
-      const url = await imageRef.getDownloadURL();
+      const url = await getDownloadURL(imageRef);
       return url;
     } catch (error) {
       console.error('Error getting image download URL:', error);
