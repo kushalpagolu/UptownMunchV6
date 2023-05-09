@@ -11,7 +11,7 @@ import {
   Animated,
 } from 'react-native';
 
-const ImageFlip() = () => {
+const ImageFlip = () => {
   let animatedValue = new Animated.Value(0);
   let currentValue = 0;
 

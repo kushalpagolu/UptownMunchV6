@@ -1,27 +1,29 @@
 import React from 'react';
-import { TouchableOpacity, Text, Image, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, Image, View, StyleSheet, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
+export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart, removeFromCart, rotateYAnimatedStyle }) => {
+  const itemCategory = item.itemCategory.categoryName || '';
 
-export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart, removeFromCart }) => {
-        const itemCategory = item.itemCategory.categoryName || '';
-      
-        const imageSource = item.image_url ? { uri: item.image_url } : null;
-        const itemQuantity = shoppingCart.find((cartItem) => cartItem.id === item.id)?.quantity || 0;
-      
-        return (
-          <TouchableOpacity
-            style={styles.foodItemContainer}
-            onPress={() => showItemDetails(item)}>
-            {imageSource && (
-              <Image source={imageSource} style={styles.foodItemImage} />
-            )}
-            <LinearGradient
-              colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.6)"]}
-              style={styles.foodItemOverlay}
-            >
+  const imageSource = item.image_url ? { uri: item.image_url } : null;
+  const itemQuantity = shoppingCart.find((cartItem) => cartItem.id === item.id)?.quantity || 0;
+
+  return (
+    <TouchableOpacity
+      style={styles.foodItemContainer}
+      onPress={() => showItemDetails(item)}>
+      {imageSource && (
+        <Animated.Image
+          source={imageSource}
+          style={[rotateYAnimatedStyle, styles.foodItemImage]}
+        />
+      )}
+      <LinearGradient
+        colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.6)"]}
+        style={styles.foodItemOverlay}
+      >
               <View style={styles.foodItemDetails}>
                 <Text style={styles.foodItemName}>{item.itemName}</Text>
                 <View style={styles.bottomRow}>

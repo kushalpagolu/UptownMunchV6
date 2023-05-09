@@ -1,54 +1,107 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState, useEffect } from 'react';
-import ShoppingCart from './ShoppingCartScreen';
-//import {closeModal} from './FoodItemsScreen'
 import { useNavigation } from '@react-navigation/native';
 
-const FoodItemDetailsScreen = ({ item, onClose, onAddToCart, removeFromCart, shoppingCart }) => {
-  if (!item) {
-    return null;
+class FoodItemDetailsScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.animatedValue = new Animated.Value(0);
+    this.currentValue = 0;
+
+    this.animatedValue.addListener(({ value }) => {
+      this.currentValue = value;
+    });
+
+    this.setInterpolate = this.animatedValue.interpolate({
+      inputRange: [0, 180],
+      outputRange: ['180deg', '360deg'],
+    });
+
+    this.rotateYAnimatedStyle = {
+      transform: [{ rotateY: this.setInterpolate }],
+    };
   }
-  const navigation = useNavigation();
 
-  const imageSource = item.image_url ? { uri: item.image_url } : null;
-  const itemQuantity =
-    shoppingCart.find((cartItem) => cartItem.id === item.id)?.quantity || 0;
+  componentDidMount() {
+    this.flipAnimation();
+  }
 
-  return (
-    <LinearGradient colors={["#1E90FF", "#FF8C00"]} style={styles.gradient}>
-      <ScrollView contentContainerStyle={styles.container}>
-        {imageSource && <Image source={imageSource} style={styles.image} />}
-        <Text style={styles.itemName}>{item.itemName}</Text>
-        <Text style={styles.categoryName}>{item.categoryName}</Text>
-        <Text style={styles.description}>{item.description}</Text>
-        <Text style={styles.price}>${item.price}</Text>
-        <Text style={styles.itemQuantity}>Quantity: {itemQuantity}</Text>
-        <View style={styles.buttonsContainer}>
-          <TouchableOpacity
-            onPress={() => removeFromCart(item)}
-            style={[styles.button, { backgroundColor: "dodgerblue" }]}>
-            <Text style={styles.buttonText}>-</Text>
+  flipAnimation = () => {
+    Animated.timing(this.animatedValue, {
+      toValue: 180,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  render() {
+    const { item, onClose, onAddToCart, removeFromCart, shoppingCart } = this.props;
+    if (!item) {
+      return null;
+    }
+
+    const imageSource = item.image_url ? { uri: item.image_url } : null;
+    const itemQuantity =
+      shoppingCart.find((cartItem) => cartItem.id === item.id)?.quantity || 0;
+
+    return (
+      <LinearGradient colors={["#1E90FF", "#FF8C00"]} style={styles.gradient}>
+        <ScrollView contentContainerStyle={styles.container}>
+          {imageSource && (
+            <Animated.Image
+              source={imageSource}
+              style={[this.rotateYAnimatedStyle, styles.image]}
+            />
+          )}
+          <Text style={styles.itemName}>{item.itemName}</Text>
+          <Text style={styles.categoryName}>{item.categoryName}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+          <Text style={styles.price}>${item.price}</Text>
+          <Text style={styles.itemQuantity}>Quantity: {itemQuantity}</Text>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity
+              onPress={() => removeFromCart(item)}
+              style={[styles.button, { backgroundColor: "dodgerblue" }]}>
+              <Text style={styles.buttonText}>-</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => onAddToCart(item)}
+              style={[styles.button, { backgroundColor: "dodgerblue" }]}
+            >
+              <Text style={styles.buttonText}>+</Text>
+            </TouchableOpacity>
+          </View>
+          {itemQuantity > 0 && (
+            <TouchableOpacity
+              onPress={() => {
+                onClose();
+                this.props.navigation.navigate("ShoppingCart", {
+                  cartItems: shoppingCart,
+                  removeFromCart: removeFromCart,
+                });
+              }}
+              style={[styles.viewCartButton]}
+            >
+              <Text style={styles.viewCartButtonText}>
+                Cart(
+                {shoppingCart.reduce(
+                  (total, item) => total + item.quantity,
+                  0
+                )}
+                )
+              </Text>
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity onPress={onClose} style={[styles.viewCartButton]}>
+            <Text style={styles.viewCartButtonText}>Close</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => onAddToCart(item)}
-            style={[styles.button, { backgroundColor: "dodgerblue" }]}
-          >
-            <Text style={styles.buttonText}>+</Text>
-          </TouchableOpacity>
-        </View>
-        {itemQuantity > 0 && (<TouchableOpacity
-            onPress={() => { onClose(); navigation.navigate("ShoppingCart", {  cartItems: shoppingCart, removeFromCart: removeFromCart })}}
-            style={[styles.viewCartButton,]}>
-            <Text style={styles.viewCartButtonText}>Cart({shoppingCart.reduce((total, item) => total + item.quantity, 0)})</Text>
-          </TouchableOpacity>)}
-        <TouchableOpacity onPress={onClose} style={[styles.viewCartButton]}>
-          <Text style={styles.viewCartButtonText}>Close</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </LinearGradient>
-  );
-};
+        </ScrollView>
+      </LinearGradient>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   gradient: {
@@ -92,24 +145,24 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   buttonsContainer: {
-  flexDirection: "row",
-  marginTop: 16,
+    flexDirection: "row",
+    marginTop: 16,
   },
   button: {
-  paddingHorizontal: 8,
-  paddingVertical: 8,
-  borderRadius: 8,
-  marginHorizontal: 4,
-  marginBottom: 16,
+    paddingHorizontal: 8,
+    paddingVertical: 8,
+    borderRadius: 8,
+    marginHorizontal: 4,
+    marginBottom: 16,
   },
   buttonText: {
-  fontSize: 16,
-  color: "white",
-  padding: 8,
+    fontSize: 16,
+    color: "white",
+    padding: 8,
   },
   closeButtonText: {
-  fontSize: 16,
-  color: 'white',
+    fontSize: 16,
+    color: 'white',
   },
   viewCartButton: {
     paddingHorizontal: 12,
@@ -123,8 +176,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     padding: 8,
-
   },
-  });
-  
-  export default FoodItemDetailsScreen;
+});
+
+export default function (props) {
+  const navigation = useNavigation();
+  return <FoodItemDetailsScreen {...props} navigation={navigation} />;
+}
+
