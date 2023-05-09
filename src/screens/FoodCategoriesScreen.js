@@ -30,13 +30,15 @@ const FoodCategoriesScreen = ({ navigation }) => {
   const renderCategoryItem = ({ item }) => {
     const iconColor = item.type === 'veg' ? '#4CAF50' : '#F44336';
     return (
+      <LinearGradient colors={['#BFFFC7', '#23494A']} style={styles.gradient}>
+
       <TouchableOpacity
         onPress={() => handleItemPress(item.categoryName)}
         style={styles.itemContainer}
       >
         <MaterialIcons
           name="fastfood"
-          size={50}
+          size={50} 
           color={iconColor}
           style={styles.itemIcon}
         />
@@ -45,13 +47,15 @@ const FoodCategoriesScreen = ({ navigation }) => {
           <Text style={styles.itemDescription}>{item.description}</Text>
         </View>
       </TouchableOpacity>
+      </LinearGradient>
+
     );
   };  
   
   return (
     <View style={styles.outerContainer}>
       <LinearGradient
-        colors={['#FF8C00', '#FFA500', '#FFDAB9']}
+        colors={['#6CD0FF', '#1C2E4C']}
         start={[0, 0]}
         end={[1, 1]}
         style={styles.container}
@@ -107,14 +111,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   itemContainer: {
-    backgroundColor: '#f0f0f0',
-    borderRadius: 8,
+    borderRadius: 14,
     padding: 16,
     marginBottom: 16,
     flex: 1,
-    marginHorizontal: 4,
     paddingBottom: 20,
 
+  },
+  gradient: {
+    flex: 1,
+    borderRadius: 8,
+    marginHorizontal: 4,
+    marginBottom: 8,
+    padding: 2,
   },
   itemIcon: {
     alignSelf: 'center',
