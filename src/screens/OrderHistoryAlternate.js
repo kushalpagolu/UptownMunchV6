@@ -59,6 +59,11 @@ const OrderHistoryScreenAlternate = () => {
 
   const renderItem = ({ item }) => (
     <Animated.View key={item.id} style={[styles.orderCard, { opacity: fadeAnim }]}>
+      <LinearGradient
+        colors={['#38A2D6', '#551138']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.gradient}>
       <View style={styles.orderCardContainer}>
         <View style={styles.orderCardHeader}>
           <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
@@ -79,6 +84,7 @@ const OrderHistoryScreenAlternate = () => {
           ))}
         </View>
       </View>
+      </LinearGradient>
     </Animated.View>
   );
   
@@ -120,7 +126,7 @@ const styles = StyleSheet.create({
   orderCard: {
     width: 360,
     margin: 10,
-    backgroundColor: 'green',
+    backgroundColor: '#F2BAE8',
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#FFF',

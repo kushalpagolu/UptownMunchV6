@@ -27,7 +27,6 @@ const OrderHistoryScreen = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       const user = auth.currentUser;
-      console.log(user.uid)
 
       if (!user) {
         console.log("User not logged in.");
@@ -60,7 +59,7 @@ const OrderHistoryScreen = () => {
   const renderItem = ({ item }) => (
     <Animated.View key={item.id} style={[styles.orderCard, { opacity: fadeAnim }]}>
        <LinearGradient
-        colors={['#ee0979', '#ff6a00']}
+        colors={['#FED9B7', '#0081A7']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}>
@@ -83,10 +82,9 @@ const OrderHistoryScreen = () => {
   );
 
   return (
-    <LinearGradient colors={['#1E90FF', '#FF8C00']} start={{ x: 0, y: 0 }}
+    <LinearGradient colors={['#F2C5FF', '#801155']} start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }} style={styles.gradient}>
       <View style={styles.container}>
-        <Text style={styles.title}>Order History</Text>
         <FlatList
           horizontal={true}
           data={orders}
@@ -119,11 +117,13 @@ const styles = StyleSheet.create({
   },
   orderCard: {
     backgroundColor: '#FFF',
-    padding: 20,
+    padding: 10,
     margin: 20,
     borderRadius: 10,
     elevation: 2,
     width: null,
+    marginBottom: 60,
+    
   },
   orderId: {
     fontSize: 20,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   orderTotal: {
     fontSize: 24,
     fontWeight: 'bold',
-    alignSelf: 'flex-left',
+    alignSelf: 'auto',
   },
 });
 
