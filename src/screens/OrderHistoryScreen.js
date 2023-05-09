@@ -82,7 +82,7 @@ const OrderHistoryScreen = () => {
   );
 
   return (
-    <LinearGradient colors={['#F2C5FF', '#801155']} start={{ x: 0, y: 0 }}
+    <LinearGradient colors={['#A6C0FE', '#ff8473']} start={{ x: 0, y: 0 }}
     end={{ x: 1, y: 1 }} style={styles.gradient}>
       <View style={styles.container}>
         <FlatList

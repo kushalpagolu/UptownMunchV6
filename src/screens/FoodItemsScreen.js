@@ -82,7 +82,7 @@ const FoodItemsScreen = ({ navigation }) => {
   
   return (
     <LinearGradient
-      colors={['#FF8C00', '#FFA500', '#FFDAB9']}
+      colors={['#ddffc9', '#ff8473',]}
       start={[0, 0]}
       end={[1, 1]}
       style={styles.fooditemsscreencontainer}>

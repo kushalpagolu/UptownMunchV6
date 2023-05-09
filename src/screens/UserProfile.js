@@ -91,7 +91,7 @@ const UserProfileScreen = ({ navigation }) => {
   });
 
     return (
-      <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.gradient}>
+      <LinearGradient colors={['#A6C0FE', '#ff8473']} style={styles.gradient}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.container}>
           <View style={styles.profileImageContainer}>

@@ -30,7 +30,7 @@ const FoodCategoriesScreen = ({ navigation }) => {
   const renderCategoryItem = ({ item }) => {
     const iconColor = item.type === 'veg' ? '#4CAF50' : '#F44336';
     return (
-      <LinearGradient colors={['#BFFFC7', '#23494A']} style={styles.gradient}>
+      <LinearGradient colors={['#EEF3D2', '#FC8884']} style={styles.gradient}>
 
       <TouchableOpacity
         onPress={() => handleItemPress(item.categoryName)}
@@ -55,7 +55,7 @@ const FoodCategoriesScreen = ({ navigation }) => {
   return (
     <View style={styles.outerContainer}>
       <LinearGradient
-        colors={['#6CD0FF', '#1C2E4C']}
+        colors={['#A6C0FE', '#ff8473']}
         start={[0, 0]}
         end={[1, 1]}
         style={styles.container}
