@@ -115,13 +115,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    alignContent: 'center',
+    marginBottom: 20,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#000',
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 10,
   },
   orderCard: {
     width: 360,
@@ -163,6 +166,9 @@ const styles = StyleSheet.create({
   },
   orderHistoryContainer: {
     paddingBottom: 20,
+    alignItems: 'center',
+    
+
   },
   foodItemContainer: {
     flexDirection: 'column',

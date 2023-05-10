@@ -6,7 +6,6 @@ import { auth } from '../firebase';
 import OrderConfirmationScreen from './OrderConfirmationScreen';
 import {firebaseConfig, app} from '../firebase';
 import styles from './Styles';
-import Swiper from 'react-native-web-swiper';
 import { Swipeable } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
  
@@ -47,7 +46,7 @@ useFocusEffect(
       <Swipeable
         renderRightActions={rightSwipeActions}
         onSwipeableRightOpen={() => {
-          console.log(`Removing item ${item.itemName} from the cart.`);
+          //console.log(`Removing item ${item.itemName} from the cart.`);
           handleRemoveFromCart(item);
         }}
       >
@@ -141,8 +140,8 @@ useFocusEffect(
           <Text style={styles.totalText}>Total: ${orderTotal.toFixed(2)}</Text>
         </View>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FoodItems')}>
-  <Text style={styles.backButtonText}>Back</Text>
-</TouchableOpacity>
+          <Text style={styles.backButtonText}>Back</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
           <Text style={styles.checkoutButtonText}>Checkout</Text>

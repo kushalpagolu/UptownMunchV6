@@ -58,40 +58,42 @@ const OrderHistoryScreen = () => {
 
   const renderItem = ({ item }) => (
     <Animated.View key={item.id} style={[styles.orderCard, { opacity: fadeAnim }]}>
-       <LinearGradient
+      <LinearGradient
         colors={['#FED9B7', '#0081A7']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={styles.gradient}>
-      <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
-      <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
-      <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
-      <Text style={styles.orderId}>Status: {item.status}</Text>
-      {item.foodItems.map((foodItem, index) => (
-        <View key={index}>
-          <Text style={styles.orderId}>
-            Item Name: {foodItem.name}
-          </Text>
-          <Text style={styles.orderId}>
-            Quantity: {foodItem.quantity.toFixed(2)}
-          </Text>
-        </View>
-      ))}
+        style={styles.gradient}
+      >
+        <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
+        <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
+        <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
+        <Text style={styles.orderStatus}>Status: {item.status}</Text>
+        {item.foodItems.map((foodItem, index) => (
+          <View key={index} style={styles.foodItemContainer}>
+            <Text style={styles.foodItemName}>
+              Item Name: {foodItem.name}
+            </Text>
+            <Text style={styles.foodItemQuantity}>
+              Quantity: {foodItem.quantity.toFixed(2)}
+            </Text>
+          </View>
+        ))}
       </LinearGradient>
     </Animated.View>
   );
+  
 
   return (
     <LinearGradient colors={['#A6C0FE', '#ff8473']} start={{ x: 0, y: 0 }}
-    end={{ x: 1, y: 1 }} style={styles.gradient}>
+        end={{ x: 1, y: 1 }} style={styles.gradient}>
       <View style={styles.container}>
-        <FlatList
-          horizontal={true}
-          data={orders}
-          keyExtractor={(item) => item.id}
-          renderItem={renderItem}
-          contentContainerStyle={styles.orderHistoryContainer}
-        />
+      <FlatList
+        horizontal={true}
+        data={orders}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.orderHistoryContainer}
+      />
       </View>
     </LinearGradient>
   );
@@ -100,12 +102,13 @@ const OrderHistoryScreen = () => {
 const styles = StyleSheet.create({
   gradient: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   container: {
     flex: 1,
     alignItems: 'left',
     paddingTop: 50,
+    width: '100%',
   },
   title: {
     fontSize: 24,
@@ -137,6 +140,22 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     alignSelf: 'auto',
+  },
+  foodItemContainer: {
+    flexDirection: 'column',
+    marginBottom: 8,
+  },
+  foodItemName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  foodItemQuantity: {
+    fontSize: 14,
+  },
+  orderStatus: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
 });
 
