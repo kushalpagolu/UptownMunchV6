@@ -92,8 +92,10 @@ const UserProfileScreen = ({ navigation }) => {
 
     return (
       <LinearGradient colors={['#A6C0FE', '#ff8473']} style={styles.gradient}>
+
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
+
           <View style={styles.profileImageContainer}>
             {profilePicture ? (
               <Image source={{ uri: profilePicture }} style={styles.profileImage} />
@@ -177,7 +179,7 @@ const UserProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
 
       
-        </View>
+        </KeyboardAvoidingView>
     </ScrollView>
     <Modal
   transparent={true}

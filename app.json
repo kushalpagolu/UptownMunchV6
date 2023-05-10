@@ -1,6 +1,10 @@
 {
   "expo": {
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "name": "UptownMunch",
     "slug": "UptownMunch",
     "version": "1.0.0",
@@ -12,20 +16,30 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "developmentClient": {
+      "silentLaunch": true
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.myapp.uptownmunch"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.myapp.uptownmunch"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f709a786-f0dc-4578-9708-c6c491a9f38f"
+      }
     }
   }
 }

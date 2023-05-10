@@ -6,7 +6,7 @@ import { TouchableOpacity, Text } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import styles from './src/screens/Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import 'expo-dev-client';
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
