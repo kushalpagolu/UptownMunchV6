@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { getFoodItemsByCategory } from '../firebase';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
-import { Dimensions } from 'react-native';
+import { auth, app,  } from '../firebase';
 
-const FoodCategoryDetailsScreen = ({ route }) => {
+const FoodCategoryDetailsScreen = ({ route, navigation }) => {
   const [foodItems, setFoodItems] = useState([]);
   const { categoryName, description } = route.params;
 
@@ -55,6 +55,11 @@ const FoodCategoryDetailsScreen = ({ route }) => {
           numColumns={2}
         />
       </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
+            <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
+        </View>
     </LinearGradient>
   );
 };
@@ -74,6 +79,22 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 8,
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingBottom: 10,
+    marginBottom: 60,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#1E90FF',
   },
   categoryDescription: {
     fontSize: 16,

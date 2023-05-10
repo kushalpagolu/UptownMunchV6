@@ -99,6 +99,7 @@ function HomeTabs({ setIsLoggedIn }) {
       screenOptions={({ route }) => ({
         tabBarStyle: {
           position: 'absolute',
+          bottom: 10,
           left: 15,
           right: 15,
           height: 40,
