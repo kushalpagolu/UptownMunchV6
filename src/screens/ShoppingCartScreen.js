@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Platform } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Platform, Image, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getFirestore, collection, addDoc, doc } from 'firebase/firestore';
 import { auth } from '../firebase';
@@ -9,6 +9,7 @@ import styles from './Styles';
 import { Swipeable } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
 import { CartContext } from '../../App'; 
+import { Ionicons } from '@expo/vector-icons';
  
 
 const db = getFirestore(app);
@@ -33,9 +34,9 @@ useFocusEffect(
       onUpdateCart(updatedCartItems);
     }
   };
-  
 
   const renderItem = ({ item }) => {
+    const imageSource = item.image_url ? { uri: item.image_url } : null;
     const rightSwipeActions = () => {
       return (
         <View style={styles.deleteBox}>
@@ -48,26 +49,41 @@ useFocusEffect(
       <Swipeable
         renderRightActions={rightSwipeActions}
         onSwipeableRightOpen={() => {
-          //console.log(`Removing item ${item.itemName} from the cart.`);
           handleRemoveFromCart(item);
         }}
       >
-        <LinearGradient
-          colors={['#f7b733', '#fc4a1a']}
-          start={[0, 0]}
-          end={[1, 1]}
-          style={styles.cartItem}
-        >
-          <Text style={styles.itemName}>{item.itemName}</Text>
-          <Text style={styles.itemCategory}>{item.categoryName}</Text>
-          <Text style={styles.itemPrice}>${item.price}</Text>
-          <TouchableOpacity style={styles.itemQuantity} onPress={() => {}}>
-            <Text>Quantity: {item.quantity}</Text>
+        <View style={styles.cartItemContainer}>
+          <LinearGradient
+            colors={['#f7b733', '#fc4a1a']}
+            start={[0, 0]}
+            end={[1, 1]}
+            style={styles.gradientContainer}
+          >
+            {imageSource && (
+              <Image source={imageSource} style={[styles.itemImage]} />
+            )}
+            <View style={styles.itemDetailsContainer}>
+              <Text style={styles.itemName}>{item.itemName}</Text>
+              <Text style={styles.itemCategory}>{item.categoryName}</Text>
+              <Text style={styles.itemPrice}>Price: ${item.price}</Text>
+              <TouchableOpacity onPress={() => {}}>
+                <Text style={styles.itemQuantity}>
+                  Quantity: {item.quantity}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </LinearGradient>
+          <TouchableOpacity
+            style={styles.itemRemoveButton}
+            onPress={() => handleRemoveFromCart(item)}
+          >
+            <Ionicons name="close" size={24} color="black" />
           </TouchableOpacity>
-        </LinearGradient>
+        </View>
       </Swipeable>
     );
   };
+
   // Calculate order total
   const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 

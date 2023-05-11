@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 16,
   },
+  
   title: {
     fontSize: 24,
     marginBottom: 16,
@@ -147,28 +148,68 @@ const styles = StyleSheet.create({
   cartItemsContainer: {
     paddingHorizontal: 16,
   },
+  cartItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+    borderRadius: 8,
+    marginRight: 20,
+  },
+  gradientContainer: {
+    flex: 1,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    marginRight: 20,
+    width: 300,
+  },
+
+  itemDetailsContainer: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
   cartItem: {
+    flex: 1,
     borderRadius: 8,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    marginVertical: 8,
+    marginRight: 8,
   },
+  itemImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  itemDetailsContainer: {
+    flex: 1,
+  },
+
+  itemRemoveButton: {
+    padding: 5,
+  },
+
   itemName: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white',
+    marginRight: 20,
   },
+
   itemCategory: {
     fontSize: 14,
     color: 'white',
   },
+
   itemPrice: {
     fontSize: 16,
     color: 'white',
     marginTop: 4,
   },
+
   itemQuantity: {
-    color: '#FFF',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
   },
