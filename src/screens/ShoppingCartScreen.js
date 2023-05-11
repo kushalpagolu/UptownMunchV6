@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getFirestore, collection, addDoc, doc } from 'firebase/firestore';
@@ -8,13 +8,15 @@ import {firebaseConfig, app} from '../firebase';
 import styles from './Styles';
 import { Swipeable } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
+import { CartContext } from '../../App'; 
  
 
 const db = getFirestore(app);
 
 const ShoppingCartScreen = ({ navigation, route }) => {
-  const { cartItems: initialCartItems, removeFromCart, onUpdateCart } = route.params;
+  const { cartItems: initialCartItems, removeFromCart, onUpdateCart,  } = route.params;
   const [cartItems, setCartItems] = useState(initialCartItems);
+  const {clearCart} = useContext(CartContext);
 
 useFocusEffect(
   React.useCallback(() => {
@@ -117,8 +119,8 @@ useFocusEffect(
       await addDoc(ordersCollection, order);
     // Clear the cart and navigate to the OrderConfirmationScreen
       navigation.setParams({ cartItems: [] });
+      clearCart();
       navigation.navigate('OrderConfirmationScreen', { order });
-  
     } catch (error) {
       console.log(error);
     }

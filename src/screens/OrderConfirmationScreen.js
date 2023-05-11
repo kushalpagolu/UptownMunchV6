@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text, ScrollView, StyleSheet, Button, TouchableOpacity, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getAuth } from 'firebase/auth';
+import { useState, createContext } from 'react';
 
 const OrderConfirmationScreen = ({ navigation, route }) => {
   const auth = getAuth();

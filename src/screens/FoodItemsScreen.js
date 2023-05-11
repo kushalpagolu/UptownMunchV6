@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  useContext } from 'react';
 import {View, Text, StyleSheet, Image, FlatList, Alert, TouchableOpacity, Animated, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getItems } from '../firebase';
@@ -11,11 +11,12 @@ import 'firebase/storage';
 import styles from './Styles';
 import { renderFoodItem } from './FoodItem';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-
+import { CartContext } from '../../App'; 
 
 const FoodItemsScreen = ({ navigation }) => {
+  const { shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart } = useContext(CartContext);
+
   const [foodItems, setFoodItems] = useState([]);
-  const [shoppingCart, setShoppingCart] = useState([]);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -27,31 +28,6 @@ const FoodItemsScreen = ({ navigation }) => {
     fetchFoodItems();
   }, []);
 
-  const addToCart = (item) => {
-    const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
-  
-    if (itemIndex > -1) {
-      const newShoppingCart = [...shoppingCart];
-      newShoppingCart[itemIndex].quantity += 1;
-      setShoppingCart(newShoppingCart);
-    } else {
-      setShoppingCart([...shoppingCart, { ...item, quantity: 1 }]);
-    }
-  };
-  const removeFromCart = (item) => {
-    const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
-
-    if (itemIndex > -1) {
-      const newShoppingCart = [...shoppingCart];
-      newShoppingCart[itemIndex].quantity -= 1;
-
-      if (newShoppingCart[itemIndex].quantity === 0) {
-        newShoppingCart.splice(itemIndex, 1);
-      }
-
-      setShoppingCart(newShoppingCart);
-    }
-  };
 
   const showItemDetails = (item) => {
     setSelectedItem(item);
@@ -76,10 +52,6 @@ const FoodItemsScreen = ({ navigation }) => {
     }
   };
   
-  const handleUpdateCart = (updatedCart) => {
-    setShoppingCart(updatedCart);
-  };
-  
   return (
     <LinearGradient
       colors={['#ddffc9', '#ff8473',]}
@@ -95,7 +67,7 @@ const FoodItemsScreen = ({ navigation }) => {
         numColumns={2} 
       />
      <TouchableOpacity style={styles.viewCartButton}
-      //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. With the changes we made to the ShoppingCartScreen earlier, it will correctly receive and use the cartItems passed from this screen through the route.params object.
+      //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. 
       onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart, removeFromCart: removeFromCart, onUpdateCart: handleUpdateCart })}
       >
     <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})

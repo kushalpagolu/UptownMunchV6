@@ -260,7 +260,9 @@ The app has several screens/components, including a Welcome screen, Food Categor
 
 
 The App component renders the navigation structure of the app. If the user is not logged in, it renders an **AuthStack.Navigator** with a **AuthTabNavigator** component that contains LoginScreen and SignupScreen screens. Otherwise, it renders a **HomeStackScreen** component that contains a HomeTabs component that displays the main screens of the app.
+Authentication: When a user is not logged in (isLoggedIn state is false), app directs them to the authentication stack (AuthStack), which consists of the Login and Signup screens. Once logged in, isLoggedIn state changes to true and the user is directed to the main app screens.
 
+Main App Screens: These screens become available after a successful login. They include a home screen (WelcomeScreen), a profile screen (UserProfileScreen), a food items screen (FoodItems), an order history screen (OrderHistoryScreen), a food categories screen (FoodCategoriesScreen), and a shopping cart screen (ShoppingCartScreen). These screens are organized into a tab navigation format, which means users can switch between them by tapping on the corresponding tab icon.
 
 The **HomeTabs** component uses the **createBottomTabNavigator** to render the bottom tab navigation bar. It has several screens with corresponding icons, such as the FoodCategoriesScreen screen with a food tray icon, and the Profile screen with a person icon. The ShoppingCart screen has a customized tab bar icon that is hidden, and its corresponding Checkout screen is accessible from the ShoppingCart screen.
 
@@ -270,3 +272,13 @@ The file also includes the ShoppingCartStackScreen component that contains Shopp
 
 Finally, the **AppContainer** wraps the **AppNavigator** component to enable navigation.
 
+
+
+From your App.js file, I can see that your application is organized into several key sections. You are using react-navigation for handling navigation in your application and react-native for building your UI. You've also incorporated a variety of screens to handle different functionalities, including authentication, food item selection, shopping cart, and order history, among others. Here's a brief overview of your app's structure:
+
+
+
+
+Shopping Cart: You've designed a separate navigation stack (ShoppingCartStack) for the shopping cart, which includes the ShoppingCartScreen and CheckoutScreen.
+
+Logout: You've placed a logout button on every screen which sets isLoggedIn to false and returns the user to the login screen.

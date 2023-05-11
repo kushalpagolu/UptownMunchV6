@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import styles from './src/screens/Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import 'expo-dev-client';
+import HeaderRight from './Header.js';
+ 
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
@@ -31,6 +33,9 @@ const Tabs = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const ShoppingCartStack = createNativeStackNavigator();
 
+export const CartContext = React.createContext();
+
+  
 function ShoppingCartStackScreen() {
   return (
     <ShoppingCartStack.Navigator>
@@ -152,21 +157,22 @@ function HomeTabs({ setIsLoggedIn }) {
       }}
       />
       <Tabs.Screen
-        name="Profile"
-        component={UserProfileScreen}
-        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
-      />
-      <Tabs.Screen
-        name="FoodCategoriesScreen"
-        component={FoodCategoriesScreen}
-        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
-      />
-      <Tabs.Screen
-        name="Welcome"
-        options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
-      >
-        {(props) => <WelcomeScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
-      </Tabs.Screen>
+  name="Profile"
+  component={UserProfileScreen}
+  options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+/>
+<Tabs.Screen
+  name="FoodCategoriesScreen"
+  component={FoodCategoriesScreen}
+  options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+/>
+<Tabs.Screen
+  name="Welcome"
+  options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+>
+  {(props) => <WelcomeScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+</Tabs.Screen>
+
       <Tabs.Screen
         name="FoodItems"
         component={FoodItems}
@@ -216,10 +222,42 @@ function HomeStackScreen({ setIsLoggedIn }) {
   );
 }
 
-export default function App() {
+const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [shoppingCart, setShoppingCart] = useState([]);
+  
+  const clearCart = () => {
+    setShoppingCart([]);
+  };
+
+  const addToCart = (item) => { const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
+  
+    if (itemIndex > -1) {
+      const newShoppingCart = [...shoppingCart];
+      newShoppingCart[itemIndex].quantity += 1;
+      setShoppingCart(newShoppingCart);
+    } else {
+      setShoppingCart([...shoppingCart, { ...item, quantity: 1 }]);
+    } };
+  
+  const removeFromCart = (item) => { const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
+
+    if (itemIndex > -1) {
+      const newShoppingCart = [...shoppingCart];
+      newShoppingCart[itemIndex].quantity -= 1;
+
+      if (newShoppingCart[itemIndex].quantity === 0) {
+        newShoppingCart.splice(itemIndex, 1);
+      }
+
+      setShoppingCart(newShoppingCart);
+    } };
+
+  const handleUpdateCart = (updatedCart) => { setShoppingCart(updatedCart);
+  }
 
   return (
+    <CartContext.Provider value={{ shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart }}>
     <NavigationContainer>
       {!isLoggedIn ? (
         <AuthStack.Navigator initialRouteName="AuthTabs">
@@ -231,5 +269,8 @@ export default function App() {
         <HomeStackScreen setIsLoggedIn={setIsLoggedIn} />
       )}
     </NavigationContainer>
+    </CartContext.Provider>
   );
 }
+
+export default App;
