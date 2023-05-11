@@ -10,14 +10,16 @@ import { Swipeable } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
 import { CartContext } from '../../App'; 
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
  
 
 const db = getFirestore(app);
 
-const ShoppingCartScreen = ({ navigation, route }) => {
+const ShoppingCartScreen = ({ route }) => {
   const { cartItems: initialCartItems, onUpdateCart,  } = route.params;
   const [cartItems, setCartItems] = useState(initialCartItems);
   const {clearCart, removeFromCart} = useContext(CartContext);
+  const navigation = useNavigation();
 
 useFocusEffect(
   React.useCallback(() => {
@@ -136,7 +138,7 @@ useFocusEffect(
     // Clear the cart and navigate to the OrderConfirmationScreen
       navigation.setParams({ cartItems: [] });
       clearCart();
-      navigation.navigate('OrderConfirmationScreen', { order });
+      navigation.navigate('OrderConfirmationScreen', { order, removeFromCart });
     } catch (error) {
       console.log(error);
     }
