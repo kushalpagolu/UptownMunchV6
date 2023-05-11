@@ -15,9 +15,9 @@ import { Ionicons } from '@expo/vector-icons';
 const db = getFirestore(app);
 
 const ShoppingCartScreen = ({ navigation, route }) => {
-  const { cartItems: initialCartItems, removeFromCart, onUpdateCart,  } = route.params;
+  const { cartItems: initialCartItems, onUpdateCart,  } = route.params;
   const [cartItems, setCartItems] = useState(initialCartItems);
-  const {clearCart} = useContext(CartContext);
+  const {clearCart, removeFromCart} = useContext(CartContext);
 
 useFocusEffect(
   React.useCallback(() => {
