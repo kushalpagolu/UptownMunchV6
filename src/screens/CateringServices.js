@@ -59,11 +59,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    marginBottom: 50,
+
   },
   item: {
     flex: 1,
     margin: 5,
     height: 200,
+
   },
   image: {
     flex: 1,
