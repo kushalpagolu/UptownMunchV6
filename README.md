@@ -274,7 +274,22 @@ Finally, the **AppContainer** wraps the **AppNavigator** component to enable nav
 
 
 
-From your App.js file, I can see that your application is organized into several key sections. You are using react-navigation for handling navigation in your application and react-native for building your UI. You've also incorporated a variety of screens to handle different functionalities, including authentication, food item selection, shopping cart, and order history, among others. Here's a brief overview of your app's structure:
+App.js file is used to create a shopping cart context with React. The context is used to share the shopping cart's state and various functions that manipulate it (like addToCart, removeFromCart, handleUpdateCart, and clearCart) across your entire application, which is a great way to manage global state.
+
+This context is provided to all child components within the CartContext.Provider. This includes your entire application because the provider is wrapping your NavigationContainer.
+
+The isLoggedIn state is used to switch between AuthTabNavigator and HomeStackScreen, which are presumably your authentication (login/register) screens and your main app screens, respectively.
+
+The addToCart function checks if the item already exists in the cart. If it does, it increments the quantity of the item, and if it doesn't, it adds a new item to the cart with a quantity of 1.
+
+The removeFromCart function decreases the quantity of an item in the cart by 1. If the quantity of the item reaches 0, it removes the item from the cart.
+
+The clearCart function simply clears all items from the cart.
+
+The handleUpdateCart function is used to directly set the shopping cart with a new cart.
+
+
+From App.js file, application is organized into several key sections. You are using react-navigation for handling navigation in your application and react-native for building your UI. You've also incorporated a variety of screens to handle different functionalities, including authentication, food item selection, shopping cart, and order history, among others. Here's a brief overview of your app's structure:
 
 
 

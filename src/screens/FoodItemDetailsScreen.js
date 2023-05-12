@@ -71,7 +71,6 @@ const FoodItemDetailsScreen = ({ item, onClose }) => {
               onClose();
               navigation.navigate('ShoppingCart', {
                 cartItems: shoppingCart,
-                removeFromCart: removeFromCart,
               });
             }}
             style={styles.viewCartButton}

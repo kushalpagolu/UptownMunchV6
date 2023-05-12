@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     padding: 6,
     borderRadius: 8,
     marginTop: 8,
+    marginBottom: 12,
   },
   logoutbuttonText: {
     color: 'white',
@@ -229,7 +230,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignSelf: 'center',
     marginTop: 16,
-    marginBottom: 56,
+    marginBottom: 80,
     paddingBottom: 8,
   },
   checkoutButtonText: {
@@ -366,6 +367,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'dodgerblue',
     borderRadius: 8,
     paddingBottom: 8,
+    marginBottom: 30,
   },
   viewCartButtonText: {
     fontSize: 16,

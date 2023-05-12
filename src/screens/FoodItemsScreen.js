@@ -68,7 +68,7 @@ const FoodItemsScreen = ({ navigation }) => {
       />
      <TouchableOpacity style={styles.viewCartButton}
       //This will navigate to the ShoppingCartScreen and pass the shoppingCart state as a parameter. 
-      onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart, removeFromCart: removeFromCart, onUpdateCart: handleUpdateCart })}
+      onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart})}
       >
     <Text style={styles.viewCartButtonText}> View Cart ({shoppingCart.reduce((total, item) => total + item.quantity, 0)})
     </Text>

@@ -1,10 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext, useState, createContext } from 'react';
 import { View, Text, ScrollView, StyleSheet, Button, TouchableOpacity, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getAuth } from 'firebase/auth';
-import { useState, createContext } from 'react';
+import { CartContext } from '../../App'; 
+
+
+
+
 
 const OrderConfirmationScreen = ({ navigation, route }) => {
+  const { removeFromCart } = useContext(CartContext);
   const auth = getAuth();
   const order = route.params.order;
   if (!order) {
@@ -35,7 +40,6 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 2000,
-      useNativeDriver: false,
     }).start();
   }, [fadeAnim]);
 
@@ -128,6 +132,8 @@ const styles = StyleSheet.create({
   elevation: 5,
   borderRadius: 20,
   overflow: 'hidden',
+  backgroundColor: '#ddffc9', // add this line
+
   },
   orderDetails: {
   paddingTop: 20,

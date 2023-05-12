@@ -32,10 +32,10 @@ const HomeTabs = ({ setIsLoggedIn }) => {
       screenOptions={({ route }) => ({
         tabBarStyle: {
           position: 'absolute',
-          bottom: 10,
+          bottom: 20,
           left: 15,
           right: 15,
-          height: 40,
+          height: 55,
           borderRadius: 8,
         },
         tabBarIcon: ({ focused, color, size }) => {

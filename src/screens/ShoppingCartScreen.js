@@ -136,9 +136,8 @@ useFocusEffect(
   
       await addDoc(ordersCollection, order);
     // Clear the cart and navigate to the OrderConfirmationScreen
-      navigation.setParams({ cartItems: [] });
       clearCart();
-      navigation.navigate('OrderConfirmationScreen', { order, removeFromCart });
+      navigation.navigate('OrderConfirmationScreen', { order });
     } catch (error) {
       console.log(error);
     }

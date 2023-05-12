@@ -29,7 +29,7 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
             <Text style={styles.foodItemName}>{item.itemName}</Text>
             <Ionicons
               name="heart-outline"
-              size={20}
+              size={30}
               color="#FFF"
               style={styles.favoriteIcon}
             />
@@ -40,14 +40,14 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
               <View style={styles.quantityContainer}>
                 {itemQuantity > 0 && (
                   <TouchableOpacity onPress={() => removeFromCart(item)}>
-                    <AntDesign name="minuscircleo" size={15} color="#FFF" style={styles.icons}/>
+                    <AntDesign name="minuscircleo" size={25} color="#FFF" style={styles.icons}/>
                   </TouchableOpacity>
                 )}
                 {itemQuantity > 0 && (
                   <Text style={styles.itemQuantity}>{itemQuantity}</Text>
                 )}
                 <TouchableOpacity onPress={() => addToCart(item)}>
-                  <AntDesign name="pluscircleo" size={15} color="#FFF" style={styles.icons}/>
+                  <AntDesign name="pluscircleo" size={25} color="#FFF" style={styles.icons}/>
                 </TouchableOpacity>
               </View>
             </View>
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   foodItemName: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 20,
   },
   foodItemCategory: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 16,
     marginTop: 4,
   },
   favoriteIcon: {

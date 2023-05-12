@@ -10,11 +10,13 @@ const HeaderRight = ({ onLogout }) => {
   const { shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart } = useContext(CartContext); // Use the CartContext
 
   return (
-    <View style={{ flexDirection: 'row', paddingRight: 10 }}>
+    <View style={{ flexDirection: 'row', paddingRight: 15 }}>
       <Ionicons
         name="cart-outline"
-        size={25}
-        onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart, removeFromCart: removeFromCart, onUpdateCart: handleUpdateCart })}
+        size={35}
+        color={'blue'}
+        onPress={() => navigation.navigate('ShoppingCart', { cartItems: shoppingCart })}
+        style={{ paddingRight: 25 }}
       />
       <LogoutButton onLogout={onLogout} />
     </View>

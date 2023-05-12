@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     paddingBottom: 10,
-    marginBottom: 10,
+    marginBottom: 30,
   },
   buttonText: {
     fontSize: 18,
