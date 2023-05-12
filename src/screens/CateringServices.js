@@ -1,18 +1,5 @@
-
-/*
-the code to fetch cateringServices collection from your firebase and modify the code to display the cateringItems which have the fields categoryName, itemName, image_url, description, price and weight fields from cateringServices collection. 
-Use three column grids to display the items and make them scrollable with Animation and add LinearGradient to the screen. The code should be compatible with web and mobile platforms:
-
-*/
-import React, { useState, useEffect, useRef } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  ScrollView,
-  Animated,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, ImageBackground, FlatList } from "react-native";
 import { getItems } from "../firebase";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -27,83 +14,87 @@ const CateringServices = () => {
     });
   }, []);
 
-  const scrollX = useRef(new Animated.Value(0)).current;
+  const renderItem = ({ item }) => {
+    const imageSource = item.img_url ? { uri: item.img_url } : null;
+    return (
+      <View style={styles.item}>
+        <ImageBackground source={imageSource} style={styles.image} imageStyle={styles.imageContent}>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{item.itemName}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+            <Text style={styles.price}>${item.price}</Text>
+            <Text style={styles.weight}>{item.weight}</Text>
+          </View>
+        </ImageBackground>
+      </View>
+    );
+  };
 
   return (
-    <>
-      <LinearGradient colors={["#FC5C7D", "#6A82FB"]} style={styles.gradient}>
-        <View style={styles.container}>
-          <Text style={styles.title}>Catering Services</Text>
-          <Text style={styles.text}>
-            We offer catering services for events of all sizes. Our menu
-            includes a wide range of dishes to satisfy every palate. Contact us
-            today to learn more!
-          </Text>
-        </View>
-      </LinearGradient>
-      <ScrollView
-        style={styles.scrollContainer}
-        contentContainerStyle={styles.scrollContent}
-        horizontal={true}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
-        )}
-        scrollEventThrottle={16}
-      >
+    <LinearGradient colors={["#FC5C7D", "#6A82FB"]} style={styles.gradient}>
+      <View style={styles.container}>
+        <Text style={styles.headerTitle}>Catering Services</Text>
+        <Text style={styles.text}>
+          We offer catering services for events of all sizes. Our menu
+          includes a wide range of dishes to satisfy every palate. Contact us
+          today to learn more!
+        </Text>
         {isLoading ? (
           <Text>Loading...</Text>
         ) : (
-          items.map((item, i) => (
-            <View key={i} style={styles.item}>
-              <Image source={{ uri: item.image_url }} style={styles.image} />
-              <View style={styles.content}>
-                <Text style={styles.title}>{item.itemName}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-                <Text style={styles.price}>${item.price}</Text>
-                <Text style={styles.weight}>{item.weight}</Text>
-              </View>
-            </View>
-          ))
+          <FlatList
+            data={items}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+            numColumns={3} // sets number of columns
+            columnWrapperStyle={styles.row}  // places them into rows
+          />
         )}
-      </ScrollView>
-    </>
+      </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
+    flex: 1,
+    padding: 10,
   },
   item: {
-    width: "33.33%",
-    margin: 10,
-    borderRadius: 10,
-    overflow: "hidden",
+    flex: 1,
+    margin: 5,
+    height: 200,
   },
   image: {
-    width: "100%",
-    height: 200,
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  imageContent: {
     borderRadius: 10,
   },
-  content: {
-    padding: 10,
+  textContainer: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+    borderRadius: 10,
   },
   title: {
     fontSize: 18,
     fontWeight: "bold",
+    color: 'white',
   },
   description: {
-    fontSize: 16,
+    fontSize: 12,
+    color: 'white',
   },
   price: {
-    fontSize: 16,
-    color: "red",
+    fontSize: 14,
+    color: 'red',
   },
   weight: {
-    fontSize: 16,
+    fontSize:   14,
+    color: 'white',
   },
   gradient: {
     position: "absolute",
@@ -112,11 +103,20 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
   },
-  scrollContainer: {
-    marginTop: 20,
+  row: {
+    flex: 1,
+    justifyContent: "space-around"
   },
-  scrollContent: {
-    flexDirection: "row",
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: 'white',
+    marginBottom: 10,
+  },
+  text: {
+    fontSize: 16,
+    color: 'white',
+    marginBottom: 10,
   },
 });
 
