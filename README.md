@@ -1,19 +1,19 @@
 # UptownMunchV6
 A food ordering app with end to end functionality on web and mobile.
 
-UptownMunch is a cross-platform React Native application built using Expo CLI. This application food ordering app. In this readme, you'll find instructions on how to set up and run the project, as well as guidance for creating your own React Native app using the same steps.
+UptownMunch is a cross-platform React Native application built using Expo CLI. This application is a food ordering app. In this readme, you'll find instructions on how to set up and run the project, as well as guidance for creating your own React Native app using the same steps.
 
-This is a React Native app that demonstrates the use of different components and features. The app has two screens: a home screen and a detail screen.
+This is a React Native app that demonstrates the use of different components and features.
 
 **Prerequisites**
 
 To run this project, you'll need the following tools installed on your machine:
 
-**Node.js** (v12 or newer) - Download Node.js
+**Node.js** (v12 or newer) - Download Node.js. I installed the LST version from the website.
 
-**Expo CLI** - Install using npm install -g expo-cli or yarn global add expo-cli
+**Expo CLI** - Install using npm install -g expo-cli or yarn global add expo-cli. Try to use _**yarn**_ because npm might cause so many dependency errors, you might end up loosing interest.
 
-**A code editor** (e.g., Visual Studio Code, Atom, or Sublime Text)
+**A code editor** (e.g., Visual Studio Code, Atom, or Sublime Text) - I am using VSCode for the extensions.
 
 **Install watchman**
 
@@ -58,7 +58,8 @@ cd YourProjectName
 Install React Native for the web using yarn:
 
 ```
-expo install react-native-web
+yarn add react-native-web
+
 ```
 
 ## Modify the app.json file
@@ -248,31 +249,7 @@ Here's a brief overview of the key files in this project:
 
 **App.js** - The main entry point of your app, where the main app component is defined and rendered.
 
-
-**App.js** 
-
 The **App.js** file defines a stack navigator (HomeStack) and a bottom tab navigator (TabNavigator). It also defines a switch navigator (**AppNavigator**) that switches between the **AuthBottomTabNavigator** and **TabNavigator** based on the initial route name (initialRouteName: 'Auth').
-
-
-_**Note: Assuming that all the other dependencies and screens are correctly implemented, your navigation should work as intended.**_
-
-The app has several screens/components, including a Welcome screen, Food Categories screen, Food Items screen, Food List screen, Shopping Cart screen, Checkout screen, Order History screen, Order Confirmation screen, User Profile screen, Catering Services screen, Food Item Details screen, Signup screen, and Login screen.
-
-
-The App component renders the navigation structure of the app. If the user is not logged in, it renders an **AuthStack.Navigator** with a **AuthTabNavigator** component that contains LoginScreen and SignupScreen screens. Otherwise, it renders a **HomeStackScreen** component that contains a HomeTabs component that displays the main screens of the app.
-Authentication: When a user is not logged in (isLoggedIn state is false), app directs them to the authentication stack (AuthStack), which consists of the Login and Signup screens. Once logged in, isLoggedIn state changes to true and the user is directed to the main app screens.
-
-Main App Screens: These screens become available after a successful login. They include a home screen (WelcomeScreen), a profile screen (UserProfileScreen), a food items screen (FoodItems), an order history screen (OrderHistoryScreen), a food categories screen (FoodCategoriesScreen), and a shopping cart screen (ShoppingCartScreen). These screens are organized into a tab navigation format, which means users can switch between them by tapping on the corresponding tab icon.
-
-The **HomeTabs** component uses the **createBottomTabNavigator** to render the bottom tab navigation bar. It has several screens with corresponding icons, such as the FoodCategoriesScreen screen with a food tray icon, and the Profile screen with a person icon. The ShoppingCart screen has a customized tab bar icon that is hidden, and its corresponding Checkout screen is accessible from the ShoppingCart screen.
-
-The ShoppingCartScreen and CheckoutScreen screens have customized headers that include a logout button, and their navigation options include the ability to pass setIsLoggedIn function to log out the user.
-
-The file also includes the ShoppingCartStackScreen component that contains ShoppingCartScreen and CheckoutScreen screens and has customized headers and navigation options.
-
-Finally, the **AppContainer** wraps the **AppNavigator** component to enable navigation.
-
-
 
 App.js file is used to create a shopping cart context with React. The context is used to share the shopping cart's state and various functions that manipulate it (like addToCart, removeFromCart, handleUpdateCart, and clearCart) across your entire application, which is a great way to manage global state.
 
@@ -288,12 +265,23 @@ The clearCart function simply clears all items from the cart.
 
 The handleUpdateCart function is used to directly set the shopping cart with a new cart.
 
+_**Note: Assuming that all the other dependencies are correctly installed, navigation should work as intended.**_
 
-From App.js file, application is organized into several key sections. You are using react-navigation for handling navigation in your application and react-native for building your UI. You've also incorporated a variety of screens to handle different functionalities, including authentication, food item selection, shopping cart, and order history, among others. Here's a brief overview of your app's structure:
+The app has several screens/components, including a Welcome screen, Food Categories screen, Food Items screen, Food List screen, Shopping Cart screen, Checkout screen, Order History screen, Order Confirmation screen, User Profile screen, Catering Services screen, Food Item Details screen, Signup screen, and Login screen.
 
 
+The App component renders the navigation structure of the app. If the user is not logged in, it renders an **AuthStack.Navigator** with a **AuthTabNavigator** component that contains **LoginScreen** and **SignupScreen** screens. Otherwise, it renders a **HomeStackScreen** component that contains a **HomeTabs** component that displays the main screens of the app.
+
+**Authentication:** When a user is not logged in (isLoggedIn state is false), app directs them to the authentication stack (AuthStack), which consists of the Login and Signup screens. Once logged in, isLoggedIn state changes to true and the user is directed to the main app screens.
+
+_**Main App Screens:**_ These screens become available after a successful login. They include a home screen (WelcomeScreen), a profile screen (UserProfileScreen), a food items screen (FoodItems), an order history screen (OrderHistoryScreen), a food categories screen (FoodCategoriesScreen), and a shopping cart screen (ShoppingCartScreen). These screens are organized into a tab navigation format, which means you can switch between them by tapping on the corresponding tab icon.
+
+The **HomeTabs** component uses the **createBottomTabNavigator** to render the bottom tab navigation bar. It has icons, such as the FoodCategoriesScreen screen with a food tray icon, and the Profile screen with a person icon. The ShoppingCart screen has a customized tab bar icon that is hidden, and its corresponding Checkout screen is accessible from the ShoppingCart screen.
+
+The ShoppingCartScreen and CheckoutScreen screens have customized headers that include a logout button, and their navigation options include the ability to pass setIsLoggedIn function to log out the user.
+
+The file also includes the ShoppingCartStackScreen component that contains ShoppingCartScreen and CheckoutScreen screens and has customized headers and navigation options.
+
+Finally, the **AppContainer** wraps the **AppNavigator** component to enable navigation.
 
 
-Shopping Cart: You've designed a separate navigation stack (ShoppingCartStack) for the shopping cart, which includes the ShoppingCartScreen and CheckoutScreen.
-
-Logout: You've placed a logout button on every screen which sets isLoggedIn to false and returns the user to the login screen.
