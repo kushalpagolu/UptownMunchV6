@@ -1,15 +1,10 @@
 import React, { useState, createContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthTabNavigator from './AuthTabNavigator';
 import HomeStackScreen from './HomeStackScreen';
-import { LogoutButton } from './src/screens/Styles';
-
-
-const ShoppingCartStack = createNativeStackNavigator();
 
 export const CartContext = createContext();
-
+// Maintain state of shopping cart and provide functions to update it. Use cart context to pass state and functions to screens.
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,8 +14,8 @@ const App = () => {
     setShoppingCart([]);
   };
 
-  const addToCart = (item) => {
-    const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
+const addToCart = (item) => {
+  const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
 
     if (itemIndex > -1) {
       const newShoppingCart = [...shoppingCart];
@@ -37,11 +32,9 @@ const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
 if (itemIndex > -1) {
   const newShoppingCart = [...shoppingCart];
   newShoppingCart[itemIndex].quantity -= 1;
-
   if (newShoppingCart[itemIndex].quantity === 0) {
     newShoppingCart.splice(itemIndex, 1);
   }
-
   setShoppingCart(newShoppingCart);
 }
 };
@@ -49,16 +42,14 @@ if (itemIndex > -1) {
 const handleUpdateCart = (updatedCart) => {
 setShoppingCart(updatedCart);
 };
-
 return (
 <CartContext.Provider value={{ shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart }}>
-<NavigationContainer>
-{!isLoggedIn ? (
-<AuthTabNavigator setIsLoggedIn={setIsLoggedIn} />
-) : (
-<HomeStackScreen setIsLoggedIn={setIsLoggedIn} />
-)}
-</NavigationContainer>
+  <NavigationContainer>
+    {!isLoggedIn ? (
+      <AuthTabNavigator setIsLoggedIn={setIsLoggedIn} /> ) : (
+      <HomeStackScreen setIsLoggedIn={setIsLoggedIn} />
+      )}
+  </NavigationContainer>
 </CartContext.Provider>
 );
 };
