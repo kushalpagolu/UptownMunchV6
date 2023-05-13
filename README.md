@@ -296,8 +296,8 @@ https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/d710c5b3-0733-445c
 
 ## Android Demo
 
-***Note: The navigation looks bad in this as the webmd compression did not work out as expected. 
-***
+***Note: The navigation looks bad in this demo as the webm compression did not work out as expected.***
 
+[android_demo.webm](https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/52128e0c-a145-44a6-a37b-2cf2a03a37cf)
 
 
