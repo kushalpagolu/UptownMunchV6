@@ -40,6 +40,7 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 2000,
+      useNativeDriver: false,
     }).start();
   }, [fadeAnim]);
 
