@@ -285,3 +285,11 @@ The file also includes the ShoppingCartStackScreen component that contains Shopp
 Finally, the **AppContainer** wraps the **AppNavigator** component to enable navigation.
 
 
+Demo Video
+
+
+
+
+https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/d710c5b3-0733-445c-9998-b171652c4ecb
+
+
