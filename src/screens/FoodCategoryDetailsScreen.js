@@ -80,6 +80,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 8,
   },
+  buttonContainer: {
+    marginBottom: 10
+  },
   button: {
     width: '100%',
     backgroundColor: '#fff',
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     paddingBottom: 10,
-    marginBottom: 60,
+    marginBottom: 80,
   },
   buttonText: {
     fontSize: 18,

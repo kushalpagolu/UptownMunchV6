@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     margin: 5,
-    height: 200,
-
+    height: 160,
+    marginBottom: 30,
   },
   image: {
     flex: 1,

@@ -171,7 +171,7 @@ const UserProfileScreen = ({ navigation }) => {
         {errorMessage ? (
           <Text style={styles.errorText}>{errorMessage}</Text>
         ) : null}
-        <TouchableOpacity style={styles.button} onPress={handleSave}>
+        <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
@@ -229,7 +229,7 @@ input: {
   marginBottom: 16,
   color: '#fff',
 },
-button: {
+saveButton: {
   width: '100%',
   backgroundColor: '#fff',
   borderRadius: 10,
@@ -238,7 +238,18 @@ button: {
   paddingHorizontal: 10,
   paddingVertical: 10,
   marginBottom: 16,
-  paddingBottom: 14,
+  paddingBottom: 10,
+},
+button: {
+  width: '100%',
+  backgroundColor: '#fff',
+  borderRadius: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: 10,
+  paddingVertical: 10,
+  marginBottom: 36,
+  paddingBottom: 10,
 },
 buttonText: {
   fontSize: 18,
