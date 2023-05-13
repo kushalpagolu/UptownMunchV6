@@ -90,7 +90,7 @@ or
 yarn start 
 ```
 
-- # you can open iOS, Android, or web from here, or run them directly with the commands below.
+  ## you can open iOS, Android, or web from here, or run them directly with the commands below.
 ```
 - yarn android
 - yarn ios
@@ -158,6 +158,9 @@ yarn add react-native@0.71.7
 yarn add react-native-elements@^3.4.3
 yarn add react-native-gesture-handler@~2.9.0
 yarn add react-native-web@~0.18.10
+
+//you can find all the modules needed in package.json
+
 ```
 
 
@@ -251,19 +254,19 @@ Here's a brief overview of the key files in this project:
 
 The **App.js** file defines a stack navigator (HomeStack) and a bottom tab navigator (TabNavigator). It also defines a switch navigator (**AppNavigator**) that switches between the **AuthBottomTabNavigator** and **TabNavigator** based on the initial route name (initialRouteName: 'Auth').
 
-App.js file is used to create a shopping cart context with React. The context is used to share the shopping cart's state and various functions that manipulate it (like addToCart, removeFromCart, handleUpdateCart, and clearCart) across your entire application, which is a great way to manage global state.
+App.js file is used to create a shopping cart context with React. The context is used to share the shopping cart's state and various functions that manipulate it (like addToCart, removeFromCart, handleUpdateCart, and clearCart) across the entire application, which is a great way to manage global state.
 
-This context is provided to all child components within the CartContext.Provider. This includes your entire application because the provider is wrapping your NavigationContainer.
+This context is provided to all child components within the CartContext.Provider. This includes the entire application because the provider is wrapping your NavigationContainer.
 
-The isLoggedIn state is used to switch between AuthTabNavigator and HomeStackScreen, which are presumably your authentication (login/register) screens and your main app screens, respectively.
+The **isLoggedIn** state is used to switch between AuthTabNavigator and HomeStackScreen, which are authentication (login/register) screens and main app screens, respectively.
 
-The addToCart function checks if the item already exists in the cart. If it does, it increments the quantity of the item, and if it doesn't, it adds a new item to the cart with a quantity of 1.
+The ***addToCart*** function checks if the item already exists in the cart. If it does, it increments the quantity of the item, and if it doesn't, it adds a new item to the cart with a quantity of 1.
 
-The removeFromCart function decreases the quantity of an item in the cart by 1. If the quantity of the item reaches 0, it removes the item from the cart.
+The ***removeFromCart*** function decreases the quantity of an item in the cart by 1. If the quantity of the item reaches 0, it removes the item from the cart.
 
-The clearCart function simply clears all items from the cart.
+The ***clearCart*** function simply clears all items from the cart.
 
-The handleUpdateCart function is used to directly set the shopping cart with a new cart.
+The ***handleUpdateCart*** function is used to directly set the shopping cart with a new cart.
 
 _**Note: Assuming that all the other dependencies are correctly installed, navigation should work as intended.**_
 
@@ -285,11 +288,16 @@ The file also includes the ShoppingCartStackScreen component that contains Shopp
 Finally, the **AppContainer** wraps the **AppNavigator** component to enable navigation.
 
 
-Demo Video
-
-
+## Demo Video
 
 
 https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/d710c5b3-0733-445c-9998-b171652c4ecb
+
+
+## Android Demo
+
+***Note: The navigation looks bad in this as the webmd compression did not work out as expected. 
+***
+
 
 

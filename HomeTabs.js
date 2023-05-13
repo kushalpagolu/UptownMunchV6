@@ -74,7 +74,7 @@ const HomeTabs = ({ setIsLoggedIn }) => {
         name="FoodItemDetailsScreen"
         component={FoodItemDetailsScreen}
         options={{
-          headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />,
+          headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />,
           headerRightContainerStyle: { paddingRight: 10 },
           tabBarItemStyle: { display: "none" },
         }}
@@ -107,32 +107,32 @@ options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)}
 <Tabs.Screen
 name="FoodItems"
 component={FoodItems}
-options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
 />
 <Tabs.Screen
 name="OrderHistory"
 component={OrderHistoryScreen}
-options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
 />
 <Tabs.Screen
 name="OrderHistoryScreenAlternate"
 component={OrderHistoryScreenAlternate}
-options={{ headerTitle: '', headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+options={{ headerTitle: '', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
 />
 <Tabs.Screen
 name="FoodList"
 component={FoodList}
-options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
+options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
 />
 <Tabs.Screen
 name="FoodCategoryDetailsScreen"
 component={FoodCategoryDetailsScreen}
-options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
+options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
 />
 <Tabs.Screen
 name="CateringServices"
 component={CateringServices}
-options={{ headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, }}
+options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, }}
 />
 </Tabs.Navigator>
 );

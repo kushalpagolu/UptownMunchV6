@@ -42,13 +42,14 @@ if (itemIndex > -1) {
 const handleUpdateCart = (updatedCart) => {
 setShoppingCart(updatedCart);
 };
+
+
 return (
 <CartContext.Provider value={{ shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart }}>
   <NavigationContainer>
-    {!isLoggedIn ? (
-      <AuthTabNavigator setIsLoggedIn={setIsLoggedIn} /> ) : (
-      <HomeStackScreen setIsLoggedIn={setIsLoggedIn} />
-      )}
+    {!isLoggedIn ? 
+      ( <AuthTabNavigator setIsLoggedIn={setIsLoggedIn} /> ) : ( <HomeStackScreen setIsLoggedIn={setIsLoggedIn} /> ) 
+    }
   </NavigationContainer>
 </CartContext.Provider>
 );
