@@ -25,7 +25,16 @@ git clone https://github.com/yourusername/your-repo.git
 
 ```
 
-In order to build a cross-platform application using the latest React Native programming that targets Web, iOS, and Android platforms, you can use Expo with React Native for the web. 
+Then navigate to the root folder of the app.
+
+
+```
+cd UptownMunchV6
+```
+
+### If you want to start with your own fresh application, please follow the below steps.
+
+In order to build a cross-platform application using the latest React Native programming that targets Web, iOS, and Android platforms, you can use **Expo** with React Native for the web. 
 
 Steps to set up your development environment on your MacBook with the M2 chip, running on zsh shell:
 
@@ -51,6 +60,7 @@ Change the working directory to your new project:
 
 ```
 cd YourProjectName
+
 ```
 
 ## Add React Native for the web
@@ -64,9 +74,10 @@ yarn add react-native-web
 
 ## Modify the app.json file
 
-Open the project in Visual Studio Code and modify the app.json file to include a web-specific configuration:
+Open the project in Visual Studio Code or any IDE you prefer and modify the app.json file to include a web-specific configuration:
 
-```json
+```
+
 {
   "expo": {
     ...
@@ -74,6 +85,7 @@ Open the project in Visual Studio Code and modify the app.json file to include a
     ...
   }
 }
+
 ```
 
 ## Start the development server
@@ -85,17 +97,19 @@ expo start
 ```
 or 
 
-
 ```
 yarn start 
+
 ```
 
-  ## you can open iOS, Android, or web from here, or run them directly with the commands below.
+## You can open iOS, Android, or web from following the instructions (type i or a or w), or run them directly with the commands below.
+
 ```
 - yarn android
 - yarn ios
 - yarn web
-These commands will open a new window in your default web browser, showing the Expo DevTools. You can now test your application on iOS, Android, and web platforms.
+
+// These commands will open a new window in your default web browser, showing the Expo DevTools. You can now test your application on iOS, Android, and web platforms.
 
 ```
 
@@ -106,44 +120,32 @@ To use Firebase in your application, first install the required packages:
 ```
 expo install firebase
 ```
+or
+
+```
+yarn add firebase
+
+```
 
 ## Additional Commands
 
-```
-yarn add react-native-gesture-handler
-```
+
 
 ```
 react-native link react-native-gesture-handler //only use if the code does not work as expected.
-```
 
 ```
-yarn add react-native-safe-area-context
-```
+
 
 ```
 react-native link react-native-safe-area-context //only use if the code does not work as expected.
 ```
 
 
-
-```
-yarn add @expo/vector-icons
-```
-
-```
-yarn add expo-linear-gradient
-```
-
-
-
 ```
 yarn start --clear-cache
 ```
 
-```
-yarn start
-```
 
 ```
 yarn add @babel/core@^7.20.0
@@ -158,6 +160,7 @@ yarn add react-native@0.71.7
 yarn add react-native-elements@^3.4.3
 yarn add react-native-gesture-handler@~2.9.0
 yarn add react-native-web@~0.18.10
+yarn add react-native-gesture-handler
 
 //you can find all the modules needed in package.json
 
@@ -175,6 +178,7 @@ After that, you also need to install the required dependencies for the navigatio
 
 ```
 expo install react-native-screens react-native-safe-area-context
+
 ```
 
 Finally, you need to link the native modules by running the following command:
@@ -196,7 +200,7 @@ yarn add @react-native-community/masked-view@0.1.11 @react-navigation/native@6.1
 ```
 
 ```
-npm install @react-navigation/native @react-navigation/stack react-native-gesture-handler react-native-reanimated react-native-screens
+yarn add @react-navigation/native @react-navigation/stack react-native-gesture-handler react-native-reanimated react-native-screens
 ```
 
 ***Note:*** react-native-web@0.19.4 - expected version: react-native-web@0.18.10 for working well with navigation v6 on web and mobile.
@@ -217,27 +221,6 @@ To remove packages example the react-navigation packages using yarn, you can use
 yarn remove react-navigation react-navigation-stack react-navigation-tabs
 ```
 
-The **react-native-gesture-handler** library is designed primarily for mobile platforms like iOS and Android, and it might not work perfectly on the web platform out of the box. To have a consistent experience across mobile and web platforms, you can use the **react-native-web-swiper** library, which is designed to work with React Native for Web.
-
-You can install the react-native-web-swiper library by running:
-
-```
-yarn add react-native-web-swiper
-
-```
-
-or
-
-```
-npm install react-native-web-swiper
-
-```
-
-```
-
-yarn add react-native-gesture-handler // careful with dependenies.
-
-```
 
 
 **Project Structure **
@@ -252,13 +235,12 @@ Here's a brief overview of the key files in this project:
 
 **App.js** - The main entry point of your app, where the main app component is defined and rendered.
 
-The **App.js** file defines a stack navigator (HomeStack) and a bottom tab navigator (TabNavigator). It also defines a switch navigator (**AppNavigator**) that switches between the **AuthBottomTabNavigator** and **TabNavigator** based on the initial route name (initialRouteName: 'Auth').
+The **App.js** file defines a stack navigator (HomeStack) and a bottom tab navigator (AuthTabNavigator). **NavigationContainer** also defines navigation that switches between the **AuthBottomTabNavigator** and **HomeStack** based on the initial state of the **isLoggedIn** which is set to 'false'.
 
 App.js file is used to create a shopping cart context with React. The context is used to share the shopping cart's state and various functions that manipulate it (like addToCart, removeFromCart, handleUpdateCart, and clearCart) across the entire application, which is a great way to manage global state.
 
 This context is provided to all child components within the CartContext.Provider. This includes the entire application because the provider is wrapping your NavigationContainer.
 
-The **isLoggedIn** state is used to switch between AuthTabNavigator and HomeStackScreen, which are authentication (login/register) screens and main app screens, respectively.
 
 The ***addToCart*** function checks if the item already exists in the cart. If it does, it increments the quantity of the item, and if it doesn't, it adds a new item to the cart with a quantity of 1.
 
@@ -272,16 +254,16 @@ _**Note: Assuming that all the other dependencies are correctly installed, navig
 
 The app has several screens/components, including a Welcome screen, Food Categories screen, Food Items screen, Food List screen, Shopping Cart screen, Checkout screen, Order History screen, Order Confirmation screen, User Profile screen, Catering Services screen, Food Item Details screen, Signup screen, and Login screen.
 
+The App component renders the navigation structure of the app. If the user is not logged in, it renders a **NavigationContainer** with a **AuthTabNavigator** component that contains **LoginScreen** and **SignupScreen** screens. Otherwise, it renders a **HomeStackScreen** component that contains a **HomeTabs** component that displays the main screens of the app. The **isLoggedIn** state is used to switch between AuthTabNavigator and HomeStackScreen, which are authentication (login/register) screens and main app screens, respectively.
 
-The App component renders the navigation structure of the app. If the user is not logged in, it renders an **AuthStack.Navigator** with a **AuthTabNavigator** component that contains **LoginScreen** and **SignupScreen** screens. Otherwise, it renders a **HomeStackScreen** component that contains a **HomeTabs** component that displays the main screens of the app.
 
-**Authentication:** When a user is not logged in (isLoggedIn state is false), app directs them to the authentication stack (AuthStack), which consists of the Login and Signup screens. Once logged in, isLoggedIn state changes to true and the user is directed to the main app screens.
+**Authentication:** When a user is not logged in (isLoggedIn state is false), app directs them to the authentication stack (AuthTabNavigator), which consists of the Login and Signup screens. Once logged in, isLoggedIn state changes to true and the user is directed to the main app screens.
 
-_**Main App Screens:**_ These screens become available after a successful login. They include a home screen (WelcomeScreen), a profile screen (UserProfileScreen), a food items screen (FoodItems), an order history screen (OrderHistoryScreen), a food categories screen (FoodCategoriesScreen), and a shopping cart screen (ShoppingCartScreen). These screens are organized into a tab navigation format, which means you can switch between them by tapping on the corresponding tab icon.
+_**Home App Screens:**_ These screens become available after a successful login. They include a welcome screen (WelcomeScreen), a profile screen (UserProfileScreen), a food items screen (FoodItems), an order history screen (OrderHistoryScreen), a food categories screen (FoodCategoriesScreen), and a shopping cart screen (ShoppingCartScreen). These screens are organized into a tab navigation format, which means you can switch between them by tapping on the corresponding tab icon.
 
 The **HomeTabs** component uses the **createBottomTabNavigator** to render the bottom tab navigation bar. It has icons, such as the FoodCategoriesScreen screen with a food tray icon, and the Profile screen with a person icon. The ShoppingCart screen has a customized tab bar icon that is hidden, and its corresponding Checkout screen is accessible from the ShoppingCart screen.
 
-The ShoppingCartScreen and CheckoutScreen screens have customized headers that include a logout button, and their navigation options include the ability to pass setIsLoggedIn function to log out the user.
+Most of the screens have customized headers that include a **shopping cart icon** which can navigate to the Cart at any point and a **logout button**, and their navigation options include the ability to pass setIsLoggedIn function to log out the user.
 
 The file also includes the ShoppingCartStackScreen component that contains ShoppingCartScreen and CheckoutScreen screens and has customized headers and navigation options.
 
@@ -300,4 +282,10 @@ https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/d710c5b3-0733-445c
 
 [android_demo.webm](https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/52128e0c-a145-44a6-a37b-2cf2a03a37cf)
 
+
+## Future Enhancements.
+
+1. Making the Linear Gradient consistent across the screens in the app.
+2. Add functionality for favorite button.
+3. Improve navigation and try to eliminate the warnings related to "Non-serializable values were found in the navigation state".
 
