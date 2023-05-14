@@ -8,7 +8,7 @@ import {firebaseConfig, app} from '../firebase';
 import styles from './Styles';
 import { Swipeable } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
-import { CartContext } from '../../App'; 
+import { CartContext } from '../../CartContext';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
  

@@ -8,7 +8,6 @@ import styles from './Styles';
 
 const WelcomeScreen = ({ navigation, setIsLoggedIn }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
         colors={['#ee0979', '#ff6a00']}
         start={{ x: 0, y: 0 }}
@@ -33,7 +32,6 @@ const WelcomeScreen = ({ navigation, setIsLoggedIn }) => {
           </TouchableOpacity>
         </View>
       </LinearGradient>
-    </SafeAreaView>
   );
 };
 

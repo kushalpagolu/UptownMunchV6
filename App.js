@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthTabNavigator from './AuthTabNavigator';
 import HomeStackScreen from './HomeStackScreen';
 
-export const CartContext = createContext();
-// Maintain state of shopping cart and provide functions to update it. Use cart context to pass state and functions to screens.
+import { CartContext } from './CartContext';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

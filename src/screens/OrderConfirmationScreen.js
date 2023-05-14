@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useContext, useState, createContext } from 'r
 import { View, Text, ScrollView, StyleSheet, Button, TouchableOpacity, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getAuth } from 'firebase/auth';
-import { CartContext } from '../../App'; 
+import { CartContext } from '../../CartContext';
 
 
 

@@ -11,7 +11,7 @@ import 'firebase/storage';
 import styles from './Styles';
 import { renderFoodItem } from './FoodItem';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
-import { CartContext } from '../../App'; 
+import { CartContext } from '../../CartContext';
 
 const FoodItemsScreen = ({ navigation }) => {
   const { shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart } = useContext(CartContext);

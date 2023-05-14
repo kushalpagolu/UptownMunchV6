@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { LogoutButton } from './src/screens/Styles';
-import { CartContext } from './App';  // Import CartContext
+import { CartContext } from './CartContext';  // Import CartContext
 
 const HeaderRight = ({ onLogout }) => {
   const navigation = useNavigation();

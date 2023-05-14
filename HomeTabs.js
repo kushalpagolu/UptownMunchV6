@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import {View,Text, TextInput, Image, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform} from 'react-native';
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import HeaderRight from './Header.js';
@@ -18,8 +19,6 @@ import OrderConfirmationScreen from './src/screens/OrderConfirmationScreen';
 import UserProfileScreen from './src/screens/UserProfile';
 import CateringServices from './src/screens/CateringServices';
 import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
-import SignupScreen from './src/screens/SignupScreen';
-import LoginScreen from './src/screens/LoginScreen';
 import OrderHistoryScreenAlternate from './src/screens/OrderHistoryAlternate';
 import FoodCategoryDetailsScreen from './src/screens/FoodCategoryDetailsScreen';
 
@@ -37,6 +36,8 @@ const HomeTabs = ({ setIsLoggedIn }) => {
           right: 15,
           height: 55,
           borderRadius: 8,
+          paddingBottom: Platform.OS === 'ios' ? 15 : 0, // add this line
+
         },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;

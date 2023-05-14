@@ -2,7 +2,7 @@ import React, { useContext, useEffect, } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Animated,  } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { CartContext } from '../../App'; 
+import { CartContext } from '../../CartContext';
 
 const FoodItemDetailsScreen = ({ item, onClose }) => {
   const { shoppingCart, addToCart, removeFromCart } = useContext(CartContext);
