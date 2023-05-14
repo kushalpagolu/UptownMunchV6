@@ -289,3 +289,9 @@ https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/d710c5b3-0733-445c
 2. Add functionality for favorite button.
 3. Improve navigation and try to eliminate the warnings related to "Non-serializable values were found in the navigation state".
 
+
+
+eas build --profile development --platform android
+
+
+eas build --profile development-simulator --platform ios
