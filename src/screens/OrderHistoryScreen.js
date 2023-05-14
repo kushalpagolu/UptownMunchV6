@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 2,
     width: null,
-    marginBottom: 60,
+    marginBottom: 80,
     
   },
   orderId: {
