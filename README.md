@@ -293,5 +293,7 @@ https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/d710c5b3-0733-445c
 
 eas build --profile development --platform android
 
+npx expo start --dev-client
+
 
 eas build --profile development-simulator --platform ios
