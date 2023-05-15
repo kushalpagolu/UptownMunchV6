@@ -1,13 +1,12 @@
-import React, { useState, useEffect, } from 'react';
-import { View, Text, StyleSheet, FlatList, Animated } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, FlatList, Animated, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
-import { auth, app,  } from '../firebase';
+import { auth, app } from '../firebase';
 
 const db = getFirestore(app);
 
 const formatDate = (timestamp) => {
- // console.log('Timestamp:', timestamp);
   const date = timestamp.toDate();
   return date.toLocaleString('en-US', {
     weekday: 'short',
@@ -20,10 +19,51 @@ const formatDate = (timestamp) => {
   });
 };
 
+const OrderItem = ({ item }) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: Platform.OS !== 'web', 
+    }).start();
+  }, []);
+
+  return (
+    <Animated.View style={[styles.orderCard, { opacity: fadeAnim }]}>
+      <LinearGradient
+        colors={['#D7EDE1', '#38A2D6']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.gradient}>
+        <View style={styles.orderCardContainer}>
+          <View style={styles.orderCardHeader}>
+            <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
+            <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
+            <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
+          </View>
+          <View style={styles.orderCardBody}>
+            <Text style={styles.orderId}>Status: {item.status}</Text>
+            {item.foodItems.map((foodItem, index) => (
+              <View key={index} style={styles.foodItemContainer}>
+                <Text style={styles.foodItemName}>
+                  Item Name: {foodItem.name}
+                </Text>
+                <Text style={styles.foodItemQuantity}>
+                  Quantity: {foodItem.quantity.toFixed(2)}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </LinearGradient>
+    </Animated.View>
+  );
+};
 
 const OrderHistoryScreenAlternate = () => {
   const [orders, setOrders] = useState([]);
-  const [fadeAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -38,10 +78,6 @@ const OrderHistoryScreenAlternate = () => {
       const q = query(ordersCollection, where('created_by', "==", user.uid));
 
       const snapshot = await getDocs(q);
-      snapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        //console.log(doc.id, " => ", doc.data());
-      });
 
       setOrders(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     };
@@ -49,49 +85,11 @@ const OrderHistoryScreenAlternate = () => {
     fetchOrders();
   }, []);
 
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: false
-    }).start();
-  }, [fadeAnim]);
-
-  const renderItem = ({ item }) => (
-    <Animated.View key={item.id} style={[styles.orderCard, { opacity: fadeAnim }]}>
-      <LinearGradient
-        colors={['#D7EDE1', '#38A2D6']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.gradient}>
-      <View style={styles.orderCardContainer}>
-        <View style={styles.orderCardHeader}>
-          <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
-          <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
-          <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
-        </View>
-        <View style={styles.orderCardBody}>
-        <Text style={styles.orderId}>Status: {item.status}</Text>
-          {item.foodItems.map((foodItem, index) => (
-            <View key={index} style={styles.foodItemContainer}>
-              <Text style={styles.foodItemName}>
-                Item Name: {foodItem.name}
-              </Text>
-              <Text style={styles.foodItemQuantity}>
-                Quantity: {foodItem.quantity.toFixed(2)}
-              </Text>
-            </View>
-          ))}
-        </View>
-      </View>
-      </LinearGradient>
-    </Animated.View>
-  );
-  
+  const renderItem = ({ item }) => <OrderItem item={item} />;
 
   return (
     <LinearGradient colors={['#A6C0FE', '#ff8473']} start={{ x: 0, y: 0 }}
-    end={{ x: 1, y: 1 }} style={styles.gradient}>
+      end={{ x: 1, y: 1 }} style={styles.gradient}>
       <View style={styles.container}>
         <Text style={styles.title}>Order History</Text>
         <FlatList
@@ -167,8 +165,6 @@ const styles = StyleSheet.create({
   orderHistoryContainer: {
     paddingBottom: 20,
     alignItems: 'center',
-    
-
   },
   foodItemContainer: {
     flexDirection: 'column',
@@ -182,6 +178,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
 });
-
 
 export default OrderHistoryScreenAlternate;
