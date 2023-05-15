@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Modal,} from "react-native";
 import firebase from 'firebase/app';
 import { getItems } from '../firebase';
 import FoodItemDetailsScreen from './FoodItemDetailsScreen';
 import { initializeApp, getApps } from 'firebase/app';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { auth, app,  } from '../firebase';
+import { LinearGradient } from 'expo-linear-gradient';
+import { CartContext } from '../../CartContext';
 
 
 const FoodListScreen = ({ navigation }) => {
   const [foodItems, setFoodItems] = useState([]);
-  const [shoppingCart, setShoppingCart] = useState([]);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const { shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchFoodItems = async () => {
@@ -20,32 +23,6 @@ const FoodListScreen = ({ navigation }) => {
     };
     fetchFoodItems();
   }, []);
-
-  const addToCart = (item) => {
-    const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
-  
-    if (itemIndex > -1) {
-      const newShoppingCart = [...shoppingCart];
-      newShoppingCart[itemIndex].quantity += 1;
-      setShoppingCart(newShoppingCart);
-    } else {
-      setShoppingCart([...shoppingCart, { ...item, quantity: 1 }]);
-    }
-  };
-  const removeFromCart = (item) => {
-    const itemIndex = shoppingCart.findIndex((cartItem) => cartItem.id === item.id);
-
-    if (itemIndex > -1) {
-      const newShoppingCart = [...shoppingCart];
-      newShoppingCart[itemIndex].quantity -= 1;
-
-      if (newShoppingCart[itemIndex].quantity === 0) {
-        newShoppingCart.splice(itemIndex, 1);
-      }
-
-      setShoppingCart(newShoppingCart);
-    }
-  };
 
   const storage = getStorage();
 
@@ -87,34 +64,46 @@ const FoodListScreen = ({ navigation }) => {
         <Text style={styles.foodItemCategory}>{item.categoryName}</Text>
         <Text style={styles.foodPrice}>$ {item.price}</Text>
       </TouchableOpacity>
+      
     );
   };
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal={true} contentContainerStyle={styles.foodItemsContainer}>
-        {foodItems.map((item) => renderFoodItem(item))}
-      </ScrollView>
-      {showDetailsModal && (
-        <Modal transparent visible={showDetailsModal}>
-          <FoodItemDetailsScreen
-            item={selectedItem}
-            onClose={closeModal}
-            onAddToCart={addToCart}
-            onRemoveFromCart={removeFromCart}
-            shoppingCart={shoppingCart}
-            navigation={navigation}
-          />
-        </Modal>
-      )}
+      <LinearGradient
+        colors={['#ddffc9', '#ff8473',]}
+        start={[0, 0]}
+        end={[1, 1]}
+        style={styles.gradient}>
+        <ScrollView horizontal={true} contentContainerStyle={styles.foodItemsContainer}>
+          {foodItems.map((item) => renderFoodItem(item))}
+        </ScrollView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
+              <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
+        </View>
+        </LinearGradient>
+        {showDetailsModal && (
+          <Modal transparent visible={showDetailsModal}>
+            <FoodItemDetailsScreen
+              item={selectedItem}
+              onClose={closeModal}
+              onAddToCart={addToCart}
+              onRemoveFromCart={removeFromCart}
+              shoppingCart={shoppingCart}
+              navigation={navigation}
+            />
+          </Modal>
+        )}
     </View>
   );
+  
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
   foodItemsContainer: {
     flexGrow: 1,
@@ -133,6 +122,28 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 10,
   },
+  buttonContainer: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    bottom: 20,
+    alignSelf: 'center',
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingBottom: 10,
+    marginBottom: 30,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#1E90FF',
+  },
   foodName: {
     fontSize: 16,
     fontWeight: "bold",
@@ -147,6 +158,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#4caf50",
     marginVertical: 4,
+  },
+  gradient: {
+    flex: 1,
   },
 });
 

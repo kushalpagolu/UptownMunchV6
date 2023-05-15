@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, ImageBackground, FlatList } from "react-native";
+import { StyleSheet, View, Text, ImageBackground, FlatList, TouchableOpacity } from "react-native";
 import { getItems } from "../firebase";
 import { LinearGradient } from "expo-linear-gradient";
+import { auth, app,  } from '../firebase';
 
-const CateringServices = () => {
+const CateringServices = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -49,8 +50,14 @@ const CateringServices = () => {
             numColumns={3} // sets number of columns
             columnWrapperStyle={styles.row}  // places them into rows
           />
+          
         )}
       </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
+            <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
+        </View>
     </LinearGradient>
   );
 };
@@ -120,6 +127,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     marginBottom: 10,
+  },
+  buttonContainer: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    bottom: 20,
+    alignSelf: 'center',
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingBottom: 10,
+    marginBottom: 30,
   },
 });
 
