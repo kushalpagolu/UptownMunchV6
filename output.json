@@ -4,7 +4,7 @@
     "itemCategory": "/collection/foodCategories/2",
     "price": 15,
     "description": "Spicy and flavorful chicken tikka masala with tender pieces of chicken in a creamy tomato-based sauce.",
-    "categoryName": "Curry",
+    "categoryName": "NonVeg",
     "imageName": "chicken_kofta.JPG",
     "image_url": "https://i.imgur.com/ICcwK6W.jpg",
     "quantity": 0
@@ -34,7 +34,7 @@
     "itemCategory": "/collection/foodCategories/6",
     "price": 5,
     "description": "Soft and spongy rasgulla balls in a sweet syrup, a popular dessert in India.",
-    "categoryName": "Desserts",
+    "categoryName": "Dessert",
     "imageName": "rasgulla.JPG",
     "image_url": "https://i.imgur.com/KEc1lPf.jpg",
     "quantity": 0
@@ -74,7 +74,7 @@
     "itemCategory": "/collection/foodCategories/2",
     "price": 16,
     "description": "Creamy and mildly spiced butter chicken with tender pieces of chicken in a rich tomato-based sauce.",
-    "categoryName": "Curry",
+    "categoryName": "NonVeg",
     "imageName": "butter_chicken.JPG",
     "image_url": "https://i.imgur.com/ZHasLAy.jpg"
   },
@@ -102,7 +102,7 @@
     "itemCategory": "/collection/foodCategories/3",
     "price": 8,
     "description": "Crispy and savory samosas with spiced potatoes and peas, served with mint chutney.",
-    "categoryName": "Appetizers",
+    "categoryName": "Appetizer",
     "image_url": "https://i.imgur.com/yyes48q.jpg"
   },
   "MDdGFBOYO8OnrYEwE6Ii": {
@@ -110,7 +110,7 @@
     "itemCategory": "/collection/foodCategories/8",
     "price": 3,
     "description": "Crispy and savory potato chips seasoned with spices and herbs.",
-    "categoryName": "Snacks",
+    "categoryName": "Appetizer",
     "imageName": "potato_chips.JPG",
     "image_url": "https://i.imgur.com/3WVWkxR.jpg"
   },
@@ -119,7 +119,7 @@
     "itemCategory": "/collection/foodCategories/6",
     "price": 6,
     "description": "Sweet and creamy rice pudding with cardamom and saffron, garnished with chopped nuts.",
-    "categoryName": "Desserts",
+    "categoryName": "Dessert",
     "imageName": "kheer.JPG",
     "image_url": "https://i.imgur.com/PUJ14H2.jpg"
   },
@@ -128,7 +128,7 @@
     "itemCategory": "/collection/foodCategories/6",
     "price": 7,
     "description": "Creamy and delicious mango kulfi made with fresh mangoes, a perfect summer treat.",
-    "categoryName": "Desserts",
+    "categoryName": "Dessert",
     "imageName": "mango_kulfi.JPG",
     "image_url": "https://i.imgur.com/11tHpml.jpg"
   },
@@ -138,8 +138,8 @@
     "itemCategory": "/collection/foodCategories/4",
     "price": 5,
     "description": "Fluffy and fragrant basmati rice flavored with cumin and other aromatic spices.",
-    "categoryName": "Rice",
-    "image_url": "https://i.imgur.com/4wMx4fy.jpg"
+    "categoryName": "Vegetarian",
+    "image_url": "https://i.imgur.com/M9F5sCA.jpg"
   },
   "RHBQ6Ck4XvazqoJXnNZi": {
     "itemName": "Rose Lassi",
@@ -155,7 +155,7 @@
     "itemCategory": "/collection/foodCategories/8",
     "price": 5,
     "description": "Crunchy and spicy mixture of fried lentils, nuts, and spices, perfect for snacking.",
-    "categoryName": "Snacks",
+    "categoryName": "Appetizer",
     "imageName": "chivda.JPG",
     "image_url": "https://i.imgur.com/TJrTOKs.jpg"
   },
@@ -164,7 +164,7 @@
     "itemCategory": "/collection/foodCategories/5",
     "price": 4,
     "description": "Crispy and layered lachha paratha with a buttery flavor, perfect for dipping in curries.",
-    "categoryName": "Breads",
+    "categoryName": "Bread",
     "imageName": "lachha_paratha.JPG",
     "image_url": "https://i.imgur.com/xdG5NQK.jpg"
   },
@@ -173,9 +173,9 @@
     "itemCategory": "/collection/foodCategories/4",
     "price": 8,
     "description": "Traditional and aromatic saffron rice with raisins and cashews, perfect for special occasions.",
-    "categoryName": "Rice",
+    "categoryName": "Vegetarian",
     "imageName": "safron_rice.JPG",
-    "image_url": "https://i.imgur.com/Vs67CBI.jpg"
+    "image_url": "https://i.imgur.com/Spb0OfI.jpg"
   },
   "gsgfaUfFeeqPIfIkvfs5": {
     "itemName": "Chana Masala",
@@ -200,18 +200,18 @@
     "itemCategory": "/collection/foodCategories/2",
     "price": 14,
     "description": "Savory and aromatic vegetable korma with mixed vegetables in a creamy and spiced coconut-based sauce.",
-    "categoryName": "Curry",
+    "categoryName": "Vegetarian",
     "imageName": "baingan_barta.JPG",
-    "image_url": "https://i.imgur.com/1aBc1bm.jpg"
+    "image_url": "https://i.imgur.com/xPeTodO.jpg"
   },
   "lw2IZTNmw3KHO09ETGzL": {
-    "itemName": "Aloo Paratha with Barta",
+    "itemName": "Aloo Paratha",
     "itemCategory": "/collection/foodCategories/5",
     "price": 6,
     "description": "Flaky and buttery paratha stuffed with spiced potatoes and served with raita.",
-    "categoryName": "Breads",
+    "categoryName": "Bread",
     "imageName": "aloo_paratha.JPG",
-    "image_url": "https://i.imgur.com/BnZjCmA.jpg"
+    "image_url": "https://i.imgur.com/hbBujQ4.jpg"
   },
   "ncU4qSHR6cMIi9y9eyN3": {
     "itemName": "Paneer Makhani",
@@ -229,14 +229,14 @@
     "description": "Flavorful vegetarian biryani with mixed vegetables, aromatic spices, and fragrant basmati rice.",
     "categoryName": "Biryani",
     "imageName": "vegetable_biryani.JPG",
-    "image_url": "https://i.imgur.com/P4VRJoO.jpg"
+    "image_url": "https://i.imgur.com/kPaJPKd.jpg"
   },
   "uCaRPohsYU6K3Pnpovhg": {
     "itemName": "Chicken Vindaloo",
     "itemCategory": "/collection/foodCategories/10",
     "price": 16,
     "description": "Spicy and tangy chicken vindaloo with tender chicken in a vinegar-based sauce.",
-    "categoryName": "Non-Vegetarian",
+    "categoryName": "NonVeg",
     "imageName": "chicken_vindaloo.JPG",
     "image_url": "https://i.imgur.com/080iA0u.jpg"
   },
@@ -245,7 +245,7 @@
     "itemCategory": "/collection/foodCategories/8",
     "price": 4,
     "description": "Crunchy and flavorful roasted chickpeas seasoned with spices and herbs.",
-    "categoryName": "Snacks",
+    "categoryName": "Appetizer",
     "imageName": "roasted_chickpeas.JPG",
     "image_url": "https://i.imgur.com/AHlnobp.jpg"
   },
@@ -254,7 +254,7 @@
     "itemCategory": "/collection/foodCategories/10",
     "price": 18,
     "description": "Savory and flavorful lamb curry with tender pieces of lamb in a rich and spiced tomato-based sauce.",
-    "categoryName": "Non-Vegetarian",
+    "categoryName": "NonVeg",
     "imageName": "lamb_curry.JPG",
     "image_url": "https://i.imgur.com/zDx9wtF.jpg"
   },
@@ -263,16 +263,16 @@
     "itemCategory": "/collection/foodCategories/10",
     "price": 15,
     "description": "Aromatic basmati rice cooked with marinated chicken and a blend of mild spices.",
-    "categoryName": "Non-Vegetarian",
+    "categoryName": "Biryani",
     "imageName": "chicken_biryani.JPG",
-    "image_url": "https://i.imgur.com/1t0hRRF.jpg"
+    "image_url": "https://i.imgur.com/droCgat.jpg"
   },
   "item2": {
     "itemName": "Pani Poori",
     "itemCategory": "/collection/foodCategories/11",
     "price": 12,
     "description": "Cup of puri with a drink of masala blend mixed with spices.",
-    "categoryName": "Appetizers",
+    "categoryName": "Appetizer",
     "imageName": "paneer_tikka.JPG",
     "image_url": "https://i.imgur.com/KcYcFp2.jpg"
   },
@@ -301,23 +301,23 @@
     "description": "Paneer cubes in a smooth spinach sauce.",
     "categoryName": "Vegetarian",
     "imageName": "palak_paneer.JPG",
-    "image_url": "https://i.imgur.com/4t0hRRF.jpg"
+    "image_url": "https://i.imgur.com/3vw2ggG.jpg"
   },
   "item5": {
     "itemName": "Chole Bhature",
     "itemCategory": "/collection/foodCategories/11",
     "price": 13,
     "description": "Spicy chickpea curry served with deep-fried bread.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Breakfast",
     "imageName": "chole_bhature.JPG",
-    "image_url": "https://i.imgur.com/5t0hRRF.jpg"
+    "image_url": "https://i.imgur.com/YH7yyLk.jpg"
   },
   "item6": {
     "itemName": "Kadai Chicken",
     "itemCategory": "/collection/foodCategories/10",
     "price": 16,
     "description": "Tender chicken pieces in a creamy tomato sauce.",
-    "categoryName": "Non-Vegetarian",
+    "categoryName": "NonVeg",
     "imageName": "butter_chicken.JPG",
     "image_url": "https://i.imgur.com/44yz9Wn.jpg"
   },
@@ -326,25 +326,16 @@
     "itemCategory": "/collection/foodCategories/9",
     "price": 4,
     "description": "A savory porridge made from semolina.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Breakfast",
     "imageName": "upma.JPG",
-    "image_url": "https://i.imgur.com/789012b.jpg"
-  },
-  "item19": {
-    "itemName": "Puffed Rice Kheer",
-    "itemCategory": "/collection/foodCategories/11",
-    "price": 6,
-    "description": "A sweet dish made from puffed rice, milk, and sugar.",
-    "categoryName": "Vegetarian",
-    "imageName": "puffed_rice_kheer.JPG",
-    "image_url": "https://i.imgur.com/012345c.jpg"
+    "image_url": "https://i.imgur.com/06WMbnn.jpg"
   },
   "item20": {
     "itemName": "Gulab Jamun",
     "itemCategory": "/collection/foodCategories/11",
     "price": 8,
     "description": "A sweet dish made from milk solids, sugar, and rose water.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "gulab_jamun.JPG",
     "image_url": "https://i.imgur.com/k8MRweF.jpg"
   },
@@ -353,7 +344,7 @@
     "itemCategory": "/collection/foodCategories/11",
     "price": 8,
     "description": "A sweet dish made from milk solids, sugar, and rose water.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "gulab_jamun.JPG",
     "image_url": "https://i.imgur.com/J97xmK9.jpg"
   },
@@ -362,16 +353,16 @@
     "itemCategory": "/collection/foodCategories/11",
     "price": 10,
     "description": "A sweet dish made from cottage cheese, milk, and sugar.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "rasmalai.JPG",
-    "image_url": "https://i.imgur.com/901234e.jpg"
+    "image_url": "https://i.imgur.com/g7Gpv8u.jpg"
   },
   "item24": {
     "itemName": "Jalebi",
     "itemCategory": "/collection/foodCategories/11",
     "price": 6,
     "description": "A sweet dish made from deep-fried batter.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "jalebi.JPG",
     "image_url": "https://i.imgur.com/Iu2TCyZ.jpg"
   },
@@ -380,16 +371,16 @@
     "itemCategory": "/collection/foodCategories/11",
     "price": 8,
     "description": "A sweet dish made from milk solids and sugar.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "barfi.JPG",
-    "image_url": "https://i.imgur.com/012345c.jpg"
+    "image_url": "https://i.imgur.com/HhuKP1Y.jpg"
   },
   "item22": {
     "itemName": "Ladoo",
     "itemCategory": "/collection/foodCategories/11",
     "price": 10,
     "description": "A sweet dish made from sugar, milk, and nuts.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "ladoo.JPG",
     "image_url": "https://i.imgur.com/M6jyAPQ.jpg"
   },
@@ -398,7 +389,7 @@
     "itemCategory": "/collection/foodCategories/11",
     "price": 12,
     "description": "A sweet dish made from carrots, milk, and sugar.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "gajar_halwa.JPG",
     "image_url": "https://i.imgur.com/pe1QSxw.jpg"
   },
@@ -407,16 +398,16 @@
     "itemCategory": "/collection/foodCategories/11",
     "price": 14,
     "description": "A sweet dish made from thickened milk and sugar.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Dessert",
     "imageName": "rabri.JPG",
-    "image_url": "https://i.imgur.com/789012b.jpg"
+    "image_url": "https://i.imgur.com/fv60AVK.jpg"
   },
   "item15": {
     "itemName": "Vada Pav",
     "itemCategory": "/collection/foodCategories/9",
     "price": 5,
     "description": "A mashed potato fritter served in a bun with a spicy chutney.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Appetizer",
     "imageName": "vada_pav.JPG",
     "image_url": "https://i.imgur.com/bI6x3f9.jpg"
   },
@@ -425,7 +416,7 @@
     "itemCategory": "/collection/foodCategories/9",
     "price": 6,
     "description": "A thin pancake made from fermented rice and lentil batter.",
-    "categoryName": "Vegetarian",
+    "categoryName": "Breakfast",
     "imageName": "dosa.JPG",
     "image_url": "https://i.imgur.com/mSdxAKM.jpg"
   }

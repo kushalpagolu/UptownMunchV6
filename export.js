@@ -3,7 +3,7 @@ const fs = require('fs');
 
 // Initialize the Firebase Admin SDK
 const serviceAccount = require('./serviceAccount.json');
-console.log("Firebase serviceAccount:", serviceAccount);
+//console.log("Firebase serviceAccount:", serviceAccount);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -24,7 +24,7 @@ db.collection('foodItems').get()
       data[doc.id] = doc.data();
     });
 
-    console.log("Fetched Data:", data);
+    //console.log("Fetched Data:", data);
 
     // Write the data to a JSON file
     fs.writeFileSync('output.json', JSON.stringify(data, null, 2));
