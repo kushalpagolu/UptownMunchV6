@@ -130,20 +130,26 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     paddingTop: 30,
-    paddingBottom: 30,
+    paddingBottom: 20,
     bottom: 20,
     alignSelf: 'center',
+    marginTop: 10,
+    marginBottom: 40
   },
   button: {
-    width: '100%',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    paddingBottom: 10,
-    marginBottom: 30,
+  width: '100%',
+  backgroundColor: '#fff',
+  borderRadius: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: 10,
+  paddingVertical: 10,
+  paddingBottom: 10,
+  },
+  buttonText: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: '#1E90FF',
   },
 });
 
