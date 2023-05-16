@@ -1,8 +1,9 @@
 import React, { useState, useEffect, memo } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, app } from '../firebase';
+import { getAuth } from 'firebase/auth';
 
 const db = getFirestore(app);
 
@@ -45,7 +46,7 @@ const OrderItem = memo(({ item }) => (
   </View>
 ));
 
-const OrderHistoryScreen = () => {
+const OrderHistoryScreen = ({ navigation }) => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -86,6 +87,11 @@ const OrderHistoryScreen = () => {
         contentContainerStyle={styles.orderHistoryContainer}
       />
       </View>
+      <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Welcome', { user: auth.currentUser.uid }); }}>
+            <Text style={styles.buttonText}>Back</Text>
+          </TouchableOpacity>
+    </View>
     </LinearGradient>
   );
 };
@@ -94,6 +100,29 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1,
     alignItems: 'flex-start',
+  },
+  buttonContainer: {
+    paddingTop: 30,
+    paddingBottom: 20,
+    bottom: 20,
+    alignSelf: 'center',
+    marginTop: 10,
+    marginBottom: 40
+  },
+  button: {
+  width: '100%',
+  backgroundColor: '#fff',
+  borderRadius: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingHorizontal: 10,
+  paddingVertical: 10,
+  paddingBottom: 10,
+  },
+  buttonText: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: '#1E90FF',
   },
   container: {
     flex: 1,
