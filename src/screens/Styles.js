@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   cartItemContainer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
@@ -163,7 +164,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     marginRight: 20,
-    width: 300,
   },
 
   itemDetailsContainer: {

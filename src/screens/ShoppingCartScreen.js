@@ -11,7 +11,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { CartContext } from '../../CartContext';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
- 
+import { AntDesign } from '@expo/vector-icons'; 
+
 
 const db = getFirestore(app);
 
@@ -79,7 +80,7 @@ useFocusEffect(
             style={styles.itemRemoveButton}
             onPress={() => handleRemoveFromCart(item)}
           >
-            <Ionicons name="close" size={24} color="black" />
+            <AntDesign name="delete" size={24} color="black" />
           </TouchableOpacity>
         </View>
       </Swipeable>

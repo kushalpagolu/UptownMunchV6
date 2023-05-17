@@ -12,6 +12,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { getFirestore, collection, addDoc, doc } from 'firebase/firestore';
 import styles from './Styles';  // Update this with your actual path
+import { AntDesign } from '@expo/vector-icons'; 
 
 const db = getFirestore(app);
 
@@ -62,7 +63,6 @@ useFocusEffect(
   };
   
   const renderItem = ({ item }) => {
-    console.log('item', item);
     const imageSource = item.image_url ? { uri: item.image_url } : null;
     return (
         <View style={styles.cartItemContainer}>
@@ -84,12 +84,6 @@ useFocusEffect(
               </Text>
             </View>
           </LinearGradient>
-          <TouchableOpacity
-            style={styles.itemRemoveButton}
-            onPress={() => removeFromCart(item)}
-          >
-            <Ionicons name="close" size={24} color="black" />
-          </TouchableOpacity>
         </View>
       );
     };
@@ -102,7 +96,6 @@ useFocusEffect(
           data={cartItems}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.cartItemsContainer}
         />
         <View style={styles.inputContainer}>
                 <Text style={styles.label}>Card Number</Text>
