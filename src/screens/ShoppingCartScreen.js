@@ -18,7 +18,7 @@ const db = getFirestore(app);
 const ShoppingCartScreen = ({ route }) => {
   const { cartItems: initialCartItems, onUpdateCart,  } = route.params;
   const [cartItems, setCartItems] = useState(initialCartItems);
-  const {clearCart, removeFromCart} = useContext(CartContext);
+  const {clearCart, removeFromCart, shoppingCart} = useContext(CartContext);
   const navigation = useNavigation();
 
 useFocusEffect(
@@ -131,13 +131,9 @@ useFocusEffect(
           price: item.price,
         })),
       };
-  
-      const ordersCollection = collection(db, 'orders');
-  
-      await addDoc(ordersCollection, order);
-    // Clear the cart and navigate to the OrderConfirmationScreen
-      clearCart();
-      navigation.navigate('OrderConfirmationScreen', { order });
+    
+     
+      navigation.navigate('StripePayment', { order, cartItems: shoppingCart });
     } catch (error) {
       console.log(error);
     }

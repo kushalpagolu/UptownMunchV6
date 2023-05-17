@@ -373,6 +373,37 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
   },
+  itemContainer: {
+    flex: 1,
+    padding: 10,
+  },
+  inputContainer: {
+    marginTop: 10,
+  },
+  label: {
+    fontSize: 16,
+    color: '#fff',
+  },
+  payInput: {
+    borderWidth: 1,
+    borderColor: '#fff',
+    borderRadius: 4,
+    padding: 10,
+    marginTop: 10,
+    color: '#fff',
+  },
+  payButton: {
+    backgroundColor: '#1E90FF',
+    padding: 10,
+    marginTop: 20,
+    borderRadius: 4,
+    marginBottom: 70,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 16,
+  },
   // ... any other styles you want to share across screens
 });
 

@@ -8668,6 +8668,11 @@ react-native-screens@^3.20.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-stripe-api@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-stripe-api/-/react-native-stripe-api-0.1.0.tgz#d1cb21fb0dc7ecc643f53d3e88a18e98e9d81ffd"
+  integrity sha512-84pRtcgqq4iaJapGEijv106kZgcYEbdlHZAQ+i8TvKAEzli1pJI+ki3PQYWXAh2d18gplO4IF0R1rX94hWnI3g==
+
 react-native-web-swiper@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/react-native-web-swiper/-/react-native-web-swiper-2.2.4.tgz#41c8d4b16746f8ee325cd74b37392df0bc162cec"
