@@ -44,6 +44,7 @@ const FoodItemDetailsScreen = ({ item, onClose }) => {
           <Animated.Image
             source={imageSource}
             style={[rotateYAnimatedStyle, styles.image]}
+            useNativeDriver={false}
           />
         )}
         <Text style={styles.itemName}>{item.itemName}</Text>

@@ -177,6 +177,14 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginRight: 8,
   },
+  foodItemContainer: {
+    flex: 1,
+    marginBottom: 16,
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginTop: 5,
+    margin: 5,
+  },
   itemImage: {
     width: 80,
     height: 80,

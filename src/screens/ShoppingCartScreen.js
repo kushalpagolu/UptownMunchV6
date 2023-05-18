@@ -51,6 +51,7 @@ useFocusEffect(
     return (
       <Swipeable
         renderRightActions={rightSwipeActions}
+        useNativeDriver={false}
         onSwipeableRightOpen={() => {
           handleRemoveFromCart(item);
         }}
