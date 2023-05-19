@@ -135,8 +135,12 @@ useFocusEffect(
       };
     
      
-      navigation.navigate('StripePayment', { order, cartItems: shoppingCart });
-    } catch (error) {
+      if (Platform.OS === 'web') {
+        navigation.navigate('OrderConfirmationScreen', { order });
+      } else {
+        navigation.navigate('StripeReactMobile', { order, cartItems: shoppingCart });
+      }
+          } catch (error) {
       console.log(error);
     }
   };

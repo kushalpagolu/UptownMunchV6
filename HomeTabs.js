@@ -13,7 +13,7 @@ import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
 import FoodItems from './src/screens/FoodItemsScreen';
 import FoodList from  './src/screens/FoodListScreen';
 import ShoppingCartScreen from './src/screens/ShoppingCartScreen.js';
-import CheckoutScreen from './src/screens/CheckOut';
+import StripeReactMobile from './src/screens/StripeReactMobile';
 import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
 import OrderConfirmationScreen from './src/screens/OrderConfirmationScreen';
 import UserProfileScreen from './src/screens/UserProfile';
@@ -75,6 +75,11 @@ const HomeTabs = ({ setIsLoggedIn }) => {
       <Tabs.Screen
         name="StripePayment"
         component={StripePaymentScreen}
+        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
+      />
+      <Tabs.Screen
+        name="StripeReactMobile"
+        component={StripeReactMobile}
         options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
       />
       <Tabs.Screen

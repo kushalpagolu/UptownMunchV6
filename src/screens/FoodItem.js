@@ -18,7 +18,6 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
         <Animated.Image
           source={imageSource}
           style={[rotateYAnimatedStyle, styles.foodItemImage]}
-          useNativeDriver={false}
         />
       )}
       <LinearGradient

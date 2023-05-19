@@ -7,13 +7,11 @@ import Stripe from 'react-native-stripe-api';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { getFirestore, collection, addDoc, doc,  } from 'firebase/firestore';
-import {
-  StripeProvider, CardField
-} from '@stripe/stripe-react-native';
+//import { StripeProvider, CardField } from '@stripe/stripe-react-native';
 
 const db = getFirestore(app);
 
-const apiKey = 'your_stripe_publishable_key';
+const apiKey = 'pk_test_51N8XmFL7AiIeRnbpNaCfv8k4L9hhL7wy4eyIZMyZmcZ8EDLpbxxnsK3TVxgjaboDodc3MVcyvMVWd2XOapQNlf0z00v6uqRPJA';
 const stripe = new Stripe(apiKey);
 
 const StripePaymentScreen = ({ navigation, route }) => {
@@ -36,11 +34,9 @@ const StripePaymentScreen = ({ navigation, route }) => {
       });
 
       // TODO: Send the stripeToken to your server to create a charge
-      const tokenRef = db.ref('stripeTokens').push();
-      await tokenRef.set({
-        token: stripeToken,
-        // other information you want to save
-      });
+      const stripeTokensCollection = collection(db, 'stripeTokens');
+        await addDoc(stripeTokensCollection, { token: stripeToken });
+
       // If the payment is successful, save the order and clear the cart
 
       const ordersCollection = collection(db, 'orders');
@@ -49,7 +45,10 @@ const StripePaymentScreen = ({ navigation, route }) => {
       clearCart();
 
       // If the payment is successful, navigate to the OrderConfirmationScreen
+      if (Platform.OS !== 'web') {
+
       navigation.navigate('OrderConfirmationScreen', { order });
+      }
     } catch (error) {
       Alert.alert('Payment failed', error.message);
     }
@@ -63,9 +62,9 @@ const StripePaymentScreen = ({ navigation, route }) => {
       style={styles.foodItemContainer}
       >
       {imageSource && (
-        <Animated.Image
+        <Image
           source={imageSource}
-          style={[rotateYAnimatedStyle, styles.foodItemImage]}
+          style={[styles.foodItemImage]}
           useNativeDriver={false}
         />
       )}
