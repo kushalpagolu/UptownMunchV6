@@ -25,10 +25,16 @@ const db = getFirestore(app);
 const PUBLISHABLE_KEY = 'pk_test_51N8XmFL7AiIeRnbpNaCfv8k4L9hhL7wy4eyIZMyZmcZ8EDLpbxxnsK3TVxgjaboDodc3MVcyvMVWd2XOapQNlf0z00v6uqRPJA';
 
 const PaymentComponent = ({ navigation, route, cartItems, clearCart, handlePay, renderItem }) => {
+  const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.container}>
       <View style={styles.container}>
         <Text style={styles.title}>Payment Page</Text>
+        <View style={styles.totalContainer}>
+          <Text style={styles.totalText}>Order Total: ${orderTotal.toFixed(2)}</Text>
+          <Text style={styles.totalText}>Total Items: {totalItems}</Text>
+        </View>
         <FlatList
           data={cartItems}
           renderItem={renderItem}
@@ -55,6 +61,9 @@ const StripeReactMobile = ({ navigation, route }) => {
   const { clearCart } = useContext(CartContext);
   const stripe = useStripe();
   const { cartItems } = route.params;
+ // Calculate order total
+ const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
 
   const handlePay = async () => {
       let token;
@@ -219,6 +228,18 @@ const styles = StyleSheet.create({
   payButtonText: {
     color: 'white', // change as needed
     fontSize: 18,
+  },
+  totalContainer: {
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    flexDirection: 'row',
+  },
+  totalText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    padding: 5,
+    color: '#fff',
   },
 });
 

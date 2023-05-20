@@ -81,7 +81,7 @@ useFocusEffect(
             style={styles.itemRemoveButton}
             onPress={() => handleRemoveFromCart(item)}
           >
-            <AntDesign name="delete" size={24} color="black" />
+            <AntDesign name="delete" size={18} color="black" />
           </TouchableOpacity>
         </View>
       </Swipeable>
@@ -90,6 +90,7 @@ useFocusEffect(
 
   // Calculate order total
   const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   // Handle checkout
   const handleCheckout = async () => {
@@ -136,7 +137,10 @@ useFocusEffect(
     
      
       if (Platform.OS === 'web') {
-        navigation.navigate('OrderConfirmationScreen', { order });
+        const ordersCollection = collection(db, 'orders');
+      await addDoc(ordersCollection, order);
+      clearCart();
+        navigation.navigate('OrderConfirmationScreen', { order, cartItems: shoppingCart });
       } else {
         navigation.navigate('StripeReactMobile', { order, cartItems: shoppingCart });
       }
@@ -159,6 +163,7 @@ useFocusEffect(
         />
         <View style={styles.totalContainer}>
           <Text style={styles.totalText}>Total: ${orderTotal.toFixed(2)}</Text>
+          <Text style={styles.totalText}>Total Items: {totalItems}</Text>
         </View>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('FoodItems')}>
           <Text style={styles.backButtonText}>Back</Text>

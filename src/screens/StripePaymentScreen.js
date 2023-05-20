@@ -8,6 +8,12 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { getFirestore, collection, addDoc, doc,  } from 'firebase/firestore';
 //import { StripeProvider, CardField } from '@stripe/stripe-react-native';
+import {
+  PaymentElement,
+  LinkAuthenticationElement,
+  useStripe,
+  useElements
+} from "@stripe/react-stripe-js";
 
 const db = getFirestore(app);
 
@@ -57,6 +63,9 @@ const StripePaymentScreen = ({ navigation, route }) => {
 
   const renderItem = ({ item, showItemDetails, shoppingCart, addToCart, removeFromCart, rotateYAnimatedStyle }) => {
     const imageSource = item.image_url ? { uri: item.image_url } : null;
+    const paymentElementOptions = {
+      layout: "tabs"
+    }
     return (
       <TouchableOpacity
       style={styles.foodItemContainer}
@@ -97,7 +106,21 @@ const StripePaymentScreen = ({ navigation, route }) => {
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.cartItemsContainer}
           />
-          
+        
+    <form id="payment-form" onSubmit={handleSubmit}>
+      <LinkAuthenticationElement
+        id="link-authentication-element"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <PaymentElement id="payment-element" options={paymentElementOptions} />
+      <button disabled={isLoading || !stripe || !elements} id="submit">
+        <span id="button-text">
+          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+        </span>
+      </button>
+      {/* Show any error or success messages */}
+      {message && <div id="payment-message">{message}</div>}
+    </form>
           <View style={styles.inputContainer}>
             <View style={styles.inputRow}>
             <Text style={styles.label}>Card Number:</Text>

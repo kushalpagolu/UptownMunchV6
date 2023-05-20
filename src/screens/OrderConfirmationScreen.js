@@ -5,13 +5,11 @@ import { getAuth } from 'firebase/auth';
 import { CartContext } from '../../CartContext';
 
 
-
-
-
 const OrderConfirmationScreen = ({ navigation, route }) => {
   const { removeFromCart } = useContext(CartContext);
   const auth = getAuth();
   const order = route.params.order;
+  const { cartItems } = route.params;
   if (!order) {
     return (
       <View style={styles.container}>
@@ -35,7 +33,7 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
   };
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -45,7 +43,8 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
   }, [fadeAnim]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+    <View>
       <LinearGradient
         colors={['#ddffc9', '#ff8473']}
         style={StyleSheet.absoluteFillObject}
@@ -62,6 +61,7 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
             <Text style={styles.orderId}>Order ID: {order.orderId}</Text>
             <Text style={styles.orderDate}>Order Date: {formatDate(order.create_datetime)}</Text>
             <Text style={styles.orderTotal}>Order Total: ${order.total_price.toFixed(2)}</Text>
+            <Text style={styles.totalText}>Total Items: {totalItems}</Text>
             <View style={styles.foodItems}>
               {order.foodItems.map(foodItem => (
                 <View key={foodItem.id} style={styles.foodItemContainer}>
@@ -81,6 +81,7 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
         </View>
       </LinearGradient>
     </View>
+    </ScrollView>
   );
 };
 
@@ -156,8 +157,13 @@ const styles = StyleSheet.create({
   orderTotal: {
   fontSize: 16,
   fontWeight: 'bold',
-  marginBottom: 20,
+  marginBottom: 10,
   },
+  totalText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    },
   foodItems: {
   justifyContent: 'flex-start',
   },

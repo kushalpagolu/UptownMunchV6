@@ -226,10 +226,12 @@ const styles = StyleSheet.create({
     padding: 16,
     borderTopWidth: 1,
     borderTopColor: '#eee',
+    flexDirection: 'row',
   },
   totalText: {
     fontSize: 18,
     fontWeight: 'bold',
+    padding: 8,
   },
   checkoutButton: {
     paddingHorizontal: 24,
