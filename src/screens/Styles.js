@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
     padding: 6,
     borderRadius: 8,
     marginTop: 8,
-    marginBottom: 12,
+    marginBottom: 10,
+    marginLeft: 15,
   },
   logoutbuttonText: {
     color: 'white',
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
   },
   fooditemsscreencontainer: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
     paddingTop: 16,
     paddingBottom: 80,
   },
