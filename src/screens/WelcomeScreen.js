@@ -15,7 +15,7 @@ const WelcomeScreen = ({ navigation, setIsLoggedIn }) => {
         style={styles.gradient}
       >
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.navigate('FoodCategoriesScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('FoodCategories')}>
             <Ionicons name="fast-food-outline" size={98} color="white" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>

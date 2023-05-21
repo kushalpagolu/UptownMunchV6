@@ -42,6 +42,7 @@ const OrderItem = ({ item }) => {
           <View style={styles.orderCardHeader}>
             <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
             <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
+            <Text style={styles.orderTotal}>Total Items: {item.foodItems.length}</Text>
             <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
           </View>
           <View style={styles.orderCardBody}>
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   orderTotal: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#000',
   },

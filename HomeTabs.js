@@ -9,7 +9,7 @@ import { LogoutButton } from './src/screens/Styles';
 
 
 
-import FoodCategoriesScreen from './src/screens/FoodCategoriesScreen';
+import FoodCategories from './src/screens/FoodCategoriesScreen';
 import FoodItems from './src/screens/FoodItemsScreen';
 import FoodList from  './src/screens/FoodListScreen';
 import ShoppingCartScreen from './src/screens/ShoppingCartScreen.js';
@@ -55,7 +55,7 @@ const HomeTabs = ({ setIsLoggedIn }) => {
             iconName = focused ? 'fast-food' : 'fast-food-outline';
           } else if (route.name === 'OrderHistory') {
             iconName = focused ? 'list-circle' : 'list-circle-outline';
-          } else if (route.name === 'FoodCategoriesScreen') {
+          } else if (route.name === 'FoodCategories') {
             iconName = focused ? 'file-tray-full' : 'file-tray-full-outline';
           }
 
@@ -67,6 +67,7 @@ const HomeTabs = ({ setIsLoggedIn }) => {
         name="ShoppingCart"
         component={ShoppingCartScreen}
         options={{
+          title: 'Shopping Cart',
           headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />,
           headerRightContainerStyle: { paddingRight: 10 },
           tabBarItemStyle: { display: "none" },
@@ -75,17 +76,18 @@ const HomeTabs = ({ setIsLoggedIn }) => {
       <Tabs.Screen
         name="StripePayment"
         component={StripePaymentScreen}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
+        options={{ title: 'Payment Page', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
       />
       <Tabs.Screen
         name="StripeReactMobile"
         component={StripeReactMobile}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
+        options={{ title: 'Payment Page', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
       />
       <Tabs.Screen
         name="FoodItemDetailsScreen"
         component={FoodItemDetailsScreen}
         options={{
+          title: 'Item Details',
           headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />,
           headerRightContainerStyle: { paddingRight: 10 },
           tabBarItemStyle: { display: "none" },
@@ -95,6 +97,7 @@ const HomeTabs = ({ setIsLoggedIn }) => {
         name="OrderConfirmationScreen"
         component={OrderConfirmationScreen}
         options={{
+          title: 'Order Confirmation',
           headerRight: () => <LogoutButton onLogout={() => setIsLoggedIn(false)} />,
           headerRightContainerStyle: { paddingRight: 10 },
           tabBarItemStyle: { display: "none" },
@@ -106,9 +109,9 @@ const HomeTabs = ({ setIsLoggedIn }) => {
         options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
       />
       <Tabs.Screen
-        name="FoodCategoriesScreen"
-        component={FoodCategoriesScreen}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+        name="FoodCategories"
+        component={FoodCategories}
+        options={{ title: 'Food Categories', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
       />
       <Tabs.Screen
         name="Welcome"
@@ -119,17 +122,17 @@ const HomeTabs = ({ setIsLoggedIn }) => {
       <Tabs.Screen
         name="FoodItems"
         component={FoodItems}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+        options={{ title: 'Food Items', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
         />
       <Tabs.Screen
         name="OrderHistory"
         component={OrderHistoryScreen}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+        options={{ title: 'Order History', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
         />
       <Tabs.Screen
         name="OrderHistoryScreenAlternate"
         component={OrderHistoryScreenAlternate}
-        options={{ headerTitle: '', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
+        options={{ title: 'Order History', headerTitle: '', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 } }}
         />
       <Tabs.Screen
         name="FoodList"
@@ -139,12 +142,12 @@ const HomeTabs = ({ setIsLoggedIn }) => {
       <Tabs.Screen
         name="FoodCategoryDetailsScreen"
         component={FoodCategoryDetailsScreen}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
+        options={{ title: 'Category Items', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
         />
       <Tabs.Screen
         name="CateringServices"
         component={CateringServices}
-        options={{ headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, }}
+        options={{ title: 'Catering Options', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, }}
         />
 </Tabs.Navigator>
 );

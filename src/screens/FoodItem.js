@@ -29,7 +29,7 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
             <Text style={styles.foodItemName}>{item.itemName}</Text>
             <Ionicons
               name="heart-outline"
-              size={30}
+              size={28}
               color="#FFF"
               style={styles.favoriteIcon}
             />
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   foodItemName: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
   },
   foodItemCategory: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 14,
     marginTop: 4,
   },
   favoriteIcon: {

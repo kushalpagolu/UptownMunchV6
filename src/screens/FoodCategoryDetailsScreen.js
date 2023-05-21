@@ -56,7 +56,7 @@ const FoodCategoryDetailsScreen = ({ route, navigation }) => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('FoodCategoriesScreen'); }}>
+        <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate('FoodCategories'); }}>
             <Text style={styles.buttonText}>Back</Text>
         </TouchableOpacity>
         </View>

@@ -31,6 +31,7 @@ const OrderItem = memo(({ item }) => (
       <Text style={styles.orderId}>Order ID: {item.orderId}</Text>
       <Text style={styles.orderDate}>Order Date: {formatDate(item.create_datetime)}</Text>
       <Text style={styles.orderTotal}>Order Total: ${item.total_price.toFixed(2)}</Text>
+      <Text style={styles.orderTotal}>Total Items: {item.foodItems.length}</Text>
       <Text style={styles.orderStatus}>Status: {item.status}</Text>
       {item.foodItems.map((foodItem, index) => (
         <View key={index} style={styles.foodItemContainer}>
@@ -157,9 +158,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   orderTotal: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 'bold',
     alignSelf: 'auto',
+    marginBottom: 8,
   },
   foodItemContainer: {
     flexDirection: 'column',
