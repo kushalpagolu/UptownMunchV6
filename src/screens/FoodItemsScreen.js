@@ -1,7 +1,7 @@
 import React, { useState, useEffect,  useContext } from 'react';
 import {View, Text, StyleSheet, Image, FlatList, Alert, TouchableOpacity, Animated, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { getItems } from '../firebase';
+import { auth, getItems, loadFavorites, saveFavorites } from '../firebase';
 import FoodItemDetailsScreen from './FoodItemDetailsScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
@@ -12,10 +12,10 @@ import styles from './Styles';
 import { renderFoodItem } from './FoodItem';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { CartContext } from '../../CartContext';
+import { getAuth } from 'firebase/auth';
 
 const FoodItemsScreen = ({ navigation }) => {
-  const { shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart } = useContext(CartContext);
-
+  const { shoppingCart, addToCart, removeFromCart, handleUpdateCart, clearCart, addToFavorites, removeFromFavorites, favorites, setFavorites } = useContext(CartContext);
   const [foodItems, setFoodItems] = useState([]);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -28,6 +28,24 @@ const FoodItemsScreen = ({ navigation }) => {
     fetchFoodItems();
   }, []);
 
+  const handleLoadFavorites = async () => {
+    const userId = auth.currentUser.uid;
+    const userFavorites = await loadFavorites(userId);
+    setFavorites(userFavorites);
+  };
+  const handleSaveFavorites = async () => {
+    const userId = auth.currentUser.uid;
+    saveFavorites(userId, favorites);
+  };
+  
+  
+  useEffect(() => {
+    handleLoadFavorites();
+  }, []);
+  
+  useEffect(() => {
+    handleSaveFavorites();
+  }, [favorites]);
 
   const showItemDetails = (item) => {
     setSelectedItem(item);
@@ -51,7 +69,8 @@ const FoodItemsScreen = ({ navigation }) => {
       return null;
     }
   };
-  
+  //console.log(foodItems);
+
   return (
     <LinearGradient
       colors={['#ddffc9', '#ff8473',]}
@@ -61,7 +80,7 @@ const FoodItemsScreen = ({ navigation }) => {
       <Text style={styles.fooditemsscreentitle}>UptownMunch</Text>
       <FlatList
         data={foodItems}
-        renderItem={(props) => renderFoodItem({ ...props, showItemDetails, shoppingCart, addToCart, removeFromCart })}
+        renderItem={(props) => renderFoodItem({ ...props, showItemDetails, shoppingCart, addToCart, removeFromCart, favorites, addToFavorites, removeFromFavorites })}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.foodItemsContainer}
         numColumns={2} 
@@ -92,5 +111,3 @@ const FoodItemsScreen = ({ navigation }) => {
 
   
   export default FoodItemsScreen;
-
-

@@ -21,7 +21,7 @@ import CateringServices from './src/screens/CateringServices';
 import FoodItemDetailsScreen from './src/screens/FoodItemDetailsScreen';
 import OrderHistoryScreenAlternate from './src/screens/OrderHistoryAlternate';
 import FoodCategoryDetailsScreen from './src/screens/FoodCategoryDetailsScreen';
-import StripePaymentScreen from './src/screens/StripePaymentScreen';
+//import StripePaymentScreen from './src/screens/StripePaymentScreen';
 
 const Tabs = createBottomTabNavigator();
 
@@ -73,16 +73,19 @@ const HomeTabs = ({ setIsLoggedIn }) => {
           tabBarItemStyle: { display: "none" },
         }}
       />
-      <Tabs.Screen
-        name="StripePayment"
-        component={StripePaymentScreen}
-        options={{ title: 'Payment Page', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
-      />
-      <Tabs.Screen
-        name="StripeReactMobile"
-        component={StripeReactMobile}
-        options={{ title: 'Payment Page', headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />, headerRightContainerStyle: { paddingRight: 10 }, tabBarItemStyle: { display: "none" } }}
-      />
+      {Platform.OS !== 'web' && (
+  <Tabs.Screen
+    name="StripeReactMobile"
+    component={StripeReactMobile}
+    options={{
+      title: 'Payment Page',
+      headerRight: () => <HeaderRight onLogout={() => setIsLoggedIn(false)} />,
+      headerRightContainerStyle: { paddingRight: 10 },
+      tabBarItemStyle: { display: "none" }
+    }}
+  />
+)}
+
       <Tabs.Screen
         name="FoodItemDetailsScreen"
         component={FoodItemDetailsScreen}

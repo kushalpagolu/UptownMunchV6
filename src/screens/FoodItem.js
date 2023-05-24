@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { TouchableOpacity, Text, Image, View, StyleSheet, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { CartContext } from '../../CartContext';
+import { auth, getItems, loadFavorites, saveFavorites } from '../firebase';
+import { getAuth } from 'firebase/auth';
 
-export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart, removeFromCart, rotateYAnimatedStyle }) => {
+export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart, removeFromCart, addToFavorites, removeFromFavorites, favorites, rotateYAnimatedStyle }) => {
   const itemCategory = item.itemCategory.categoryName || '';
-
   const imageSource = item.image_url ? { uri: item.image_url } : null;
   const itemQuantity = shoppingCart.find((cartItem) => cartItem.id === item.id)?.quantity || 0;
-
+  
   return (
     <TouchableOpacity
       style={styles.foodItemContainer}
@@ -28,10 +30,18 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
           <View style={styles.topRow}>
             <Text style={styles.foodItemName}>{item.itemName}</Text>
             <Ionicons
-              name="heart-outline"
+              name={favorites.find((favoriteItem) => favoriteItem.id === item.id) ? "heart" : "heart-outline"}
               size={28}
               color="#FFF"
               style={styles.favoriteIcon}
+              onPress={() => {
+                const isFavorite = favorites.find((favoriteItem) => favoriteItem.id === item.id);
+                if(isFavorite){
+                    removeFromFavorites(item);
+                } else {
+                    addToFavorites(item);
+                }
+            }}
             />
           </View>
           <Text style={styles.foodItemCategory}>{item.categoryName}</Text>
@@ -57,6 +67,7 @@ export const renderFoodItem = ({ item, showItemDetails, shoppingCart, addToCart,
     </TouchableOpacity>
   );
 };
+
 
 const styles = StyleSheet.create({
   foodItemContainer: {

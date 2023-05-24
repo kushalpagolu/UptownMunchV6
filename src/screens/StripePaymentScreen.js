@@ -8,12 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { getFirestore, collection, addDoc, doc,  } from 'firebase/firestore';
 //import { StripeProvider, CardField } from '@stripe/stripe-react-native';
-import {
-  PaymentElement,
-  LinkAuthenticationElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
+//import { PaymentElement, LinkAuthenticationElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 const db = getFirestore(app);
 
