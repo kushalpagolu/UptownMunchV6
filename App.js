@@ -53,6 +53,7 @@ const addToFavorites = (item) => {
 
   if (itemIndex === -1) {
     setFavorites([...favorites, item]);
+    handleSaveFavorites();
   }
 };
 
@@ -84,7 +85,7 @@ return (
 <CartContext.Provider value={{ shoppingCart, addToCart, removeFromCart, handleUpdateCart, setShoppingCart, clearCart, setFavorites, favorites, addToFavorites, removeFromFavorites, handleSaveFavorites, handleLoadFavorites }}>
   <NavigationContainer>
     {!isLoggedIn ? 
-      ( <AuthTabNavigator setIsLoggedIn={setIsLoggedIn} /> ) : ( <HomeStackScreen setIsLoggedIn={setIsLoggedIn} /> ) 
+      ( <AuthTabNavigator setIsLoggedIn={setIsLoggedIn} handleLoadFavorites={handleLoadFavorites} /> ) : ( <HomeStackScreen setIsLoggedIn={setIsLoggedIn} /> ) 
     }
   </NavigationContainer>
 </CartContext.Provider>

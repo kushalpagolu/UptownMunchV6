@@ -17,7 +17,7 @@ const db = admin.firestore();
 console.log("Firestore Database:", db);
 
 // Fetch all documents from the collection
-db.collection('foodItems').get()
+db.collection('favorites').get()
   .then(snapshot => {
     const data = {};
     snapshot.forEach(doc => {
@@ -27,7 +27,7 @@ db.collection('foodItems').get()
     //console.log("Fetched Data:", data);
 
     // Write the data to a JSON file
-    fs.writeFileSync('output.json', JSON.stringify(data, null, 2));
+    fs.writeFileSync('favorites.json', JSON.stringify(data, null, 2));
     console.log("Data written to output.json");
   })
   .catch(error => console.error("Error fetching data:", error));

@@ -38,7 +38,22 @@ const FoodItemsScreen = ({ navigation }) => {
     saveFavorites(userId, favorites);
   };
   
-  
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, load the favorites.
+        handleLoadFavorites();
+      } else {
+        // User is signed out, clear the favorites.
+        setFavorites([]);
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+
   useEffect(() => {
     handleLoadFavorites();
   }, []);

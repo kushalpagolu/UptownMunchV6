@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {View,Text, TextInput, Image, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { CartContext } from '../../CartContext';
 //import { auth } from '../firebase.js';
 import sharedStyles from './Styles.js';
 
@@ -11,11 +12,15 @@ const LoginScreen = ({ setIsLoggedIn }) => {
   const [error, setError] = useState('');
   const auth = getAuth();
 
+  const { handleLoadFavorites } = useContext(CartContext); 
+
   const handleLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setIsLoggedIn(true);
       //pass the authenticated object
+      await handleLoadFavorites();
+
     } catch (error) {
       if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
        // setError('Enter a valid email and password.'); // Update error state

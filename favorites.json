@@ -1,0 +1,13 @@
+{
+  "2MbA0wNVl5SJoqJTQQbspTgXZXQ2": {
+    "favorites": []
+  },
+  "favorite1": {
+    "favorites": [
+      "item1",
+      "item2",
+      "item3"
+    ],
+    "userId": "user1"
+  }
+}

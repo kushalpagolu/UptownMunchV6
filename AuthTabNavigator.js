@@ -7,7 +7,7 @@ import SignupScreen from './src/screens/SignupScreen';
 
 const Tab = createBottomTabNavigator();
 
-const AuthTabNavigator = ({ setIsLoggedIn }) => {
+const AuthTabNavigator = ({ setIsLoggedIn , handleLoadFavorites}) => {
   const loginAnimation = useRef(new Animated.Value(1)).current;
   const signupAnimation = useRef(new Animated.Value(1)).current;
 
@@ -83,7 +83,7 @@ const AuthTabNavigator = ({ setIsLoggedIn }) => {
           tabPress: () => animate(loginAnimation),
         }}
       >
-        {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+        {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} handleLoadFavorites={handleLoadFavorites} />}
       </Tab.Screen>
       <Tab.Screen 
         name="Signup" 
