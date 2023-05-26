@@ -92,9 +92,10 @@ const UserProfileScreen = ({ navigation }) => {
 
     return (
       <LinearGradient colors={['#A6C0FE', '#ff8473']} style={styles.gradient}>
+        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+ >
 
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <KeyboardAvoidingView style={styles.container}>
 
           <View style={styles.profileImageContainer}>
             {profilePicture ? (
@@ -179,28 +180,28 @@ const UserProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
 
       
-        </KeyboardAvoidingView>
     </ScrollView>
-    <Modal
-  transparent={true}
-  visible={successModalVisible}
->
-  <Animated.View
-  style={[
-    styles.successModalContent,
-    { transform: [{ rotate: spin }] },
-  ]}
->
-  <Text style={styles.successText}>Profile saved successfully!</Text>
-<TouchableOpacity
-  style={styles.closeButton}
-  onPress={() => setSuccessModalVisible(false)}
->
-  <Text style={styles.closeButtonText}>Close</Text>
-</TouchableOpacity>
+    </KeyboardAvoidingView>
 
-</Animated.View>
-</Modal>
+    <Modal
+      transparent={true}
+      visible={successModalVisible}
+      >
+      <Animated.View
+      style={[
+        styles.successModalContent,
+        { transform: [{ rotate: spin }] },
+      ]}
+      >
+      <Text style={styles.successText}>Profile saved successfully!</Text>
+     <TouchableOpacity
+      style={styles.closeButton}
+      onPress={() => setSuccessModalVisible(false)}
+      >
+      <Text style={styles.closeButtonText}>Close</Text>
+      </TouchableOpacity>
+      </Animated.View>
+    </Modal>
   </LinearGradient>
   );
 };
@@ -248,7 +249,7 @@ button: {
   justifyContent: 'center',
   paddingHorizontal: 10,
   paddingVertical: 10,
-  marginBottom: 36,
+  marginBottom: 50,
   paddingBottom: 10,
 },
 buttonText: {
