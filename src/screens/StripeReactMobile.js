@@ -77,15 +77,17 @@ const StripeReactMobile = ({ navigation, route }) => {
       let error;
   
       if (Platform.OS === 'web') {
-        const cardElement = stripe.elements.getElement(CardField);
+        const cardElement = stripe.elements.getElement(CardElement);  // Changed from CardField to CardElement
         const tokenResponse = await stripe.createToken(cardElement);
         token = tokenResponse.token;
         error = tokenResponse.error;
       } else {
-        const tokenResponse = await stripe.createToken();
-        token = tokenResponse.token;
-        error = tokenResponse.error;
+        // We need to get the CardField instance
+        const { error: tokenError, token: stripeToken } = await stripe.createToken();
+        token = stripeToken;
+        error = tokenError;
       }
+      
   
       if (error) {
         alert('Error creating token', error.message);
