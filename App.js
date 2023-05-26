@@ -75,7 +75,7 @@ const handleSaveFavorites = async () => {
 
 const handleLoadFavorites = async () => {
   // Assuming you have a state or prop for the user's id
-  console.log('Favorites in handleLoadFavorites', favorites)
+  //console.log('Favorites in handleLoadFavorites', favorites)
   const userId = auth.currentUser.uid
   const loadedFavorites = await loadFavorites(userId);
   setFavorites(loadedFavorites);
