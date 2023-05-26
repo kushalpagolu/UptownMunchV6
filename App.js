@@ -46,10 +46,10 @@ setShoppingCart(updatedCart);
 };
 
 const addToFavorites = (item) => {
-  console.log('Favorites saved Item!', item);
+  //console.log('Favorites saved Item!', item);
   const itemIndex = favorites.findIndex((favoriteItem) => favoriteItem.id === item.id);
-  console.log(itemIndex)
-  console.log('Favorites in AaddToFavorites', favorites)
+  //console.log(itemIndex)
+  //console.log('Favorites in AaddToFavorites', favorites)
 
   if (itemIndex === -1) {
     setFavorites([...favorites, item]);

@@ -43,19 +43,22 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
   }, [fadeAnim]);
 
   return (
-    <ScrollView style={styles.container}>
-    <View>
+    <LinearGradient
+        colors={['#ddffc9', '#ff8473']}
+        style={styles.orderDetailsGradient}
+      >
+    <ScrollView>
+      
+    <View style={styles.container}>
+    
       <LinearGradient
         colors={['#ddffc9', '#ff8473']}
         style={StyleSheet.absoluteFillObject}
       />
       <Animated.Text style={[styles.title, { opacity: fadeAnim }]}>
-        Order Confirmation
+        Order Confirmed!
       </Animated.Text>
-      <LinearGradient
-        colors={['#ddffc9', '#ff8473']}
-        style={styles.orderDetailsGradient}
-      >
+      
         <View style={styles.orderDetailsShadow}>
           <ScrollView style={styles.orderDetails}>
             <Text style={styles.orderId}>Order ID: {order.orderId}</Text>
@@ -79,16 +82,17 @@ const OrderConfirmationScreen = ({ navigation, route }) => {
             <Text style={styles.buttonText}>Back</Text>
           </TouchableOpacity>
         </View>
-      </LinearGradient>
     </View>
     </ScrollView>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: 'center',  // This should center your items horizontally.
+    justifyContent: 'center',
     width: '100%',
   },
   buttonContainer: {
@@ -135,6 +139,7 @@ const styles = StyleSheet.create({
   borderRadius: 20,
   overflow: 'hidden',
   backgroundColor: '#ddffc9', // add this line
+  alignContent: 'center',
 
   },
   orderDetails: {

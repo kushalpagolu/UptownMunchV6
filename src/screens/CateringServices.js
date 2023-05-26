@@ -47,7 +47,7 @@ const CateringServices = ({ navigation }) => {
             data={items}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
-            numColumns={3} // sets number of columns
+            numColumns={2} // sets number of columns
             columnWrapperStyle={styles.row}  // places them into rows
           />
           
@@ -66,13 +66,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    marginBottom: 50,
-
   },
   item: {
     flex: 1,
     margin: 5,
-    height: 160,
+    height: 240,
     marginBottom: 30,
   },
   image: {
@@ -84,11 +82,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   textContainer: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     paddingHorizontal: 5,
     paddingVertical: 10,
     borderRadius: 10,
-  },
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: "60%",
+    alignSelf: "center",
+    },
   title: {
     fontSize: 18,
     fontWeight: "bold",
@@ -96,15 +98,18 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 12,
+    fontWeight: "bold",
     color: 'white',
   },
   price: {
     fontSize: 14,
-    color: 'red',
+    color: 'white',
+    fontWeight: "bold",
   },
   weight: {
-    fontSize:   14,
+    fontSize: 14,
     color: 'white',
+    fontWeight: "bold",
   },
   gradient: {
     position: "absolute",
@@ -129,27 +134,25 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonContainer: {
-    paddingTop: 30,
     paddingBottom: 20,
     bottom: 20,
     alignSelf: 'center',
-    marginTop: 10,
     marginBottom: 40
   },
   button: {
-  width: '100%',
-  backgroundColor: '#fff',
-  borderRadius: 10,
-  alignItems: 'center',
-  justifyContent: 'center',
-  paddingHorizontal: 10,
-  paddingVertical: 10,
-  paddingBottom: 10,
+    width: '100%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+    paddingBottom: 10,
   },
-  buttonText: {
-  fontSize: 18,
-  fontWeight: 'bold',
-  color: '#1E90FF',
+    buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#1E90FF',
   },
 });
 

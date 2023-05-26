@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, FlatList, I
 import { LinearGradient } from 'expo-linear-gradient';
 import { firebaseConfig, app,  } from '../firebase';
 import { CartContext } from '../../CartContext';
-import Stripe from 'react-native-stripe-api';
+//import Stripe from 'react-native-stripe-api';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { getFirestore, collection, addDoc, doc,  } from 'firebase/firestore';

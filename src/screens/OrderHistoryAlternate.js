@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    paddingTop: 30,
+    paddingTop: 5,
     paddingBottom: 20,
     bottom: 20,
     alignSelf: 'center',
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignContent: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   title: {
     fontSize: 20,

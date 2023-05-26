@@ -304,3 +304,9 @@ npx expo start --dev-client
 
 
 eas build --profile development-simulator --platform ios
+
+
+```
+react-native doctor
+
+```
