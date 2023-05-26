@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image, Platform } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Image, Platform, KeyboardAvoidingView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { CartContext } from '../../CartContext';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
@@ -27,34 +27,41 @@ const PUBLISHABLE_KEY = 'pk_test_51N8XmFL7AiIeRnbpNaCfv8k4L9hhL7wy4eyIZMyZmcZ8ED
 const PaymentComponent = ({ navigation, route, cartItems, clearCart, handlePay, renderItem }) => {
   const orderTotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
-    <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Payment Page</Text>
-        <View style={styles.totalContainer}>
-          <Text style={styles.totalText}>Order Total: ${orderTotal.toFixed(2)}</Text>
-          <Text style={styles.totalText}>Total Items: {totalItems}</Text>
+    <KeyboardAvoidingView 
+      behavior={Platform.OS === "ios" ? "padding" : "height"} 
+      style={styles.container}
+    >
+      <LinearGradient colors={['#1E90FF', '#FF8C00']} style={styles.container}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Payment Page</Text>
+          <View style={styles.totalContainer}>
+            <Text style={styles.totalText}>Order Total: ${orderTotal.toFixed(2)}</Text>
+            <Text style={styles.totalText}>Total Items: {totalItems}</Text>
+          </View>
+          <FlatList
+            data={cartItems}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.cartItemsContainer}
+          />
         </View>
-        <FlatList
-          data={cartItems}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.cartItemsContainer}
-        />
-      </View>
-      <View style={styles.paymentContainer}>
-        {Platform.OS === 'web' ? (
-          <CardElement postalCodeEnabled={true} autofocus style={styles.cardField} />
-        ) : (
-          <CardField postalCodeEnabled={true} autofocus style={styles.cardField} />
-        )}
-        <TouchableOpacity style={styles.payButton} onPress={handlePay}>
-          <Text style={styles.payButtonText}>Pay</Text>
-        </TouchableOpacity>
-      </View>
-    </LinearGradient>
+        <View style={styles.paymentContainer}>
+          {Platform.OS === 'web' ? (
+            <CardElement postalCodeEnabled={true} autofocus style={styles.cardField} />
+          ) : (
+            <CardField postalCodeEnabled={true} autofocus style={styles.cardField} />
+          )}
+          <TouchableOpacity style={styles.payButton} onPress={handlePay}>
+            <Text style={styles.payButtonText}>Pay</Text>
+          </TouchableOpacity>
+        </View>
+      </LinearGradient>
+    </KeyboardAvoidingView>
   );
 };
+
 
 const StripeReactMobile = ({ navigation, route }) => {
   const { order } = route.params;
@@ -93,6 +100,7 @@ const StripeReactMobile = ({ navigation, route }) => {
     const renderItem = ({ item }) => {
         const imageSource = item.image_url ? { uri: item.image_url } : null;
     return (
+      <KeyboardAvoidingView>
         <TouchableOpacity
         style={styles.foodItemContainer}
         >
@@ -105,8 +113,7 @@ const StripeReactMobile = ({ navigation, route }) => {
         )}
         <LinearGradient
             colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.6)"]}
-            style={styles.foodItemOverlay}
-        >
+            style={styles.foodItemOverlay}>
             <View style={styles.foodItemDetails}>
             <View>
                 <Text style={styles.foodItemName}>{item.itemName}</Text>
@@ -119,6 +126,7 @@ const StripeReactMobile = ({ navigation, route }) => {
             </View>
         </LinearGradient>
         </TouchableOpacity>
+        </KeyboardAvoidingView>
         );
     };
 
@@ -129,8 +137,8 @@ const StripeReactMobile = ({ navigation, route }) => {
       </Elements>
     </StripeProvider>
   ) : (
-    <StripeProvider publishableKey={PUBLISHABLE_KEY}>
-      <PaymentComponent navigation={navigation} route={route} cartItems={cartItems} clearCart={clearCart} handlePay={handlePay} renderItem={renderItem} />
+    <StripeProvider publishableKey={PUBLISHABLE_KEY}>  
+        <PaymentComponent navigation={navigation} route={route} cartItems={cartItems} clearCart={clearCart} handlePay={handlePay} renderItem={renderItem} />
     </StripeProvider>
   );
 };
@@ -138,18 +146,19 @@ const StripeReactMobile = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 20,
+    marginTop: 20,
   },
   card: {
     borderRadius: 15,
     overflow: 'hidden',
     marginBottom: 10,
+    padding: 10,
     elevation: 3,
   },
   foodItemName: {
@@ -215,7 +224,7 @@ const styles = StyleSheet.create({
   cardField: {
     height: 50,
     marginTop: 30,
-    marginBottom: 50,
+    marginBottom: 40,
     color: 'white',
     backgroundColor: 'white',
   },
@@ -224,6 +233,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     borderRadius: 5,
+    marginBottom: 40,
   },
   payButtonText: {
     color: 'white', // change as needed
