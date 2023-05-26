@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
 
   itemDetailsContainer: {
     flex: 1,
-    paddingHorizontal: 16,
   },
   cartItem: {
     flex: 1,
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
   },
 
   itemRemoveButton: {
-    padding: 5,
+    padding: 2,
   },
 
   itemName: {

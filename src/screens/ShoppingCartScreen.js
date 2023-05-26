@@ -81,7 +81,7 @@ useFocusEffect(
             style={styles.itemRemoveButton}
             onPress={() => handleRemoveFromCart(item)}
           >
-            <AntDesign name="delete" size={18} color="black" />
+            <AntDesign name="delete" size={16} color="black" />
           </TouchableOpacity>
         </View>
       </Swipeable>

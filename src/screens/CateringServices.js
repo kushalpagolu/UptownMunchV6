@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     margin: 5,
-    height: 240,
+    height: 260,
     marginBottom: 30,
   },
   image: {
@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 10,
     paddingBottom: 10,
+    marginTop: 20,
   },
     buttonText: {
     fontSize: 18,

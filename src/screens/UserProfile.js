@@ -35,8 +35,8 @@ const UserProfileScreen = ({ navigation }) => {
       quality: 1,
     });
   
-    if (!result.cancelled) {
-      setProfilePicture(result.uri);
+    if (!result.canceled) {
+      setProfilePicture(result.assets);
     }
   };
   const handleSave = async () => {
@@ -98,7 +98,7 @@ const UserProfileScreen = ({ navigation }) => {
 
           <View style={styles.profileImageContainer}>
             {profilePicture ? (
-              <Image source={{ uri: profilePicture }} style={styles.profileImage} />
+              <Image source={{ assets: profilePicture }} style={styles.profileImage} />
             ) : (
               <View style={styles.emptyProfileImage}>
                 <MaterialIcons name="person" size={100} color="#FFFFFF" />

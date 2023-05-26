@@ -86,11 +86,10 @@ const styles = StyleSheet.create({
     paddingTop: 16,
   },
   buttonContainer: {
-    paddingTop: 30,
     paddingBottom: 20,
     bottom: 20,
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 30,
     marginBottom: 40
   },
   button: {
