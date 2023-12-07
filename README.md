@@ -6,11 +6,12 @@ https://github.com/kushalpagolu/UptownMunchV6/assets/61297615/1c11ed43-516e-4c88
 
 
 # UptownMunchV6
-A food ordering app with end to end functionality on web and mobile.
 
-UptownMunch is a cross-platform React Native application built using Expo CLI. This application is a food ordering app. In this readme, you'll find instructions on how to set up and run the project, as well as guidance for creating your own React Native app using the same steps.
+A cross-platform food ordering app built using Expo/React Native.The app demonstrates the use of different components and features in RN.
 
-This is a React Native app that demonstrates the use of different components and features.
+In this readme, you'll find instructions on how to set up and run the project, as well as guidance for creating your own React Native app using the same steps.
+
+
 
 **Prerequisites**
 
